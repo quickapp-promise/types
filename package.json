@@ -1,0 +1,19 @@
+{
+  "name": "@quickapp-promise/types",
+  "version": "1.0.0",
+  "description": "QuickApp interface",
+  "keywords": [
+    "quickapp",
+    "quickapp interface",
+    "quickapp types"
+  ],
+  "homepage": "https://github.com/quickapp-promise/types",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quickapp-promise/types.git"
+  },
+  "type": "module",
+  "types": "index.d.ts",
+  "author": "qinjiapeng <759848795@qq.com> (https://github.com/qjp88995)",
+  "license": "MIT"
+}
