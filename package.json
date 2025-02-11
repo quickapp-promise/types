@@ -1,7 +1,7 @@
 {
   "name": "@quickapp-promise/types",
   "version": "1.0.0",
-  "description": "QuickApp interface",
+  "description": "QuickApp interface types",
   "keywords": [
     "quickapp",
     "quickapp interface",
