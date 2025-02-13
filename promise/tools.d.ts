@@ -5,7 +5,7 @@ declare module "@quickapp.promise.tools" {
     : void
     : void;
 
-  export type GetSuccessParams<T extends (...args: any[]) => any> = Parameters<T>[0] extends { success?: (...args: infer R) => any }
+  type GetSuccessParams<T extends (...args: any[]) => any> = Parameters<T>[0] extends { success?: (...args: infer R) => any }
     ? R[0] extends undefined
     ? void
     : R[0]
