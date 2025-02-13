@@ -7,11 +7,13 @@ declare module '@system.app' {
    */
   interface AppInfo {
     /**
-     * 应用包名，1050+ 版本开始支持
+     * 应用包名
+     * [1050+]
      */
     packageName: string;
     /**
-     * 应用图标路径，1050+ 版本开始支持
+     * 应用图标路径
+     * [1050+]
      */
     icon: string;
     /**
@@ -88,7 +90,8 @@ declare module '@system.app' {
   }
 
   /**
-   * 生成快应用分享二维码 1070+ 版本开始支持
+   * 生成快应用分享二维码
+   * [1070+]
    */
   function createQuickAppQRCode(options: CreateQRCodeOptions): void;
 }
