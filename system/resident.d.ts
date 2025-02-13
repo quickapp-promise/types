@@ -4,19 +4,21 @@
  * 接口声明: { "name": "system.resident" }
  */
 declare module '@system.resident' {
+  interface StartOptions {
     /**
-     * 启动后台运行。此接口可多次调用，最后一次调用时的 desc 参数作为描述文案显示到通知栏上(有音乐播放通知时，不显示本通知)。
-     * @param obj
+     * 更新后台通知的描述信息
      */
-    function start(obj: {
-        /**
-         * 更新后台通知的描述信息
-         */
-        desc?: string;
-    }): void;
+    desc?: string;
+  }
 
-    /**
-     * 停止后台运行。即使start调用多次，stop调用一次即可停止后台运行。
-     */
-    function stop(): void;
+  /**
+   * 启动后台运行。此接口可多次调用，最后一次调用时的 desc 参数作为描述文案显示到通知栏上(有音乐播放通知时，不显示本通知)。
+   * @param obj
+   */
+  function start(obj: StartOptions): void;
+
+  /**
+   * 停止后台运行。即使start调用多次，stop调用一次即可停止后台运行。
+   */
+  function stop(): void;
 }
