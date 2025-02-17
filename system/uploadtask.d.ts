@@ -85,7 +85,7 @@ declare module "@system.uploadtask" {
   }
 
   type UploadTaskProgressUpdateCallback = (
-    callback: UploadTaskProgressUpdateCallbackOptions
+    obj: UploadTaskProgressUpdateCallbackOptions
   ) => void;
 
   interface UploadTaskProgressUpdateCallbackOptions {
@@ -104,12 +104,11 @@ declare module "@system.uploadtask" {
   }
 
   type UploadTaskHeadersReceivedCallback = (
-    callback: UploadTaskHeadersReceivedCallbackOptions
+    /**
+     * 开发者服务器返回的 HTTP Response Header
+     */
+    header: object
   ) => void;
-
-  interface UploadTaskHeadersReceivedCallbackOptions {
-    headers: object;
-  }
 
   /**
    * 创建一个上传请求，每次成功调用 uploadtask.uploadFile 将返回本次请求的 UploadTask 实例。
