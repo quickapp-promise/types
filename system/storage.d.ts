@@ -3,16 +3,7 @@
  * 接口声明: {"name": "system.storage"}
  */
 declare module "@system.storage" {
-  /**
-   * 存储里的数据项的数量
-   */
-  export const length: number;
-
-  /**
-   * 读取存储内容
-   * @param obj
-   */
-  export function get(obj: {
+  interface GetOptions {
     /**
      * 索引
      */
@@ -33,13 +24,9 @@ declare module "@system.storage" {
      * 执行结束后的回调
      */
     complete?: () => void;
-  }): void;
+  }
 
-  /**
-   * 修改存储内容
-   * @param obj
-   */
-  export function set(obj: {
+  interface SetOptions {
     /**
      * 索引
      */
@@ -60,13 +47,9 @@ declare module "@system.storage" {
      * 执行结束后的回调
      */
     complete?: () => void;
-  }): void;
+  }
 
-  /**
-   * 清空存储内容
-   * @param obj
-   */
-  export function clear(obj: {
+  interface ClearOptions {
     /**
      * 成功回调
      */
@@ -79,13 +62,9 @@ declare module "@system.storage" {
      * 执行结束后的回调
      */
     complete?: () => void;
-  }): void;
+  }
 
-  /**
-   * 删除存储内容
-   * @param obj
-   */
-  function _delete(obj: {
+  interface DeleteOptions {
     /**
      * 索引
      */
@@ -93,7 +72,7 @@ declare module "@system.storage" {
     /**
      * 成功回调
      */
-    success?: (data: any) => void;
+    success?: () => void;
     /**
      * 失败回调
      */
@@ -102,15 +81,9 @@ declare module "@system.storage" {
      * 执行结束后的回调
      */
     complete?: () => void;
-  }): void;
-  export { _delete as delete };
+  }
 
-  /**
-   * 返回存储中某个index的键名
-   * [1050+]
-   * @param obj
-   */
-  export function key(obj: {
+  interface KeyOptions {
     /**
      * 要查询的键名对应的索引
      */
@@ -118,7 +91,7 @@ declare module "@system.storage" {
     /**
      * 成功回调
      */
-    success?: (data: string) => void;
+    success?: (data: string[]) => void;
     /**
      * 失败回调
      */
@@ -127,5 +100,41 @@ declare module "@system.storage" {
      * 执行结束后的回调
      */
     complete?: () => void;
-  }): void;
+  }
+
+  class Storage {
+    /**
+     * 存储里的数据项的数量
+     * [1050+]
+     */
+    length: string;
+
+    /**
+     * 读取存储内容
+     */
+    get(obj: GetOptions): void;
+
+    /**
+     * 修改存储内容
+     */
+    set(obj: SetOptions): void;
+
+    /**
+     * 清空存储内容
+     */
+    clear(obj: ClearOptions): void;
+
+    /**
+     * 删除存储内容
+     */
+    delete(obj: DeleteOptions): void;
+
+    /**
+     * 返回存储中某个index的键名
+     * [1050+]
+     */
+    key(obj: KeyOptions): void;
+  }
+
+  export default new Storage();
 }
