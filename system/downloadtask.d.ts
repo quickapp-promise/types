@@ -33,6 +33,7 @@ declare module "@system.downloadtask" {
      */
     complete?: () => void;
   }
+
   interface DownloadFileSuccessOptions {
     /**
      * 服务器状态 code
@@ -47,6 +48,7 @@ declare module "@system.downloadtask" {
      */
     headers: object;
   }
+
   interface DownloadTask {
     /**
      * 中断下载任务
@@ -77,6 +79,7 @@ declare module "@system.downloadtask" {
   type DownloadTaskProgressUpdateCallback = (
     obj: DownloadTaskProgressUpdateCallbackOptions
   ) => void;
+
   interface DownloadTaskProgressUpdateCallbackOptions {
     /**
      * 下载进度百分比
@@ -91,6 +94,7 @@ declare module "@system.downloadtask" {
      */
     totalBytesExpectedToWrite: number;
   }
+
   type DownloadTaskHeaderReceivedCallbackCallback = (
     /**
      * 开发者服务器返回的 HTTP Response Header
