@@ -1,7 +1,7 @@
 declare module "@quickapp.promise.tools" {
   type GetPromiseParams<T extends (...args: any[]) => any> = Parameters<T> extends any[]
     ? Parameters<T>[0] extends {}
-    ? Omit<Parameters<T>[0], 'success' | 'fail' | 'complete'>
+    ? Omit<Parameters<T>[0], 'success' | 'fail' | 'complete' | 'cancel'>
     : void
     : void;
 
