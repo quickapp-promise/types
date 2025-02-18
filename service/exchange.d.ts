@@ -223,5 +223,7 @@ declare module "@service.exchange" {
     revokePermission(obj: RevokePermissionOptions): void;
   }
 
-  export default new Exchange();
+  const exchange: InstanceType<typeof Exchange>;
+
+  export default exchange;
 }

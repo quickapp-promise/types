@@ -419,5 +419,7 @@ declare module "@system.file" {
     rmdir(obj: RmdirOptions): void;
   }
 
-  export default new File();
+  const file: InstanceType<typeof File>;
+
+  export default file;
 }

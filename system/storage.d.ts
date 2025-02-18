@@ -136,5 +136,7 @@ declare module "@system.storage" {
     key(obj: KeyOptions): void;
   }
 
-  export default new Storage();
+  const storage: InstanceType<typeof Storage>;
+
+  export default storage;
 }
