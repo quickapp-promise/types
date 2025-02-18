@@ -2,16 +2,17 @@
  * 震动
  * 接口声明: {"name": "system.vibrator"}
  */
-declare module '@system.vibrator' {
+declare module "@system.vibrator" {
+  interface VibrateOptions {
     /**
-     * 触发震动，持续1秒
-     * @param obj
+     * 振动模式，"long"表示长振动，"short"表示短振动。默认为 long
+     * [1030+]
      */
-    function vibrate(obj: {
-        /**
-         * 振动模式，"long"表示长振动，"short"表示短振动。默认为 long
-         * [1030+]
-         */
-        mode?: string;
-    }): void;
+    mode?: "long" | "short";
+  }
+
+  /**
+   * 触发震动
+   */
+  function vibrate(obj: VibrateOptions): void;
 }
