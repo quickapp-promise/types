@@ -3,11 +3,7 @@
  * 接口声明: {"name": "system.clipboard"}
  */
 declare module '@system.clipboard' {
-    /**
-     * 修改剪贴板内容
-     * @param obj
-     */
-    function set(obj: {
+    interface SetOptions {
         /**
          * 需要放到剪切板的内容
          */
@@ -18,35 +14,51 @@ declare module '@system.clipboard' {
         success?: () => void;
         /**
          * 失败回调
+         * @description
+         * |错误码|说明|
+         * |---|---|
+         * |201|用户拒绝，获取写入剪贴板权限失败|
          */
         fail?: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
         complete?: () => void;
-    }): void;
+    }
 
     /**
-     * 读取剪贴板内容
-     * @param obj
+     * 修改剪贴板内容
      */
-    function get(obj: {
+    function set(obj: SetOptions): void;
+
+    interface GetOptions {
         /**
          * 成功回调
          */
-        success?: (data: {
-            /**
-             * 剪切板内容
-             */
-            text: string;
-        }) => void;
+        success?: (data: GetSuccessOptions) => void;
         /**
          * 失败回调
+         * @description
+         * |错误码|说明|
+         * |---|---|
+         * |201|用户拒绝，获取读取剪贴板权限失败|
          */
         fail?: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
         complete?: () => void;
-    }): void;
+    }
+
+    interface GetSuccessOptions {
+        /**
+         * 剪切板内容
+         */
+        text: string;
+    }
+
+    /**
+     * 读取剪贴板内容
+     */
+    function get(obj: GetOptions): void;
 }
