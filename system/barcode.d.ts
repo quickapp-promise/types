@@ -2,33 +2,40 @@
  * 二维码
  * 接口声明: {"name": "system.barcode"}
  */
-declare module '@system.barcode' {
+declare module "@system.barcode" {
+  interface ScanOptions {
     /**
-     * 扫描二维码
-     * @param obj
+     * 成功回调
      */
-    function scan(obj: {
-        /**
-         * 成功回调
-         */
-        success?: (data: {
-            /**
-             * 解析后的内容
-             */
-            result: string;
-        }) => void;
-        /**
-         * 失败回调
-         * 201: 用户拒绝，获取相机权限失败
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 取消回调
-         */
-        cancel?: () => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+    success?: (data: ScanSuccessOptions) => void;
+    /**
+     * 失败回调
+     * @description
+     * |错误码|说明|
+     * |---|---|
+     * |201|用户拒绝，获取相机权限失败|
+     * |207|用户拒绝并勾选不再询问复选框 [1100+]|
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 取消回调
+     */
+    cancel?: () => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
+
+  interface ScanSuccessOptions {
+    /**
+     * 解析后的内容
+     */
+    result: string;
+  }
+
+  /**
+   * 扫描二维码
+   */
+  function scan(obj: ScanOptions): void;
 }
