@@ -3,124 +3,131 @@
  * 接口声明: {"name": "system.brightness"}
  */
 declare module '@system.brightness' {
+  interface GetValueOptions {
     /**
-     * 获得当前屏幕亮度值
-     * @param obj
+     * 成功回调
      */
-    function getValue(obj: {
-        /**
-         * 成功回调
-         */
-        success?: (data: {
-            /**
-             * 屏幕亮度，取值范围 0-255
-             */
-            value: number;
-        }) => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+    success?: (data: GetValueSuccessOptions) => void;
+    /**
+     * 失败回调
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
 
+  interface GetValueSuccessOptions {
     /**
-     * 设置当前屏幕亮度值
-     * @param obj
+     * 屏幕亮度，取值范围 0-255
      */
-    function setValue(obj: {
-        /**
-         * 屏幕亮度，取值范围0-255
-         */
-        value: number;
-        /**
-         * 成功回调
-         */
-        success?: () => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+    value: number;
+  }
 
-    /**
-     * 获得当前屏幕亮度模式
-     * @param obj
-     *  success 成功回调
-     *  fail 失败回调
-     *  complete 执行结束后的回调
-     */
-    function getMode(obj: {
-        /**
-         * 成功回调
-         */
-        success?: (data: {
-            /**
-             * 0 为手动调节屏幕亮度,1 为自动调节屏幕亮度
-             */
-            mode: number;
-        }) => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+  /**
+   * 获得当前屏幕亮度值
+   */
+  function getValue(obj: GetValueOptions): void;
 
+  interface SetValueOptions {
     /**
-     * 设置当前屏幕亮度模式
-     * @param obj
+     * 屏幕亮度，取值范围0-255
      */
-    function setMode(obj: {
-        /**
-         * 屏幕亮度，取值范围0-255
-         */
-        mode: number;
-        /**
-         * 成功回调
-         */
-        success?: () => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+    value: number;
+    /**
+     * 成功回调
+     */
+    success?: () => void;
+    /**
+     * 失败回调
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
 
+  /**
+   * 设置当前屏幕亮度值
+   */
+  function setValue(obj: SetValueOptions): void;
+
+  interface GetModeOptions {
     /**
-     * 1060+
-     * 设置是否保持常亮状态
-     * @param obj
+     * 成功回调
      */
-    function setKeepScreenOn(obj: {
-        /**
-         * 是否保持屏幕常亮
-         */
-        keepScreenOn: boolean;
-        /**
-         * 成功回调
-         */
-        success?: () => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
-    }): void;
+    success?: (data: GetModeSuccessOptions) => void;
+    /**
+     * 失败回调
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
+
+  interface GetModeSuccessOptions {
+    /**
+     * 0 为手动调节屏幕亮度,1 为自动调节屏幕亮度
+     */
+    mode: 0 | 1;
+  }
+
+  /**
+   * 获得当前屏幕亮度模式
+   */
+  function getMode(obj: GetModeOptions): void;
+
+  interface SetModeOptions {
+    /**
+     * 0 为手动调节屏幕亮度,1 为自动调节屏幕亮度
+     */
+    mode: 0 | 1;
+    /**
+     * 成功回调
+     */
+    success?: () => void;
+    /**
+     * 失败回调
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
+
+  /**
+   * 设置当前屏幕亮度模式
+   * @param obj
+   */
+  function setMode(obj: SetModeOptions): void;
+
+  interface SetKeepScreenOn {
+    /**
+     * 是否保持屏幕常亮
+     */
+    keepScreenOn: boolean;
+    /**
+     * 成功回调
+     */
+    success?: () => void;
+    /**
+     * 失败回调
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * 执行结束后的回调
+     */
+    complete?: () => void;
+  }
+
+  /**
+   * 设置是否保持常亮状态
+   * [1060+]
+   */
+  function setKeepScreenOn(obj: SetKeepScreenOn): void;
 }
