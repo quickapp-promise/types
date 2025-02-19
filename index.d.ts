@@ -64,6 +64,3 @@
 
 // hap
 /// <reference path="hap/video.d.ts" />
-
-// promise
-/// <reference path="promise/tools.d.ts" />
