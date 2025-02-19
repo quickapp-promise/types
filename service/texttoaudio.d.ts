@@ -161,13 +161,13 @@ declare module '@service.texttoaudio' {
 
   /**
    * 停止，无论当前处于语音播报还是保存到文件的过程
-   * @return 0: 请求成功 -1: 请求失败
+   * @returns 0: 请求成功 -1: 请求失败
    */
   function stop(): 0 | -1;
 
   /**
    * 判断语音是否正在播放或者合成
-   * @return true: 正在播报或合成过程中，false: 不在播报或合成过程中
+   * @returns true: 正在播报或合成过程中，false: 不在播报或合成过程中
    */
   function isSpeaking(): boolean;
 }
