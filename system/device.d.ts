@@ -192,7 +192,7 @@ declare module '@system.device' {
   /**
    * 获取设备信息
    */
-  function getInfo(obj: GetInfoOptions): void;
+  function getInfo(obj?: GetInfoOptions): void;
 
   /**
    * 批量获取设备标识，需要用户授权
@@ -236,7 +236,7 @@ declare module '@system.device' {
    * 权限要求
    * - 获取手机状态
    */
-  function getDeviceId(Obj: GetDeviceIdOptions): void;
+  function getDeviceId(Obj?: GetDeviceIdOptions): void;
 
   interface GetUserIdOptions {
     /**
@@ -264,7 +264,7 @@ declare module '@system.device' {
    * 获取用户唯一标识
    * [1000+]
    */
-  function getUserId(Obj: GetUserIdOptions): void;
+  function getUserId(Obj?: GetUserIdOptions): void;
 
   interface GetAdvertisingIdOptions {
     /**
@@ -292,7 +292,7 @@ declare module '@system.device' {
    * 获取广告唯一标识
    * [1000+]
    */
-  function getAdvertisingId(Obj: GetAdvertisingIdOptions): void;
+  function getAdvertisingId(Obj?: GetAdvertisingIdOptions): void;
 
   interface GetSerialOptions {
     /**
@@ -322,7 +322,7 @@ declare module '@system.device' {
    * @deprecated
    * 根据Android平台要求，Android 10开始不允许向第三方应用提供SN，该接口将回调fail，建议使用其他系统标识符如OAID替代
    */
-  function getSerial(Obj: GetSerialOptions): void;
+  function getSerial(Obj?: GetSerialOptions): void;
 
   interface GetTotalStorageOptions {
     /**
@@ -350,7 +350,7 @@ declare module '@system.device' {
    * 获取存储空间的总大小
    * [1000+]
    */
-  function getTotalStorage(Obj: GetTotalStorageOptions): void;
+  function getTotalStorage(Obj?: GetTotalStorageOptions): void;
 
   interface GetAvailableStorageOptions {
     /**
@@ -378,7 +378,7 @@ declare module '@system.device' {
    * 获取存储空间的可用大小
    * [1000+]
    */
-  function getAvailableStorage(Obj: GetAvailableStorageOptions): void;
+  function getAvailableStorage(Obj?: GetAvailableStorageOptions): void;
 
   interface GetCpuInfoOptions {
     /**
@@ -406,7 +406,7 @@ declare module '@system.device' {
    * 返回 CPU 信息
    * [1000+]
    */
-  function getCpuInfo(Obj: GetCpuInfoOptions): void;
+  function getCpuInfo(Obj?: GetCpuInfoOptions): void;
 
   interface GetOAIDOptions {
     /**
@@ -434,7 +434,7 @@ declare module '@system.device' {
    * 返回厂商设备标识符中的 OAID（匿名设备标识符）
    * [1060+]
    */
-  function getOAID(Obj: GetOAIDOptions): void;
+  function getOAID(Obj?: GetOAIDOptions): void;
 
   /**
    * 同步方法获取平台版本信息

@@ -37,5 +37,5 @@ declare module "@system.barcode" {
   /**
    * 扫描二维码
    */
-  function scan(obj: ScanOptions): void;
+  function scan(obj?: ScanOptions): void;
 }

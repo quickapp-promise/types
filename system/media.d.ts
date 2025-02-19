@@ -50,7 +50,7 @@ declare module '@system.media' {
    * 权限要求
    * - 使用相机
    */
-  function takePhoto(obj: TakePhotoOptions): void;
+  function takePhoto(obj?: TakePhotoOptions): void;
 
   interface TakeVideoOptions {
     /**
@@ -87,7 +87,7 @@ declare module '@system.media' {
    * 权限要求
    * - 使用相机
    */
-  function takeVideo(obj: TakeVideoOptions): void;
+  function takeVideo(obj?: TakeVideoOptions): void;
 
   interface PickImageOptions {
     /**
@@ -114,7 +114,7 @@ declare module '@system.media' {
    * 权限要求
    * - 读手机存储
    */
-  function pickImage(obj: PickImageOptions): void;
+  function pickImage(obj?: PickImageOptions): void;
 
   interface PickImagesOptions {
     /**
@@ -154,7 +154,7 @@ declare module '@system.media' {
    * 权限要求
    * - 读手机存储
    */
-  function pickImages(obj: PickImagesOptions): void;
+  function pickImages(obj?: PickImagesOptions): void;
 
   interface PickVideoOptions {
     /**
@@ -181,7 +181,7 @@ declare module '@system.media' {
    * 权限要求
    * - 读手机存储
    */
-  function pickVideo(obj: PickVideoOptions): void;
+  function pickVideo(obj?: PickVideoOptions): void;
 
   interface PickVideosOptions {
     /**
@@ -221,7 +221,7 @@ declare module '@system.media' {
    * 权限要求
    * - 读手机存储
    */
-  function pickVideos(obj: PickVideosOptions): void;
+  function pickVideos(obj?: PickVideosOptions): void;
 
   interface PickFileOptions {
     /**
@@ -249,7 +249,7 @@ declare module '@system.media' {
    * 权限要求
    * - 读手机存储
    */
-  function pickFile(obj: PickFileOptions): void;
+  function pickFile(obj?: PickFileOptions): void;
 
   interface SaveToPhotosAlbumOptions {
     /**

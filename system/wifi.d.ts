@@ -86,7 +86,7 @@ declare module '@system.wifi' {
   /**
    * 请求获取Wi-Fi列表，在onscanned事件中返回Wi-Fi列表数据[权限要求:粗略设备定位]
    */
-  function scan(obj: ScanOptions): void;
+  function scan(obj?: ScanOptions): void;
 
   interface GetConnectedWifiOptions {
     /**
@@ -112,7 +112,7 @@ declare module '@system.wifi' {
   /**
    * 获取已连接中的Wi-Fi信息[权限要求:粗略设备定位]
   */
-  function getConnectedWifi(obj: GetConnectedWifiOptions): void;
+  function getConnectedWifi(obj?: GetConnectedWifiOptions): void;
 
   interface OnScannedOptions {
     /**

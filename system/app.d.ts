@@ -53,7 +53,7 @@ declare module '@system.app' {
     /**
      * 来源其他信息，与type相关，不同的type，extra中的字段会不同
      */
-    extra: object;
+    extra: Record<string, any>;
   }
 
   /**

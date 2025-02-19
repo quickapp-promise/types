@@ -11,7 +11,7 @@ declare module "@system.websocketfactory" {
     /**
      * 请求头，header中不能设置Referer，UserAgent设置在1040版本开始支持
      */
-    header?: object;
+    header?: Record<string, string | number>;
     /**
      * 子协议组
      */
@@ -20,11 +20,11 @@ declare module "@system.websocketfactory" {
 
   interface WebSocket {
     send: (obj: WebSocketSendOptions) => void;
-    close: (obj: WebSocketCloseOptions) => void;
-    onopen: () => void;
-    onmessage: (data: WebSocketOnMessageOptions) => void;
-    onclose: (data: WebSocketOnCloseOptions) => void;
-    onerror: (data: WebSocketOnErrorOptions) => void;
+    close: (obj?: WebSocketCloseOptions) => void;
+    set onopen(callback: () => void);
+    set onmessage(callback: (data: WebSocketOnMessageOptions) => void);
+    set onclose(callback: (data: WebSocketOnCloseOptions) => void);
+    set onerror(callback: (data: WebSocketOnErrorOptions) => void);
   }
 
   type TypedArray =

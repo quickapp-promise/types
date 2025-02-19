@@ -40,7 +40,7 @@ declare module '@system.bluetooth' {
   /**
    * 初始化蓝牙模块
    */
-  function openAdapter(obj: OpenAdapterOptions): void;
+  function openAdapter(obj?: OpenAdapterOptions): void;
 
   interface CloseAdapterOptions {
     /**
@@ -64,7 +64,7 @@ declare module '@system.bluetooth' {
   /**
    * 关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 bluetooth.openAdapter 成对调用。
    */
-  function closeAdapter(obj: CloseAdapterOptions): void;
+  function closeAdapter(obj?: CloseAdapterOptions): void;
 
   interface GetAdapterStateOptions {
     /**
@@ -95,7 +95,7 @@ declare module '@system.bluetooth' {
   /**
    * 获取本机蓝牙适配器状态。
    */
-  function getAdapterState(obj: GetAdapterStateOptions): void;
+  function getAdapterState(obj?: GetAdapterStateOptions): void;
 
   /*
    * 监听蓝牙适配器状态变化事件
@@ -132,7 +132,7 @@ declare module '@system.bluetooth' {
   /**
    * 开始搜寻附近的蓝牙外围设备。此操作比较耗费系统资源，请在搜索并连接到设备后调用 bluetooth.stopDevicesDiscovery 方法停止搜索。
    */
-  function startDevicesDiscovery(obj: StartDevicesDiscoveryOptions): void;
+  function startDevicesDiscovery(obj?: StartDevicesDiscoveryOptions): void;
 
   interface StopDevicesDiscovery {
     /**
@@ -152,7 +152,7 @@ declare module '@system.bluetooth' {
   /**
    * 停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索。
    */
-  function stopDevicesDiscovery(obj: StopDevicesDiscovery): void;
+  function stopDevicesDiscovery(obj?: StopDevicesDiscovery): void;
 
   interface GetDevicesOptions {
     /**
@@ -204,13 +204,13 @@ declare module '@system.bluetooth' {
     /**
      * 当前蓝牙设备的广播数据段中的 ServiceData 数据段，key 为 uuid 的 String 值，value 为对应的 ServiceData 的 ArrayBuffer
      */
-    serviceData: object;
+    serviceData: Record<string, ArrayBuffer>;
   }
 
   /**
    * 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
    */
-  function getDevices(obj: GetDevicesOptions): void;
+  function getDevices(obj?: GetDevicesOptions): void;
 
   interface OnDeviceFoundOptions {
     /**
@@ -423,7 +423,7 @@ declare module '@system.bluetooth' {
   /**
    * 获取蓝牙设备某个服务中所有特征值(characteristic)。
    */
-  function getBLEDeviceCharacteristics(obj: GetBLEDeviceCharacteristicsSuccessOptions): void;
+  function getBLEDeviceCharacteristics(obj: GetBLEDeviceCharacteristicsOptions): void;
 
   interface ReadBLECharacteristicValueOptions {
     /**

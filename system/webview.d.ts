@@ -1,6 +1,7 @@
 /**
  * 打开网页
  * 接口声明: {"name": "system.webview"}
+ * @link https://doc.quickapp.cn/features/system/webview.html
  */
 declare module '@system.webview' {
   interface LoadUrlOptions {

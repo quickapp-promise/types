@@ -21,7 +21,7 @@ declare module "@system.shortcut" {
   /**
    * 获取桌面图标是否创建
    */
-  function hasInstalled(obj: HasInstalledOptions): void;
+  function hasInstalled(obj?: HasInstalledOptions): void;
 
   interface InstallOptions {
     /**
@@ -52,7 +52,7 @@ declare module "@system.shortcut" {
   /**
    * 创建桌面图标，需要用户允许
    */
-  function install(obj: InstallOptions): void;
+  function install(obj?: InstallOptions): void;
 
   /**
    * 是否开启系统快捷方式创建弹窗，默认true。不会持久化，只对当前运行有效

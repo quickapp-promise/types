@@ -32,5 +32,5 @@ declare module '@system.battery' {
   /**
    * 获取当前设备的电量信息
    */
-  function getStatus(obj: GetStatusOptions): void;
+  function getStatus(obj?: GetStatusOptions): void;
 }

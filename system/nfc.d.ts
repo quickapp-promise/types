@@ -136,15 +136,15 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnected(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 设置超时时间
        */
@@ -152,7 +152,7 @@ declare module '@system.nfc' {
       /**
        * 发送数据
        */
-      writeNdefMessage(obj: WriteNdefMessageOptions): void;
+      writeNdefMessage(obj?: WriteNdefMessageOptions): void;
     }
   }
 
@@ -324,19 +324,19 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取最大传输长度
        */
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnect(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 设置超时时间
        */
@@ -344,15 +344,15 @@ declare module '@system.nfc' {
       /**
        * 发送数据
        */
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
       /**
        * 获取ATQA信息
        */
-      getAtqa(obj: GetAtqaOptions): void;
+      getAtqa(obj?: GetAtqaOptions): void;
       /**
        * 获取SAK信息
        */
-      getSak(obj: GetSakOptions): void;
+      getSak(obj?: GetSakOptions): void;
     }
   }
 
@@ -461,23 +461,23 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取最大传输长度
        */
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnect(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 发送数据
        */
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -602,12 +602,12 @@ declare module '@system.nfc' {
     }
 
     interface NfcF {
-      close(obj: CloseOptions): void;
-      connect(obj: ConnectOptions): void;
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
-      isConnect(obj: IsConnectedOptions): void;
+      close(obj?: CloseOptions): void;
+      connect(obj?: ConnectOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       setTimeout(obj: SetTimeoutOptions): void;
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -709,11 +709,11 @@ declare module '@system.nfc' {
     }
 
     interface NfcV {
-      close(obj: CloseOptions): void;
-      connect(obj: ConnectOptions): void;
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
-      isConnect(obj: IsConnectedOptions): void;
-      transceive(obj: TransceiveOptions): void;
+      close(obj?: CloseOptions): void;
+      connect(obj?: ConnectOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -862,23 +862,23 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取复位信息
        */
-      getHistoricalBytes(obj: GetHistoricalBytesOptions): void;
+      getHistoricalBytes(obj?: GetHistoricalBytesOptions): void;
       /**
        * 获取最大传输长度
        */
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnect(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 设置超时时间
        */
@@ -886,7 +886,7 @@ declare module '@system.nfc' {
       /**
        * 发送数据
        */
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -1014,19 +1014,19 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取最大传输长度
        */
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnect(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 设置超时时间
        */
@@ -1044,7 +1044,7 @@ declare module '@system.nfc' {
        * - 0xC2：将块区中的数据复制到临时块中，指令[1位] + 块号[1位]
        * - 0xB0：将临时块中的数据复制到指定的块区中，指令[1位] + 块号[1位]
        */
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -1172,19 +1172,19 @@ declare module '@system.nfc' {
       /**
        * 断开连接
        */
-      close(obj: CloseOptions): void;
+      close(obj?: CloseOptions): void;
       /**
        * 连接 NFC 标签
        */
-      connect(obj: ConnectOptions): void;
+      connect(obj?: ConnectOptions): void;
       /**
        * 获取最大传输长度
        */
-      getMaxTransceiveLength(obj: GetMaxTransceiveLengthOptions): void;
+      getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
       /**
        * 获取当前标签的连接状态
        */
-      isConnect(obj: IsConnectedOptions): void;
+      isConnected(obj?: IsConnectedOptions): void;
       /**
        * 设置超时时间
        */
@@ -1196,7 +1196,7 @@ declare module '@system.nfc' {
        * - 0x30：读取某页的数据，指令[1位] + 页号[1位]
        * - 0xA2：往某页写入数据，指令[1位] + 页号[1位] + 数据
        */
-      transceive(obj: TransceiveOptions): void;
+      transceive(obj?: TransceiveOptions): void;
     }
   }
 
@@ -1264,12 +1264,12 @@ declare module '@system.nfc' {
       /**
        * 开始扫描NFC标签
        */
-      startDiscovery(obj: StartDiscoveryOptions): void;
+      startDiscovery(obj?: StartDiscoveryOptions): void;
 
       /**
        * 关闭NFC标签扫描
        */
-      stopDiscovery(obj: StopDiscoveryOptions): void;
+      stopDiscovery(obj?: StopDiscoveryOptions): void;
 
       /**
        * 监听 NFC Tag

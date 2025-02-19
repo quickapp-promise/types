@@ -20,11 +20,11 @@ declare module "@system.uploadtask" {
     /**
      * 请求的 header，会将其所有属性设置到请求的 header 部分
      */
-    header?: object;
+    header?: Record<string, string | number>;
     /**
      * HTTP 请求中其他额外的 form data
      */
-    formData?: object;
+    formData?: Record<string, any>;
     /**
      * 超时时间，单位为毫秒
      */
@@ -55,7 +55,7 @@ declare module "@system.uploadtask" {
     /**
      * 服务器 response 的所有 header
      */
-    headers: object;
+    headers: Record<string, string | number>;
   }
 
   interface UploadTask {
@@ -107,7 +107,7 @@ declare module "@system.uploadtask" {
     /**
      * 开发者服务器返回的 HTTP Response Header
      */
-    header: object
+    header: Record<string, string | number>
   ) => void;
 
   /**

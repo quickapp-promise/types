@@ -7,7 +7,7 @@ declare module '@system.cipher' {
     /**
      * 加解密类型，两个可选值：encrypt：加密，decrypt： 解密
      */
-    action: string;
+    action: 'encrypt' | 'decrypt';
     /**
      * 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本，长度不能超过 keySize / 8 - 66，其中 keySize 是秘钥的长度（例如秘钥长度为 1024 时，text 不能超过 62 个字节）。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格，下同
      */
@@ -56,7 +56,7 @@ declare module '@system.cipher' {
     /**
      * 加解密类型，两个可选值：encrypt：加密，decrypt： 解密
      */
-    action: string;
+    action: 'encrypt' | 'decrypt';
     /**
      * 待加密或解密的文本内容。待加密的文本内容应该是一段普通文本。待解密的文本内容应该是经过 base64 编码的一段二进制值。base64 编码使用默认风格，下同
      */

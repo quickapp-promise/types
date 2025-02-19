@@ -28,7 +28,7 @@ declare module '@system.volume' {
   /**
    * 获取当前多媒体音量
    */
-  function getMediaValue(obj: GetMediaValueOptions): void;
+  function getMediaValue(obj?: GetMediaValueOptions): void;
 
   interface SetMediaValueOptions {
     /**

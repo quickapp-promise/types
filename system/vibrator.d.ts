@@ -14,5 +14,5 @@ declare module "@system.vibrator" {
   /**
    * 触发震动
    */
-  function vibrate(obj: VibrateOptions): void;
+  function vibrate(obj?: VibrateOptions): void;
 }

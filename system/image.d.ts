@@ -276,10 +276,12 @@ declare module '@system.image' {
     /**
      * 图片的exif信息
      */
-    attributes: Record<ExifKey, string>;
+    attributes: ExifAttributes;
   }
 
   type ExifKey = 'Artist' | 'BitsPerSample' | 'Compression' | 'Copyright' | 'DateTime' | 'ImageDescription' | 'ImageLength' | 'ImageWidth' | 'JPEGInterchangeFormat' | 'JPEGInterchangeFormatLength' | 'Make' | 'Model' | 'Orientation' | 'PhotometricInterpretation' | 'PlanarConfiguration' | 'PrimaryChromaticities' | 'ReferenceBlackWhite' | 'ResolutionUnit' | 'RowsPerStrip' | 'SamplesPerPixel' | 'Software' | 'StripByteCounts' | 'StripOffsets' | 'TransferFunction' | 'WhitePoint' | 'XResolution' | 'YCbCrCoefficients' | 'YCbCrPositioning' | 'YCbCrSubSampling' | 'YResolution' | 'ApertureValue' | 'BrightnessValue' | 'CFAPattern' | 'ColorSpace' | 'ComponentsConfiguration' | 'CompressedBitsPerPixel' | 'Contrast' | 'CustomRendered' | 'DateTimeDigitized' | 'DateTimeOriginal' | 'DeviceSettingDescription' | 'DigitalZoomRatio' | 'ExifVersion' | 'ExposureBiasValue' | 'ExposureIndex' | 'ExposureMode' | 'ExposureProgram' | 'ExposureTime' | 'FNumber' | 'FileSource' | 'Flash' | 'FlashEnergy' | 'FlashpixVersion' | 'FocalLength' | 'FocalLengthIn35mmFilm' | 'FocalPlaneResolutionUnit' | 'FocalPlaneXResolution' | 'FocalPlaneYResolution' | 'GainControl' | 'ISOSpeedRatings' | 'ImageUniqueID' | 'LightSource' | 'MakerNote' | 'MaxApertureValue' | 'MeteringMode' | 'NewSubfileType' | 'OECF' | 'PixelXDimension' | 'PixelYDimension' | 'RelatedSoundFile' | 'Saturation' | 'SceneCaptureType' | 'SceneType' | 'SensingMethod' | 'Sharpness' | 'ShutterSpeedValue' | 'SpatialFrequencyResponse' | 'SpectralSensitivity' | 'SubfileType' | 'SubSecTime' | 'SubSecTimeDigitized' | 'SubSecTimeOriginal' | 'SubjectArea' | 'SubjectDistance' | 'SubjectDistanceRange' | 'SubjectLocation' | 'UserComment' | 'WhiteBalance' | 'GPSAltitude' | 'GPSAltitudeRef' | 'GPSAreaInformation' | 'GPSDOP' | 'GPSDateStamp' | 'GPSDestBearing' | 'GPSDestBearingRef' | 'GPSDestDistance' | 'GPSDestDistanceRef' | 'GPSDestLatitude' | 'GPSDestLatitudeRef' | 'GPSDestLongitude' | 'GPSDestLongitudeRef' | 'GPSDifferential' | 'GPSImgDirection' | 'GPSImgDirectionRef' | 'GPSLatitude' | 'GPSLatitudeRef' | 'GPSLongitude' | 'GPSLongitudeRef' | 'GPSMapDatum' | 'GPSMeasureMode' | 'GPSProcessingMethod' | 'GPSSatellites' | 'GPSSpeed' | 'GPSSpeedRef' | 'GPSStatus' | 'GPSTimeStamp' | 'GPSTrack' | 'GPSTrackRef' | 'GPSVersionID' | 'InteroperabilityIndex' | 'ThumbnailImageLength' | 'ThumbnailImageWidth' | 'DNGVersion' | 'DefaultCropSize' | 'ThumbnailImage' | 'PreviewImageStart' | 'PreviewImageLength' | 'AspectFrame' | 'SensorBottomBorder' | 'SensorLeftBorder' | 'SensorRightBorder' | 'SensorTopBorder' | 'ISO' | 'JpgFromRaw';
+
+  type ExifAttributes = Partial<Record<ExifKey, string | number>>;
 
   /**
    * 获取图片的exif信息。支持的格式：JPEG,DNG,CR2,NEF,NRW,ARW,RW2,ORF,PEF,SRW,RAF,HEIF
@@ -294,7 +296,7 @@ declare module '@system.image' {
     /**
      * 要设置的exif属性列表
      */
-    attributes: Record<ExifKey, string>;
+    attributes: ExifAttributes;
     /**
      * 成功回调
      */

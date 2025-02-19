@@ -23,5 +23,5 @@ declare module '@system.telecom' {
     /**
      * 获取设备通信信息
      */
-    function getTelecomInfo(obj: GetTelecomInfoOptions): void;
+    function getTelecomInfo(obj?: GetTelecomInfoOptions): void;
 }

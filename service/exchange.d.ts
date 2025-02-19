@@ -20,7 +20,7 @@ declare module "@service.exchange" {
     /**
      * 数据发布的空间类型，支持 application、vendor(1080+) 和 global，默认为 application
      */
-    scope: "application" | "global" | "vendor";
+    scope?: "application" | "global" | "vendor";
     /**
      * 数据的 key
      */
@@ -210,7 +210,7 @@ declare module "@service.exchange" {
     /**
      * 从快应用平台清除当前快应用的应用空间的数据
      */
-    clear(obj: ClearOptions): void;
+    clear(obj?: ClearOptions): void;
     /**
      * 授予指定快应用读取 get、修改 set(1080+)、删除 remove(1080+)数据的权限。
      * 同签名的快应用不用授权，默认有读取 get、修改 set(1080+)、删除 remove(1080+)权限

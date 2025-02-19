@@ -1,19 +1,25 @@
 {
-  "name": "@quickapp-promise/types",
-  "version": "1.0.0",
-  "description": "QuickApp interface types",
+  "name": "@types/quickapp",
+  "version": "1.0.9999",
   "keywords": [
-    "quickapp",
-    "quickapp interface",
-    "quickapp types"
+    "quickapp"
   ],
-  "homepage": "https://github.com/quickapp-promise/types",
+  "projects": [
+    "https://doc.quickapp.cn/"
+  ],
+  "devDependencies": {
+    "@types/quickapp": "workspace:."
+  },
+  "owners": [
+    {
+      "name": "Qin Jiapeng",
+      "githubUsername": "qjp88995"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/quickapp-promise/types.git"
+    "url": "https://github.com/quickapp-promise/types.git",
+    "directory": "."
   },
-  "type": "module",
-  "types": "index.d.ts",
-  "author": "qinjiapeng <759848795@qq.com> (https://github.com/qjp88995)",
   "license": "MIT"
 }

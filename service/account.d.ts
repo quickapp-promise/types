@@ -36,13 +36,13 @@ declare module '@service.account' {
    * 判断账户登录状态。
    * 1060+
    */
-  function isLogin(obj: IsLoginOptions): void;
+  function isLogin(obj?: IsLoginOptions): void;
 
   interface AuthorizeOptions {
     /**
      * 授权码模式为 code，简化模式为 token
      */
-    type: string;
+    type: 'code' | 'token';
     /**
      * 重定向 URI
      */
@@ -105,7 +105,7 @@ declare module '@service.account' {
   /**
    * 进行OAuth授权
    */
-  function authorize(obj: AuthorizeSuccessOptions): void;
+  function authorize(obj: AuthorizeOptions): void;
 
   interface GetProfileOptions {
     /**
@@ -146,7 +146,7 @@ declare module '@service.account' {
     /**
      * 用户的头像图片地址，可能为空，按照分辨率组织，当只有一个分辨率时，可以使用 default 对应的图片地址
      */
-    avatar: object;
+    avatar: Record<string, any>;
     /**
      * 用户的手机号，可能为空
      * [1100+]
@@ -192,7 +192,7 @@ declare module '@service.account' {
    * 权限要求
    * - 每次请求时都需要用户确认
    */
-  function getPhoneNumber(obj: GetPhoneNumberOptions): void;
+  function getPhoneNumber(obj?: GetPhoneNumberOptions): void;
 
   interface GetEncryptedIDOptions {
     /**
@@ -221,5 +221,5 @@ declare module '@service.account' {
    * 获取厂商加密过的系统账号ID，无需用户授权。当需要和厂商对接服务时，可以使用此ID.
    * [1080+]
    */
-  function getEncryptedID(obj: GetEncryptedIDOptions): void;
+  function getEncryptedID(obj?: GetEncryptedIDOptions): void;
 }

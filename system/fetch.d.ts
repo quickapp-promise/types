@@ -21,11 +21,11 @@ declare module "@system.fetch" {
      * |ArrayBuffer [1030+]|不设置|Content-Type 默认为 application/octet-stream，data 值作为请求的 body|
      * |ArrayBuffer [1030+]|任意 Type|data 值作为请求的 body|
      */
-    data?: string | object | ArrayBuffer;
+    data?: string | Record<string, any> | ArrayBuffer;
     /**
      * 请求的 header，会将其所有属性设置到请求的 header 部分。User-Agent 设置在1040版本开始支持。示例：{"Accept-Encoding": "gzip, deflate","Accept-Language": "zh-CN,en-US;q=0.8,en;q=0.6"}
      */
-    header?: object;
+    header?: Record<string, string | number>;
     /**
      * 默认为 GET，可以是：OPTIONS，GET，HEAD，POST，PUT，DELETE，TRACE，CONNECT, PATCH `1200+`
      */
@@ -65,16 +65,16 @@ declare module "@system.fetch" {
      * |file|String|返回存储的临时文件的 uri|
      * |arraybuffer|ArrayBuffer 1030+|返回 ArrayBuffer 对象|
      */
-    data: string | object | ArrayBuffer;
+    data: string | Record<string, any> | ArrayBuffer;
     /**
      * 服务器 response 的所有 header
      */
-    headers: object;
+    headers: Record<string, string | number>;
   }
 
   /**
    * 获取网络数据
    * @param options
    */
-  function fetch(options: FetchSuccessOptions): void;
+  function fetch(options: FetchOptions): void;
 }

@@ -72,5 +72,5 @@ declare module '@system.sms' {
    * - 安全性：短信中通过增加应用签名 hash 信息，接口获取短信时通过 hash 来验证区分该应用的短信内容。
    * - 短信格式：11 位签名 hash 字符放到短信末尾，可通过 Debugger 工具获取。
    */
-  function readSafely(obj: ReadSafelyOptions): void;
+  function readSafely(obj?: ReadSafelyOptions): void;
 }

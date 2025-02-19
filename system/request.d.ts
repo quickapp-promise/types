@@ -12,7 +12,7 @@ declare module "@system.request" {
      * 请求的 header，会将其所有属性设置到请求的 header 部分。User-Agent设置。
      * [1040+]
      */
-    header?: object;
+    header?: Record<string, string | number>;
     /**
      * 默认为 POST，可以是： POST, PUT
      */
@@ -70,7 +70,7 @@ declare module "@system.request" {
     /**
      * 服务器 response 的所有 header
      */
-    headers: object;
+    headers: Record<string, string | number>;
   }
   /**
    * 上传文件

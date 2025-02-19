@@ -32,7 +32,7 @@ declare module "@system.network" {
   /**
    * 获取网络类型
    */
-  function getType(obj: GetTypeOptions): void;
+  function getType(obj?: GetTypeOptions): void;
 
   interface SubscribeOptions {
     /**
@@ -64,7 +64,7 @@ declare module "@system.network" {
   /**
    * 监听网络连接状态。如果多次调用，仅最后一次调用生效
    */
-  function subscribe(obj: SubscribeOptions): void;
+  function subscribe(obj?: SubscribeOptions): void;
 
   /**
    * 取消监听网络连接状态
@@ -130,5 +130,5 @@ declare module "@system.network" {
    * 获取Sim卡的运营商信息，需要电话权限
    * [1070+]
    */
-  function getSimOperators(obj: GetSimOperatorsOptions): void;
+  function getSimOperators(obj?: GetSimOperatorsOptions): void;
 }

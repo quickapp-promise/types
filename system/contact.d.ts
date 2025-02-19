@@ -32,7 +32,7 @@ declare module '@system.contact' {
   /**
    * 选择联系人
    */
-  function pick(obj: PickOptions): void;
+  function pick(obj?: PickOptions): void;
 
   interface ListOptions {
     /**
@@ -60,5 +60,5 @@ declare module '@system.contact' {
    * 获取通讯录所有联系人列表，每次获取都需要用户授权
    * [1050+]
    */
-  function list(obj: ListOptions): void;
+  function list(obj?: ListOptions): void;
 }

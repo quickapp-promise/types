@@ -28,7 +28,7 @@ declare module '@system.brightness' {
   /**
    * 获得当前屏幕亮度值
    */
-  function getValue(obj: GetValueOptions): void;
+  function getValue(obj?: GetValueOptions): void;
 
   interface SetValueOptions {
     /**
@@ -79,7 +79,7 @@ declare module '@system.brightness' {
   /**
    * 获得当前屏幕亮度模式
    */
-  function getMode(obj: GetModeOptions): void;
+  function getMode(obj?: GetModeOptions): void;
 
   interface SetModeOptions {
     /**

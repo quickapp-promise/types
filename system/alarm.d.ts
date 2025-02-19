@@ -31,7 +31,7 @@ declare module '@system.alarm' {
     /**
      * 默认铃声随系统，文件路径为数据文件或应用内的资源
      */
-    ringtone: string;
+    ringtone?: string;
     /**
      * 成功回调
      */
@@ -91,5 +91,5 @@ declare module '@system.alarm' {
    * 获取闹钟能力可用状态
    * [1120+]
    */
-  function isAvailable(obj: IsAvailableOptions): void;
+  function isAvailable(obj?: IsAvailableOptions): void;
 }

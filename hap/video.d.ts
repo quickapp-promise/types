@@ -202,12 +202,12 @@ declare module "@hap.io.Video" {
     /**
      * 执行压缩视频任务
      */
-    compressVideo(obj: CompressVideoOptions): void;
+    compressVideo(obj?: CompressVideoOptions): void;
 
     /**
      * 放弃执行该压缩任务，若该压缩任务正在进行，则中断压缩进程
      */
-    abort(options: AbortOptions): void;
+    abort(options?: AbortOptions): void;
 
     /**
      * 获取视频信息

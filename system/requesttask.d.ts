@@ -12,26 +12,26 @@ declare module "@system.requesttask" {
     /**
      * 请求的参数，可以是字符串，或者是 js 对象、Arraybuffer 对象。
      */
-    data: string | object | ArrayBuffer;
+    data?: string | Record<string, any> | ArrayBuffer;
     /**
      * 请求的 header，会将其所有属性设置到请求的 header 部分。
      */
-    header: object;
+    header?: Record<string, string | number>;
     /**
      * 默认为 GET，可以是：OPTIONS，GET，HEAD，POST，PUT，DELETE，TRACE，CONNECT
      */
-    method: string;
+    method?: string;
     /**
      * 响应的数据类型，支持响应类型是 Text，Arraybuffer。
      */
-    responseType: string;
+    responseType?: string;
     /**
      * 成功返回的回调函数
      */
     success?: (data: {
       statusCode: number;
       data: string;
-      headers: object;
+      headers: Record<string, string | number>;
     }) => void;
     /**
      * 失败的回调函数，可能会因为权限失败
@@ -59,11 +59,11 @@ declare module "@system.requesttask" {
      * |file|String|返回存储的临时文件的 uri|
      * |arraybuffer|ArrayBuffer|返回 ArrayBuffer 对象|
      */
-    data: string | object | ArrayBuffer;
+    data: string | Record<string, any> | ArrayBuffer;
     /**
      * 服务器 response 的所有 header
      */
-    headers: object;
+    headers: Record<string, string | number>;
   }
 
   interface RequestTask {
@@ -82,7 +82,7 @@ declare module "@system.requesttask" {
     /**
      * 开发者服务器返回的 HTTP Response Header
      */
-    header: object
+    header: Record<string, string | number>
   ) => void;
 
   function request(obj: RequestOptions): RequestTask;

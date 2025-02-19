@@ -107,7 +107,7 @@ declare module "@system.storage" {
      * 存储里的数据项的数量
      * [1050+]
      */
-    length: string;
+    length: number;
 
     /**
      * 读取存储内容
@@ -122,7 +122,7 @@ declare module "@system.storage" {
     /**
      * 清空存储内容
      */
-    clear(obj: ClearOptions): void;
+    clear(obj?: ClearOptions): void;
 
     /**
      * 删除存储内容

@@ -25,7 +25,7 @@ declare module '@service.texttoaudio' {
     /**
      * 成功回调
      */
-    success: (data: SpeakSuccessOptions) => void;
+    success?: (data: SpeakSuccessOptions) => void;
     /**
      * 失败回调
      * @description
@@ -76,7 +76,7 @@ declare module '@service.texttoaudio' {
     /**
      * 成功回调
      */
-    success: (data: TextToAudioFileSuccessOptions) => void;
+    success?: (data: TextToAudioFileSuccessOptions) => void;
     /**
      * 失败回调
      * @description
@@ -120,7 +120,7 @@ declare module '@service.texttoaudio' {
     /**
      * 成功回调
      */
-    success: (data: IsLanguageAvailableSuccessOptions) => void;
+    success?: (data: IsLanguageAvailableSuccessOptions) => void;
     /**
      * 失败回调
      */
@@ -157,7 +157,7 @@ declare module '@service.texttoaudio' {
   /**
    * 注册状态监听，监听每个操作的状态，通过 id 区分（语音播报 id 的前缀为"speak"，语音合成 id 的前缀为"speakAudio"）
    */
-  let onttsstatechange: () => void;
+  let onttsstatechange: (data: OnTtsStateChangeOptions) => void;
 
   /**
    * 停止，无论当前处于语音播报还是保存到文件的过程

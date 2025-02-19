@@ -16,7 +16,7 @@ declare module '@system.audio' {
   /**
    * 音频的播放时长，单位秒，未知返回NaN
    */
-  const duration: number;
+  let duration: number;
 
   /**
    * 音频是否自动播放，默认false
@@ -191,5 +191,5 @@ declare module '@system.audio' {
    * 获取当前播放状态数据
    * [1050+]
    */
-  function getPlayState(obj: GetPlayStateOptions): void;
+  function getPlayState(obj?: GetPlayStateOptions): void;
 }

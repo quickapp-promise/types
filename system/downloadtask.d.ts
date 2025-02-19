@@ -11,11 +11,11 @@ declare module "@system.downloadtask" {
     /**
      * 请求的参数，可以是字符串，或者是 js 对象、Arraybuffer 对象。
      */
-    data?: string | object | ArrayBuffer;
+    data?: string | Record<string, any> | ArrayBuffer;
     /**
      * 下载请求的 header，会将其所有属性设置到请求的 header 部分。
      */
-    header?: object;
+    header?: Record<string, string | number>;
     /**
      * 指定文件下载后存储的路径 (本地路径)。支持 internal URI 的 Cache、Files 以及 Mass 目录，默认存储在应用 Cache 目录下。
      */
@@ -46,7 +46,7 @@ declare module "@system.downloadtask" {
     /**
      * 服务器 response 的所有 header
      */
-    headers: object;
+    headers: Record<string, string | number>;
   }
 
   interface DownloadTask {
@@ -99,7 +99,7 @@ declare module "@system.downloadtask" {
     /**
      * 开发者服务器返回的 HTTP Response Header
      */
-    header: object
+    header: Record<string, string | number>,
   ) => void;
 
   function downloadFile(obj: DownloadFileOptions): DownloadTask;

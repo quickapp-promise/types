@@ -337,7 +337,7 @@ declare module "@system.geolocation" {
     /**
      * success 回调的返回值是否需要包含设置位置附近的 POI 信息。默认 false ，即 success 回调中不返回 poiInfoList 信息
      */
-    includePoiInfo: boolean;
+    includePoiInfo?: boolean;
     /**
      * 成功回调
      */
@@ -391,11 +391,11 @@ declare module "@system.geolocation" {
     /**
      * 经度
      */
-    longitude: sumber;
+    longitude: number;
     /**
      * 纬度
      */
-    latitude: sumber;
+    latitude: number;
     /**
      * 所在城市
      */

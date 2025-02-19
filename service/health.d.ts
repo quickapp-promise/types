@@ -28,7 +28,7 @@ declare module '@service.health' {
   /**
    * 是否支持提供每日步数的功能
    */
-  function hasStepsOfDay(obj: HasStepsOfDayOptions): void;
+  function hasStepsOfDay(obj?: HasStepsOfDayOptions): void;
 
   interface GetTodayStepsOptions {
     /**
@@ -64,7 +64,7 @@ declare module '@service.health' {
    * 权限说明
    * - 需要用户授权才能获取数据
    */
-  function getTodaySteps(obj: GetTodayStepsOptions): void;
+  function getTodaySteps(obj?: GetTodayStepsOptions): void;
 
   interface GetLastWeekStepsOptions {
     /**
@@ -111,5 +111,5 @@ declare module '@service.health' {
    * 权限说明
    * - 需要用户授权才能获取数据
    */
-  function getLastWeekSteps(obj: GetLastWeekStepsOptions): void;
+  function getLastWeekSteps(obj?: GetLastWeekStepsOptions): void;
 }

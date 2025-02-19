@@ -73,7 +73,7 @@ declare module '@system.record' {
   /**
    * 检测应用是否存在。支持检测原生应用是否已安装 [权限要求:录音]
    */
-  function start(obj: StartOptions): void;
+  function start(obj?: StartOptions): void;
 
   interface OnfremerecordedOptions {
     /**

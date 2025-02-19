@@ -22,6 +22,8 @@ declare module '@service.share' {
     shareType: 0 | 1 | 2 | 3 | 4;
     /**
      * 分享的标题
+     * 
+     * 分享类型 0,1,3,4 必须	
      */
     title?: string;
     /**
@@ -30,15 +32,21 @@ declare module '@service.share' {
     summary?: string;
     /**
      * 点击后的跳转 URL
+     * 
+     * 分享类型 0,3,4 必须
      */
     targetUrl?: string;
     /**
      * 分享图片/缩略图的本地地址; 另外可支持分享在线图片的url
      * [1040+]
+     * 
+     * 分享类型 2,3,4 必须
      */
     imagePath?: string;
     /**
      * 分享的音乐/视频数据 URL
+     * 
+     * 分享类型 3,4 必须
      */
     mediaUrl?: string;
     /**
@@ -95,5 +103,5 @@ declare module '@service.share' {
    * 获取当前可用的支持分享的平台列表
    * [1010+]
    */
-  function getAvailablePlatforms(obj: GetAvailablePlatformsOptions): void;
+  function getAvailablePlatforms(obj?: GetAvailablePlatformsOptions): void;
 }

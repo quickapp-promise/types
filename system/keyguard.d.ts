@@ -25,5 +25,5 @@ declare module '@system.keyguard' {
   /**
    * 获取快应用当前环境是否为锁屏状态
    */
-  function getKeyguardLockedStatus(obj: GetKeyguardLockedStatusOptions): void;
+  function getKeyguardLockedStatus(obj?: GetKeyguardLockedStatusOptions): void;
 }
