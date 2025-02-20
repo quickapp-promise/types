@@ -1,5 +1,5 @@
 {
-  "name": "@types/quickapp",
+  "name": "@quickapp-promise/types",
   "version": "1.0.9999",
   "keywords": [
     "quickapp"
