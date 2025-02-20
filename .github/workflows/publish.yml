@@ -12,6 +12,8 @@ jobs:
 
     environment: npm
 
+    permissions: write-all
+
     steps:
       - uses: actions/checkout@main
 
