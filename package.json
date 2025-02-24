@@ -1,25 +1,23 @@
 {
-  "name": "@quickapp-promise/types",
-  "version": "1.1.0",
-  "keywords": [
-    "quickapp"
-  ],
-  "projects": [
-    "https://doc.quickapp.cn/"
-  ],
-  "devDependencies": {
-    "@types/quickapp": "workspace:."
-  },
-  "owners": [
-    {
-      "name": "Qin Jiapeng",
-      "githubUsername": "qjp88995"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/quickapp-promise/types.git",
-    "directory": "."
-  },
-  "license": "MIT"
+    "name": "@quickapp-promise/types",
+    "version": "1.1.2",
+    "keywords": [
+        "quickapp"
+    ],
+    "projects": [
+        "https://doc.quickapp.cn/"
+    ],
+    "types": "index.d.ts",
+    "owners": [
+        {
+            "name": "Qin Jiapeng",
+            "githubUsername": "qjp88995"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/quickapp-promise/types.git",
+        "directory": "."
+    },
+    "license": "MIT"
 }

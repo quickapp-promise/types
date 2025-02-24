@@ -2,7 +2,7 @@
  * 剪贴板
  * 接口声明: {"name": "system.clipboard"}
  */
-declare module '@system.clipboard' {
+declare module "@system.clipboard" {
     interface SetOptions {
         /**
          * 需要放到剪切板的内容
@@ -61,4 +61,8 @@ declare module '@system.clipboard' {
      * 读取剪贴板内容
      */
     function get(obj: GetOptions): void;
+}
+
+declare module "quickapp:@system.clipboard" {
+    export * from "@system.clipboard";
 }

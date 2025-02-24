@@ -61,4 +61,4 @@
 /// <reference path="service/wxpay.d.ts" />
 
 // hap
-/// <reference path="hap/video.d.ts" />
+/// <reference path="hap/io.Video.d.ts" />
