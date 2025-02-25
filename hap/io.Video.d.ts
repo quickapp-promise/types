@@ -3,7 +3,7 @@
  * 接口声明: { "name": "hap.io.Video" }
  */
 declare module "@hap.io.Video" {
-    interface VideoCreationOptions {
+    export interface VideoCreationOptions {
         /**
          * 原视频文件地址，必填
          */
@@ -34,16 +34,16 @@ declare module "@hap.io.Video" {
         framerate?: number;
     }
 
-    interface OnProgressUpdateCallbackOptions {
+    export interface OnProgressUpdateCallbackOptions {
         /**
          * 压缩进度，取值范围0 - 100，每秒有变化时更新
          */
         progress: number;
     }
 
-    type OnProgressUpdateCallback = (data: OnProgressUpdateCallbackOptions) => void;
+    export type OnProgressUpdateCallback = (data: OnProgressUpdateCallbackOptions) => void;
 
-    interface CompressVideoSuccessOptions {
+    export interface CompressVideoSuccessOptions {
         /**
          * 压缩后视频文件地址
          */
@@ -58,7 +58,7 @@ declare module "@hap.io.Video" {
         size: string;
     }
 
-    interface CompressVideoOptions {
+    export interface CompressVideoOptions {
         /**
          * 成功回调
          */
@@ -82,7 +82,7 @@ declare module "@hap.io.Video" {
         complete?: () => void;
     }
 
-    interface AbortOptions {
+    export interface AbortOptions {
         /**
          * 成功回调
          */
@@ -102,7 +102,7 @@ declare module "@hap.io.Video" {
         complete?: () => void;
     }
 
-    interface GetVideoInfoSuccessOptions {
+    export interface GetVideoInfoSuccessOptions {
         /**
          * 视频文件地址
          */
@@ -133,7 +133,7 @@ declare module "@hap.io.Video" {
         framerate: number | null;
     }
 
-    interface GetVideoInfoOptions {
+    export interface GetVideoInfoOptions {
         /**
          * 视频文件地址
          */
@@ -157,14 +157,14 @@ declare module "@hap.io.Video" {
         complete?: () => void;
     }
 
-    interface GetVideoThumbnailSuccessOptions {
+    export interface GetVideoThumbnailSuccessOptions {
         /**
          * 缩略图文件地址
          */
         uri: string;
     }
 
-    interface GetVideoThumbnailOptions {
+    export interface GetVideoThumbnailOptions {
         /**
          * 视频文件地址
          */

@@ -3,7 +3,7 @@
  * 接口声明: {"name": "system.storage"}
  */
 declare module "@system.storage" {
-    interface GetOptions {
+    export interface GetOptions {
         /**
          * 索引
          */
@@ -26,7 +26,7 @@ declare module "@system.storage" {
         complete?: () => void;
     }
 
-    interface SetOptions {
+    export interface SetOptions {
         /**
          * 索引
          */
@@ -49,7 +49,7 @@ declare module "@system.storage" {
         complete?: () => void;
     }
 
-    interface ClearOptions {
+    export interface ClearOptions {
         /**
          * 成功回调
          */
@@ -64,7 +64,7 @@ declare module "@system.storage" {
         complete?: () => void;
     }
 
-    interface DeleteOptions {
+    export interface DeleteOptions {
         /**
          * 索引
          */
@@ -83,7 +83,7 @@ declare module "@system.storage" {
         complete?: () => void;
     }
 
-    interface KeyOptions {
+    export interface KeyOptions {
         /**
          * 要查询的键名对应的索引
          */
@@ -102,7 +102,7 @@ declare module "@system.storage" {
         complete?: () => void;
     }
 
-    class Storage {
+    export class Storage {
         /**
          * 存储里的数据项的数量
          * [1050+]

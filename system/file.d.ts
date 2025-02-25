@@ -3,7 +3,7 @@
  * 接口声明: {"name": "system.file"}
  */
 declare module "@system.file" {
-    interface MoveOptions {
+    export interface MoveOptions {
         /**
          * 源文件的 uri，不能是应用资源路径和 tmp 类型的 uri
          */
@@ -31,7 +31,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface CopyOptions {
+    export interface CopyOptions {
         /**
          * 源文件的 uri，不能是应用资源路径和 tmp 类型的 uri
          */
@@ -59,7 +59,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface ListOptions {
+    export interface ListOptions {
         /**
          * 目录 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
@@ -78,14 +78,14 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface ListSuccessOptions {
+    export interface ListSuccessOptions {
         /**
          * 文件列表，每个文件的格式为{uri:'file1', lastModifiedTime:1234456, length:123456}
          */
         fileList: FileMeta[];
     }
 
-    interface FileMeta {
+    export interface FileMeta {
         /**
          * 文件的 uri，该 uri 可以被其他组件或 Feature 访问
          */
@@ -100,7 +100,7 @@ declare module "@system.file" {
         length: number;
     }
 
-    interface GetOptions {
+    export interface GetOptions {
         /**
          * 文件的 uri，不能是应用资源路径。[1080+]支持应用资源路径
          */
@@ -128,7 +128,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface DeleteOptions {
+    export interface DeleteOptions {
         /**
          * 需要删除的文件 uri，不能是应用资源路径和 tmp 类型的 uri
          */
@@ -152,7 +152,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface WriteTextOptions {
+    export interface WriteTextOptions {
         /**
          * 本地文件路径，不支持资源文件路径和 tmp 分区，如果文件不存在会创建文件
          */
@@ -189,7 +189,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface WriteArrayBufferOptions {
+    export interface WriteArrayBufferOptions {
         /**
          * 本地文件路径，不支持资源文件路径和 tmp 分区，如果文件不存在会创建文件
          */
@@ -221,7 +221,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface ReadTextOptions {
+    export interface ReadTextOptions {
         /**
          * 本地文件路径
          */
@@ -250,11 +250,11 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface ReadTextSuccessOptions {
+    export interface ReadTextSuccessOptions {
         text: string;
     }
 
-    interface ReadArrayBufferOptions {
+    export interface ReadArrayBufferOptions {
         /**
          * 本地文件路径
          */
@@ -281,11 +281,11 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface ReadArrayBufferSuccessOptions {
+    export interface ReadArrayBufferSuccessOptions {
         buffer: Uint8Array;
     }
 
-    interface AccessOptions {
+    export interface AccessOptions {
         /**
          * 目录或文件 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
@@ -309,7 +309,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface MkdirOptions {
+    export interface MkdirOptions {
         /**
          * 目录的 uri，不能是应用资源路径和 tmp 类型的 uri
          */
@@ -337,7 +337,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    interface RmdirOptions {
+    export interface RmdirOptions {
         /**
          * 目录或文件 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
@@ -361,7 +361,7 @@ declare module "@system.file" {
         complete?: () => void;
     }
 
-    class File {
+    export class File {
         /**
          * 将源文件移动到指定位置，接口中使用的 URI 描述请参考文件组织
          */

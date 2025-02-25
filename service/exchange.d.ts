@@ -8,7 +8,7 @@
  * 接口声明: { "name": "service.exchange" }
  */
 declare module "@service.exchange" {
-    interface GetOptions {
+    export interface GetOptions {
         /**
          * 数据发布方的包名，scope 为 application 时必须提供，为 vendor(1080+) 或 global 时必须为空
          */
@@ -44,14 +44,14 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    interface GetSuccessOptions {
+    export interface GetSuccessOptions {
         /**
          * 数据的值
          */
         value: string;
     }
 
-    interface SetOptions {
+    export interface SetOptions {
         /**
          * 数据的 key
          */
@@ -90,7 +90,7 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    interface RemoveOptions {
+    export interface RemoveOptions {
         /**
          * 数据的 key
          */
@@ -117,7 +117,7 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    interface ClearOptions {
+    export interface ClearOptions {
         /**
          * 成功回调
          */
@@ -132,7 +132,7 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    interface GrantPermissionOptions {
+    export interface GrantPermissionOptions {
         /**
          * 授权应用的包名
          */
@@ -163,7 +163,7 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    interface RevokePermissionOptions {
+    export interface RevokePermissionOptions {
         /**
          * 取消授权的应用包名
          */
@@ -190,7 +190,7 @@ declare module "@service.exchange" {
         complete?: () => void;
     }
 
-    class Exchange {
+    export class Exchange {
         /**
          * 读取快应用平台数据，可获取到应用空间（application）、应用开发商空间（vendor，1080+）或全局空间（global）的数据
          */
