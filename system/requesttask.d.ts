@@ -28,11 +28,7 @@ declare module "@system.requesttask" {
         /**
          * 成功返回的回调函数
          */
-        success?: (data: {
-            statusCode: number;
-            data: string;
-            headers: Record<string, string | number>;
-        }) => void;
+        success?: (data: RequestSuccessOptions) => void;
         /**
          * 失败的回调函数，可能会因为权限失败
          */
