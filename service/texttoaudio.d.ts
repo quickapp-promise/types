@@ -22,10 +22,13 @@ declare module "@service.texttoaudio" {
          * 设置音调，不设置默认为正常值（1），取值大于 0，不同语音引擎取值区间不同，超过将取区间边界值。（值越大音调越高）
          */
         pitch?: number;
+    }
+
+    interface SpeakCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: SpeakSuccessOptions) => void;
+        success: (data: SpeakSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -37,11 +40,11 @@ declare module "@service.texttoaudio" {
          * |1003|输入的文本长度超限|
          * |1004|语言不支持|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface SpeakSuccessOptions {
@@ -54,7 +57,8 @@ declare module "@service.texttoaudio" {
     /**
      * 语音播报，输入需要播报的文本内容，实时播报
      */
-    function speak(obj: SpeakOptions): void;
+    function speak(obj: SpeakOptions & RecordCombine<SpeakCallbackOptions>): void;
+    function speak(obj: SpeakOptions): Promise<SpeakSuccessOptions>;
 
     interface TextToAudioFileOptions {
         /**
@@ -73,10 +77,13 @@ declare module "@service.texttoaudio" {
          * 设置音调，不设置默认为正常值（1），取值大于 0，不同语音引擎取值区间不同，超过将取区间边界值。（值越大音调越高）
          */
         pitch?: number;
+    }
+
+    interface TextToAudioFileCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: TextToAudioFileSuccessOptions) => void;
+        success: (data: TextToAudioFileSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -89,11 +96,11 @@ declare module "@service.texttoaudio" {
          * |1004|语言不支持|
          * |1005|io 异常|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface TextToAudioFileSuccessOptions {
@@ -110,25 +117,29 @@ declare module "@service.texttoaudio" {
     /**
      * 语音合成，输入需要合成的文本内容，生成本地音频文件
      */
-    function textToAudioFile(obj: TextToAudioFileOptions): void;
+    function textToAudioFile(obj: TextToAudioFileOptions & RecordCombine<TextToAudioFileCallbackOptions>): void;
+    function textToAudioFile(obj: TextToAudioFileOptions): Promise<TextToAudioFileSuccessOptions>;
 
     interface IsLanguageAvailableOptions {
         /**
          * 文本语言 zh_CN（中国大陆）en_US(英文)
          */
         lang: Lang;
+    }
+
+    interface IsLanguageAvailableCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: IsLanguageAvailableSuccessOptions) => void;
+        success: (data: IsLanguageAvailableSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface IsLanguageAvailableSuccessOptions {
@@ -141,7 +152,8 @@ declare module "@service.texttoaudio" {
     /**
      * 是否支持语言类型
      */
-    function isLanguageAvailable(obj: IsLanguageAvailableOptions): void;
+    function isLanguageAvailable(obj: IsLanguageAvailableOptions & RecordCombine<IsLanguageAvailableCallbackOptions>): void;
+    function isLanguageAvailable(obj: IsLanguageAvailableOptions): Promise<IsLanguageAvailableSuccessOptions>;
 
     interface OnTtsStateChangeOptions {
         /**
@@ -170,8 +182,4 @@ declare module "@service.texttoaudio" {
      * @returns true: 正在播报或合成过程中，false: 不在播报或合成过程中
      */
     function isSpeaking(): boolean;
-}
-
-declare module "quickapp:@service.texttoaudio" {
-    export * from "@service.texttoaudio";
 }

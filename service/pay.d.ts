@@ -15,18 +15,21 @@ declare module "@service.pay" {
          * 订单信息
          */
         orderInfo: string;
+    }
+
+    interface PayCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: PaySuccessOptions) => void;
+        success: (data: PaySuccessOptions) => void;
         /**
          * 失败回调，返回失败原因
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface PaySuccessOptions {
@@ -47,9 +50,6 @@ declare module "@service.pay" {
     /**
      * 使用支付完成付款
      */
-    function pay(obj: PayOptions): void;
-}
-
-declare module "quickapp:@service.pay" {
-    export * from "@service.pay";
+    function pay(obj: PayOptions & RecordCombine<PayCallbackOptions>): void;
+    function pay(obj: PayOptions): Promise<PaySuccessOptions>;
 }

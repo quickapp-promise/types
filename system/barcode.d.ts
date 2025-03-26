@@ -3,11 +3,11 @@
  * 接口声明: {"name": "system.barcode"}
  */
 declare module "@system.barcode" {
-    interface ScanOptions {
+    interface ScanCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ScanSuccessOptions) => void;
+        success: (data: ScanSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -16,15 +16,15 @@ declare module "@system.barcode" {
          * |201|用户拒绝，获取相机权限失败|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ScanSuccessOptions {
@@ -37,9 +37,6 @@ declare module "@system.barcode" {
     /**
      * 扫描二维码
      */
-    function scan(obj?: ScanOptions): void;
-}
-
-declare module "quickapp:@system.barcode" {
-    export * from "@system.barcode";
+    function scan(obj: RecordCombine<ScanCallbackOptions>): void;
+    function scan(): Promise<ScanSuccessOptions>;
 }

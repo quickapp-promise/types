@@ -13,7 +13,6 @@ declare module "@system.resident" {
 
     /**
      * 启动后台运行。此接口可多次调用，最后一次调用时的 desc 参数作为描述文案显示到通知栏上(有音乐播放通知时，不显示本通知)。
-     * @param obj
      */
     function start(obj: StartOptions): void;
 
@@ -21,8 +20,4 @@ declare module "@system.resident" {
      * 停止后台运行。即使start调用多次，stop调用一次即可停止后台运行。
      */
     function stop(): void;
-}
-
-declare module "quickapp:@system.resident" {
-    export * from "@system.resident";
 }

@@ -32,10 +32,13 @@ declare module "@system.alarm" {
          * 默认铃声随系统，文件路径为数据文件或应用内的资源
          */
         ringtone?: string;
+    }
+
+    interface SetAlarmCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -47,17 +50,18 @@ declare module "@system.alarm" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 设置闹钟，每次添加弹出提示框，同意后调用接口添加
      */
-    function setAlarm(obj: SetAlarmOptions): void;
+    function setAlarm(obj: SetAlarmOptions & RecordCombine<SetAlarmCallbackOptions>): void;
+    function setAlarm(obj: SetAlarmOptions): Promise<void>;
 
     /**
      * 获取服务提供商
@@ -65,19 +69,19 @@ declare module "@system.alarm" {
      */
     function getProvider(): string;
 
-    interface IsAvailableOptions {
+    interface IsAvailableCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: IsAvailableSuccessOptions) => void;
+        success: (data: IsAvailableSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface IsAvailableSuccessOptions {
@@ -91,9 +95,6 @@ declare module "@system.alarm" {
      * 获取闹钟能力可用状态
      * [1120+]
      */
-    function isAvailable(obj?: IsAvailableOptions): void;
-}
-
-declare module "quickapp:@system.alarm" {
-    export * from "@system.alarm";
+    function isAvailable(obj: RecordCombine<IsAvailableCallbackOptions>): void;
+    function isAvailable(): Promise<IsAvailableSuccessOptions>;
 }

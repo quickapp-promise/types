@@ -20,7 +20,3 @@ declare module "@service.alipay" {
      */
     function pay(obj: PayOptions): void;
 }
-
-declare module "quickapp:@service.alipay" {
-    export * from "@service.alipay";
-}

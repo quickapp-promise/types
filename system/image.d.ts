@@ -8,10 +8,13 @@ declare module "@system.image" {
          * 图片地址，可以是数据文件或应用内的资源。如果是应用内资源，必须使用绝对路径
          */
         uri: string;
+    }
+
+    interface GetImageInfoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetImageInfoSuccessOptions) => void;
+        success: (data: GetImageInfoSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -21,11 +24,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetImageInfoSuccessOptions {
@@ -50,7 +53,8 @@ declare module "@system.image" {
     /**
      * 获取图片信息
      */
-    function getImageInfo(obj: GetImageInfoOptions): void;
+    function getImageInfo(obj: GetImageInfoOptions & RecordCombine<GetImageInfoCallbackOptions>): void;
+    function getImageInfo(obj: GetImageInfoOptions): Promise<GetImageInfoSuccessOptions>;
 
     interface CompressImageOptions {
         /**
@@ -69,10 +73,13 @@ declare module "@system.image" {
          * 图片保存格式，支持 JPEG，PNG，WEBP 三种格式。默认使用 JPEG 格式
          */
         format?: "JPEG" | "PNG" | "WEBP";
+    }
+    
+    interface CompressImageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: CompressImageSuccessOptions) => void;
+        success: (data: CompressImageSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -82,11 +89,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface CompressImageSuccessOptions {
@@ -98,9 +105,9 @@ declare module "@system.image" {
 
     /**
      * 压缩图片
-     * @param obj
      */
-    function compressImage(obj: CompressImageOptions): void;
+    function compressImage(obj: CompressImageOptions & RecordCombine<CompressImageCallbackOptions>): void;
+    function compressImage(obj: CompressImageOptions): Promise<CompressImageSuccessOptions>;
 
     interface ApplyOperationsOptions {
         /**
@@ -119,10 +126,13 @@ declare module "@system.image" {
          * 图片保存格式，支持 JPEG，PNG，WEBP 三种格式。默认使用 JPEG 格式
          */
         format?: "JPEG" | "PNG" | "WEBP";
+    }
+
+    interface ApplyOperationsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ApplyOperationsSuccessOptions) => void;
+        success: (data: ApplyOperationsSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -132,11 +142,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface CropOperation {
@@ -194,7 +204,8 @@ declare module "@system.image" {
      * @description
      * 在顺序执行编辑操作列表中的操作时，上一步操作生成的结果会作为下一步操作的输入，坐标系也是以上一步操作生成的结果的左上角为坐标原点重新确定的。
      */
-    function applyOperations(obj: ApplyOperationsOptions): void;
+    function applyOperations(obj: ApplyOperationsOptions & RecordCombine<ApplyOperationsCallbackOptions>): void;
+    function applyOperations(obj: ApplyOperationsOptions): Promise<ApplyOperationsSuccessOptions>;
 
     interface EditImageOptions {
         /**
@@ -211,10 +222,13 @@ declare module "@system.image" {
          * [1050+]
          */
         aspectRatioY?: number;
+    }
+
+    interface EditImageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: EditImageSuccessOptions) => void;
+        success: (data: EditImageSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -224,11 +238,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface EditImageSuccessOptions {
@@ -241,17 +255,21 @@ declare module "@system.image" {
     /**
      * 打开编辑器来编辑图片。目前支持选择图片范围并裁剪
      */
-    function editImage(obj: EditImageOptions): void;
+    function editImage(obj: EditImageOptions & RecordCombine<EditImageCallbackOptions>): void;
+    function editImage(obj: EditImageOptions): Promise<EditImageSuccessOptions>;
 
     interface GetExifAttributesOptions {
         /**
          * 图片地址，可以是数据文件或应用内的资源。如果是应用内资源，必须使用绝对路径
          */
         uri: string;
+    }
+
+    interface GetExifAttributesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetExifAttributesSuccessOptions) => void;
+        success: (data: GetExifAttributesSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -261,11 +279,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetExifAttributesSuccessOptions {
@@ -420,7 +438,8 @@ declare module "@system.image" {
     /**
      * 获取图片的exif信息。支持的格式：JPEG,DNG,CR2,NEF,NRW,ARW,RW2,ORF,PEF,SRW,RAF,HEIF
      */
-    function getExifAttributes(obj: GetExifAttributesOptions): void;
+    function getExifAttributes(obj: GetExifAttributesOptions & RecordCombine<GetExifAttributesCallbackOptions>): void;
+    function getExifAttributes(obj: GetExifAttributesOptions): Promise<GetExifAttributesSuccessOptions>;
 
     interface SetExifAttributesOptions {
         /**
@@ -431,10 +450,13 @@ declare module "@system.image" {
          * 要设置的exif属性列表
          */
         attributes: ExifAttributes;
+    }
+
+    interface SetExifAttributesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: SetExifAttributesSuccessOptions) => void;
+        success: (data: SetExifAttributesSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -444,11 +466,11 @@ declare module "@system.image" {
          * |300|I/O 错误|
          * |301|文件路径不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface SetExifAttributesSuccessOptions {
@@ -462,9 +484,6 @@ declare module "@system.image" {
      * 设置图片的exif信息。设置操作会直接在所给图片上进行，不会生成新的图片。支持的格式：JPEG
      * [1040+]
      */
-    function setExifAttributes(obj: SetExifAttributesOptions): void;
-}
-
-declare module "quickapp:@system.image" {
-    export * from "@system.image";
+    function setExifAttributes(obj: SetExifAttributesOptions & RecordCombine<SetExifAttributesCallbackOptions>): void;
+    function setExifAttributes(obj: SetExifAttributesOptions): Promise<SetExifAttributesSuccessOptions>;
 }

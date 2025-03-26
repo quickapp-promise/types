@@ -30,10 +30,13 @@ declare module "@service.qqaccount" {
          * [详见: https://wiki.open.qq.com/wiki/website/API%E5%88%97%E8%A1%A8 ]
          */
         scope?: string;
+    }
+
+    interface AuthorizeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AuthorizeSuccessOptions) => void;
+        success: (data: AuthorizeSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -41,11 +44,11 @@ declare module "@service.qqaccount" {
          * |---|---|
          * |1000|来自 QQ 的未知错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     interface AuthorizeSuccessOptions {
@@ -78,9 +81,6 @@ declare module "@service.qqaccount" {
     /**
      * 发起qq登陆，不同的登陆方式下，应该传入不同的参数，调用之前应该先使用getType函数查询当前的登陆方式．
      */
-    function authorize(obj: AuthorizeOptions): void;
-}
-
-declare module "quickapp:@service.qqaccount" {
-    export * from "@service.qqaccount";
+    function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
+    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
 }

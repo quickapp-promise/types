@@ -25,10 +25,13 @@ declare module "@service.exchange" {
          * 数据的 key
          */
         key: string;
+    }
+
+    export interface GetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetSuccessOptions) => void;
+        success: (data: GetSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -37,11 +40,11 @@ declare module "@service.exchange" {
          * |202|参数错误|
          * |1000|没有权限|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface GetSuccessOptions {
@@ -72,10 +75,13 @@ declare module "@service.exchange" {
          * 配置需要写入数据到某快应用的应用空间时某快应用的签名的 SHA-256，仅在scope参数不设置或设置为application时生效，在scope为vendor(1080+)或global 时必须设为空值
          */
         sign?: string;
+    }
+
+    export interface SetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -83,11 +89,11 @@ declare module "@service.exchange" {
          * |---|---|
          * |202|参数错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface RemoveOptions {
@@ -103,33 +109,36 @@ declare module "@service.exchange" {
          * 配置需要删除到某个快应用的应用空间数据时某快应用的签名的 SHA-256，仅在删除非当前修改方的数据时，必须填入此项
          */
         sign?: string;
-        /**
-         * 成功回调
-         */
-        success?: () => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调（调用成功、失败都会执行）
-         */
-        complete?: () => void;
     }
 
-    export interface ClearOptions {
+    export interface RemoveCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
+    }
+
+    export interface ClearCallbackOptions {
+        /**
+         * 成功回调
+         */
+        success: () => void;
+        /**
+         * 失败回调
+         */
+        fail: (data: any, code: number) => void;
+        /**
+         * 执行结束后的回调（调用成功、失败都会执行）
+         */
+        complete: () => void;
     }
 
     export interface GrantPermissionOptions {
@@ -149,18 +158,21 @@ declare module "@service.exchange" {
          * 配置授权应用是否可修改/删除数据，默认值为 false；当值为空或 false 时，将仅授予读取权限，并且如果之前有修改/删除权限也将被回收；当值为 true 时，将同时授予读取、写入、删除三个权限。如果要取消读取这项权限，则需调用exchange.revokePermission方法
          */
         writable?: boolean;
+    }
+
+    export interface GrantPermissionCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface RevokePermissionOptions {
@@ -172,10 +184,13 @@ declare module "@service.exchange" {
          * 数据的 key。如果为空，则取消当前所有 key 的授权
          */
         key?: string;
+    }
+
+    export interface RevokePermissionCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -183,53 +198,53 @@ declare module "@service.exchange" {
          * |---|---|
          * |202|参数错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export class Exchange {
         /**
          * 读取快应用平台数据，可获取到应用空间（application）、应用开发商空间（vendor，1080+）或全局空间（global）的数据
          */
-        get(obj: GetOptions): void;
+        get(obj: GetOptions & RecordCombine<GetCallbackOptions>): void;
+        get(obj: GetOptions): Promise<GetSuccessOptions>;
         /**
          * 发布数据到快应用平台，可发布到应用空间（application）、应用开发商空间（vendor，1080+）或全局空间（global）
          * 注意：从 1080 开始，修改方可以通过set来修改非本快应用的数据
          * 在修改非本快应用的应用空间数据前，必须确保数据发布方已为数据修改方授予修改权限，使用exchange.grantPermission接口授权即可
          */
-        set(obj: SetOptions): void;
+        set(obj: SetOptions & RecordCombine<SetCallbackOptions>): void;
+        set(obj: SetOptions): Promise<void>;
         /**
          * 从快应用平台删除发布到应用空间（application）的数据
          * 注意：从 1080 开始，修改方可以通过remove来删除非本快应用的数据
          * 在删除非本快应用的应用空间数据前，必须确保数据发布方已为数据修改方授予删除权限，使用exchange.grantPermission接口授权即可
          */
-        remove(obj: RemoveOptions): void;
+        remove(obj: RemoveOptions & RecordCombine<RemoveCallbackOptions>): void;
+        remove(obj: RemoveOptions): Promise<void>;
         /**
          * 从快应用平台清除当前快应用的应用空间的数据
          */
-        clear(obj?: ClearOptions): void;
+        clear(obj: RecordCombine<ClearCallbackOptions>): void;
+        clear(): Promise<void>;
         /**
          * 授予指定快应用读取 get、修改 set(1080+)、删除 remove(1080+)数据的权限。
          * 同签名的快应用不用授权，默认有读取 get、修改 set(1080+)、删除 remove(1080+)权限
          */
-        grantPermission(obj: GrantPermissionOptions): void;
+        grantPermission(obj: GrantPermissionOptions & RecordCombine<GrantPermissionCallbackOptions>): void;
+        grantPermission(obj: GrantPermissionOptions): Promise<void>;
         /**
          * 取消授予指定快应用应用读取 get、修改 set(1080+)、删除 remove(1080+)数据的权限
          * 不能取消同签名应用的读取 get、修改 set(1080+)、删除 remove(1080+)授权
          */
-        revokePermission(obj: RevokePermissionOptions): void;
+        revokePermission(obj: RevokePermissionOptions & RecordCombine<RevokePermissionCallbackOptions>): void;
+        revokePermission(obj: RevokePermissionOptions): Promise<void>;
     }
 
     const exchange: InstanceType<typeof Exchange>;
 
-    export default exchange;
-}
-
-declare module "quickapp:@service.exchange" {
-    export * from "@service.exchange";
-    import exchange from "@service.exchange";
     export default exchange;
 }

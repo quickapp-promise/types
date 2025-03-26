@@ -190,7 +190,3 @@ declare module "@system.router" {
      */
     function getPages(): PageInfo[];
 }
-
-declare module "quickapp:@system.router" {
-    export * from "@system.router";
-}

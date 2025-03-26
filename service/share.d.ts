@@ -55,40 +55,44 @@ declare module "@service.share" {
          * [1010+]
          */
         platforms?: string[];
+    }
+
+    interface ShareCallbackOptions {
         /**
          * 成功回调(暂不支持)
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * 失败回调，返回值为错误信息和错误码（错误码可见通用错误码）
          * @link https://doc.quickapp.cn/features/#code
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     /**
      * 分享内容
      */
-    function share(obj: ShareOptions): void;
+    function share(obj: ShareOptions & RecordCombine<ShareCallbackOptions>): void;
+    function share(obj: ShareOptions): Promise<void>;
 
-    interface GetAvailablePlatformsOptions {
+    interface GetAvailablePlatformsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetAvailablePlatformsSuccessOptions) => void;
+        success: (data: GetAvailablePlatformsSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetAvailablePlatformsSuccessOptions {
@@ -103,9 +107,6 @@ declare module "@service.share" {
      * 获取当前可用的支持分享的平台列表
      * [1010+]
      */
-    function getAvailablePlatforms(obj?: GetAvailablePlatformsOptions): void;
-}
-
-declare module "quickapp:@service.share" {
-    export * from "@service.share";
+    function getAvailablePlatforms(obj: RecordCombine<GetAvailablePlatformsCallbackOptions>): void;
+    function getAvailablePlatforms(): Promise<GetAvailablePlatformsSuccessOptions>;
 }

@@ -3,19 +3,19 @@
  * 接口声明: { "name": "service.health" }
  */
 declare module "@service.health" {
-    interface HasStepsOfDayOptions {
+    interface HasStepsOfDayCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: HasStepsOfDaySuccessOptions) => void;
+        success: (data: HasStepsOfDaySuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface HasStepsOfDaySuccessOptions {
@@ -28,13 +28,14 @@ declare module "@service.health" {
     /**
      * 是否支持提供每日步数的功能
      */
-    function hasStepsOfDay(obj?: HasStepsOfDayOptions): void;
+    function hasStepsOfDay(obj: RecordCombine<HasStepsOfDayCallbackOptions>): void;
+    function hasStepsOfDay(): Promise<HasStepsOfDaySuccessOptions>;
 
-    interface GetTodayStepsOptions {
+    interface GetTodayStepsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetTodayStepsSuccessOptions) => void;
+        success: (data: GetTodayStepsSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -44,11 +45,11 @@ declare module "@service.health" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1001|还不支持获取步数|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetTodayStepsSuccessOptions {
@@ -64,13 +65,14 @@ declare module "@service.health" {
      * 权限说明
      * - 需要用户授权才能获取数据
      */
-    function getTodaySteps(obj?: GetTodayStepsOptions): void;
+    function getTodaySteps(obj: RecordCombine<GetTodayStepsCallbackOptions>): void;
+    function getTodaySteps(): Promise<GetTodayStepsSuccessOptions>;
 
-    interface GetLastWeekStepsOptions {
+    interface GetLastWeekStepsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetLastWeekStepsSuccessOptions) => void;
+        success: (data: GetLastWeekStepsSuccessOptions) => void;
         /**
          * 失败回调，返回失败原因
          * @description
@@ -80,11 +82,11 @@ declare module "@service.health" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1001|还不支持获取步数|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetLastWeekStepsSuccessOptions {
@@ -111,9 +113,6 @@ declare module "@service.health" {
      * 权限说明
      * - 需要用户授权才能获取数据
      */
-    function getLastWeekSteps(obj?: GetLastWeekStepsOptions): void;
-}
-
-declare module "quickapp:@service.health" {
-    export * from "@service.health";
+    function getLastWeekSteps(obj: RecordCombine<GetLastWeekStepsCallbackOptions>): void;
+    function getLastWeekSteps(): Promise<GetLastWeekStepsSuccessOptions>;
 }

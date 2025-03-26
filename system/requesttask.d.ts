@@ -83,7 +83,3 @@ declare module "@system.requesttask" {
 
     function request(obj: RequestOptions): RequestTask;
 }
-
-declare module "quickapp:@system.requesttask" {
-    export * from "@system.requesttask";
-}

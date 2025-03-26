@@ -42,10 +42,13 @@ declare module "@system.calendar" {
          * 事件组织者（所有者）的电子邮件
          */
         organizer?: string;
+    }
+
+    interface InsertCallbackOptions {
         /**
          * 成功回调，值为插入成功的 id
          */
-        success?: (data: InsertSuccessOptions) => void;
+        success: (data: InsertSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -55,11 +58,11 @@ declare module "@system.calendar" {
          * |202|参数非法，如输入时间格式不对、参数不符合标准 [1000+]|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     interface InsertSuccessOptions {
@@ -69,9 +72,6 @@ declare module "@system.calendar" {
     /**
      * 插入日历事件
      */
-    function insert(obj: InsertOptions): void;
-}
-
-declare module "quickapp:@system.calendar" {
-    export * from "@system.calendar";
+    function insert(obj: InsertOptions & RecordCombine<InsertCallbackOptions>): void;
+    function insert(obj: InsertOptions): Promise<InsertSuccessOptions>;
 }

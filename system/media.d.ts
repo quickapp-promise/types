@@ -20,11 +20,11 @@ declare module "@system.media" {
         size: number;
     }
 
-    interface TakePhotoOptions {
+    interface TakePhotoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: MediaFile) => void;
+        success: (data: MediaFile) => void;
         /**
          * 失败回调
          * @description
@@ -33,15 +33,15 @@ declare module "@system.media" {
          * |201|用户拒绝，获取相机权限失败|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -50,7 +50,8 @@ declare module "@system.media" {
      * 权限要求
      * - 使用相机
      */
-    function takePhoto(obj?: TakePhotoOptions): void;
+    function takePhoto(obj: RecordCombine<TakePhotoCallbackOptions>): void;
+    function takePhoto(): Promise<MediaFile>;
 
     interface TakeVideoOptions {
         /**
@@ -58,10 +59,13 @@ declare module "@system.media" {
          * [1080+]
          */
         maxDuration?: number;
+    }
+
+    interface TakeVideoCallbackOptions {
         /**
          * 成功回调，参数示例如： {uri: 'file:///video.mp4'}
          */
-        success?: (data: MediaFile) => void;
+        success: (data: MediaFile) => void;
         /**
          * 失败回调
          * @description
@@ -70,15 +74,15 @@ declare module "@system.media" {
          * |202|maxDuration 参数错误，不能小于等于 0 [1080+]|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -87,25 +91,26 @@ declare module "@system.media" {
      * 权限要求
      * - 使用相机
      */
-    function takeVideo(obj?: TakeVideoOptions): void;
+    function takeVideo(obj: TakeVideoOptions & RecordCombine<TakeVideoCallbackOptions>): void;
+    function takeVideo(obj?: TakeVideoOptions): Promise<MediaFile>;
 
-    interface PickImageOptions {
+    interface PickImageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: MediaFile) => void;
+        success: (data: MediaFile) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -114,25 +119,26 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function pickImage(obj?: PickImageOptions): void;
+    function pickImage(obj: RecordCombine<PickImageCallbackOptions>): void;
+    function pickImage(): Promise<MediaFile>;
 
-    interface PickImagesOptions {
+    interface PickImagesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: PickImagesSuccessOptions) => void;
+        success: (data: PickImagesSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface PickImagesSuccessOptions {
@@ -154,25 +160,26 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function pickImages(obj?: PickImagesOptions): void;
+    function pickImages(obj: RecordCombine<PickImagesCallbackOptions>): void;
+    function pickImages(): Promise<PickImagesSuccessOptions>;
 
-    interface PickVideoOptions {
+    interface PickVideoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: MediaFile) => void;
+        success: (data: MediaFile) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -181,25 +188,26 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function pickVideo(obj?: PickVideoOptions): void;
+    function pickVideo(obj: RecordCombine<PickVideoCallbackOptions>): void;
+    function pickVideo(): Promise<MediaFile>;
 
-    interface PickVideosOptions {
+    interface PickVideosCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: PickVideosSuccessOptions) => void;
+        success: (data: PickVideosSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface PickVideosSuccessOptions {
@@ -221,25 +229,26 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function pickVideos(obj?: PickVideosOptions): void;
+    function pickVideos(obj: RecordCombine<PickVideosCallbackOptions>): void;
+    function pickVideos(): Promise<PickVideosSuccessOptions>;
 
-    interface PickFileOptions {
+    interface PickFileCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: MediaFile) => void;
+        success: (data: MediaFile) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -249,7 +258,8 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function pickFile(obj?: PickFileOptions): void;
+    function pickFile(obj: RecordCombine<PickFileCallbackOptions>): void;
+    function pickFile(): Promise<MediaFile>;
 
     interface SaveToPhotosAlbumOptions {
         /**
@@ -261,10 +271,13 @@ declare module "@system.media" {
          * [1080+]
          */
         folderName?: string;
+    }
+
+    interface SaveToPhotosAlbumCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -274,11 +287,11 @@ declare module "@system.media" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -303,7 +316,8 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions): void;
+    function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions & RecordCombine<SaveToPhotosAlbumCallbackOptions>): void;
+    function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions): Promise<void>;
 
     interface PreviewImageOptions {
         /**
@@ -316,18 +330,21 @@ declare module "@system.media" {
          * 需要预览的图片链接列表，同时支持网络和本地地址
          */
         uris: string[];
+    }
+
+    interface PreviewImageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -337,17 +354,21 @@ declare module "@system.media" {
      * 权限要求
      * - 写手机存储
      */
-    function previewImage(obj: PreviewImageOptions): void;
+    function previewImage(obj: PreviewImageOptions & RecordCombine<PreviewImageCallbackOptions>): void;
+    function previewImage(obj: PreviewImageOptions): Promise<void>;
 
     interface GetRingtoneOptions {
         /**
          * 铃声类型，ringtone：来电，notification：通知，alarm：闹钟
          */
         type: string;
+    }
+
+    interface GetRingtoneCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetRingtoneSuccessOptions) => void;
+        success: (data: GetRingtoneSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -355,11 +376,11 @@ declare module "@system.media" {
          * |202|参数错误，即铃声类型不对|
          * |203|获取铃声能力不可用 [1120+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetRingtoneSuccessOptions {
@@ -376,7 +397,8 @@ declare module "@system.media" {
      * 权限要求
      * - 读手机存储
      */
-    function getRingtone(obj: GetRingtoneOptions): void;
+    function getRingtone(obj: GetRingtoneOptions & RecordCombine<GetRingtoneCallbackOptions>): void;
+    function getRingtone(obj: GetRingtoneOptions): Promise<GetRingtoneSuccessOptions>;
 
     interface SetRingtoneOptions {
         /**
@@ -391,10 +413,13 @@ declare module "@system.media" {
          * 铃声名称，没有设置默认取文件名
          */
         title?: string;
+    }
+
+    interface SetRingtoneCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -406,11 +431,11 @@ declare module "@system.media" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1001|文件不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -420,9 +445,6 @@ declare module "@system.media" {
      * 权限要求
      * - 写手机存储。而且每次设置铃声时，都有弹框来让用户选择是否同意设置铃声
      */
-    function setRingtone(obj: SetRingtoneOptions): void;
-}
-
-declare module "quickapp:@system.media" {
-    export * from "@system.media";
+    function setRingtone(obj: SetRingtoneOptions & RecordCombine<SetRingtoneCallbackOptions>): void;
+    function setRingtone(obj: SetRingtoneOptions): Promise<void>;
 }

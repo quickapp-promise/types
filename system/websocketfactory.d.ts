@@ -18,9 +18,19 @@ declare module "@system.websocketfactory" {
         protocols?: string[];
     }
 
+    interface WebSocketSend {
+        (obj: WebSocketSendOptions & RecordCombine<WebSocketSendCallbackOptions>): void;
+        (obj: WebSocketSendOptions): Promise<void>;
+    }
+
+    interface WebSocketClose {
+        (obj?: WebSocketCloseOptions & RecordCombine<WebSocketCloseCallbackOptions>): void;
+        (obj?: WebSocketCloseOptions): Promise<void>;
+    }
+
     interface WebSocket {
-        send: (obj: WebSocketSendOptions) => void;
-        close: (obj?: WebSocketCloseOptions) => void;
+        send: WebSocketSend;
+        close: WebSocketClose;
         set onopen(callback: () => void);
         set onmessage(callback: (data: WebSocketOnMessageOptions) => void);
         set onclose(callback: (data: WebSocketOnCloseOptions) => void);
@@ -47,14 +57,17 @@ declare module "@system.websocketfactory" {
          * TypedArray [1080+]
          */
         data: string | ArrayBuffer | TypedArray;
+    }
+
+    interface WebSocketSendCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface WebSocketCloseOptions {
@@ -66,14 +79,17 @@ declare module "@system.websocketfactory" {
          * 关闭的原因
          */
         reason?: string;
+    }
+
+    interface WebSocketCloseCallbackOptions {
         /**
          * 接口调用成功的回调函数
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 接口调用失败的回调函数
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface WebSocketOnMessageOptions {
@@ -110,8 +126,4 @@ declare module "@system.websocketfactory" {
      * 创建websocket实例
      */
     function create(obj: CreateOptions): WebSocket;
-}
-
-declare module "quickapp:@system.websocketfactory" {
-    export * from "@system.websocketfactory";
 }

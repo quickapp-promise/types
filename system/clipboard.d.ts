@@ -8,10 +8,13 @@ declare module "@system.clipboard" {
          * 需要放到剪切板的内容
          */
         text: string;
+    }
+
+    interface SetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -19,23 +22,24 @@ declare module "@system.clipboard" {
          * |---|---|
          * |201|用户拒绝，获取写入剪贴板权限失败|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 修改剪贴板内容
      */
-    function set(obj: SetOptions): void;
+    function set(obj: SetOptions & RecordCombine<SetCallbackOptions>): void;
+    function set(obj: SetOptions): Promise<void>;
 
-    interface GetOptions {
+    interface GetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetSuccessOptions) => void;
+        success: (data: GetSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -43,11 +47,11 @@ declare module "@system.clipboard" {
          * |---|---|
          * |201|用户拒绝，获取读取剪贴板权限失败|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetSuccessOptions {
@@ -60,9 +64,6 @@ declare module "@system.clipboard" {
     /**
      * 读取剪贴板内容
      */
-    function get(obj: GetOptions): void;
-}
-
-declare module "quickapp:@system.clipboard" {
-    export * from "@system.clipboard";
+    function get(obj: RecordCombine<GetCallbackOptions>): void;
+    function get(): Promise<GetSuccessOptions>;
 }

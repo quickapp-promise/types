@@ -62,3 +62,9 @@
 
 // hap
 /// <reference path="hap/io.Video.d.ts" />
+
+type RecordCombine<T extends { [K in string]: any }> = keyof T extends infer K
+    ? K extends keyof T
+      ? T | RecordCombine<Omit<T, K>>
+      : never
+    : never;

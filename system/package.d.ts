@@ -8,18 +8,21 @@ declare module "@system.package" {
          * 应用包名
          */
         package: string;
+    }
+
+    interface HasInstalledCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: HasInstalledSuccessOptions) => void;
+        success: (data: HasInstalledSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface HasInstalledSuccessOptions {
@@ -32,25 +35,29 @@ declare module "@system.package" {
     /**
      * 检测应用是否存在。支持检测原生应用是否已安装
      */
-    function hasInstalled(obj: HasInstalledOptions): void;
+    function hasInstalled(obj: HasInstalledOptions & RecordCombine<HasInstalledCallbackOptions>): void;
+    function hasInstalled(obj: HasInstalledOptions): Promise<HasInstalledSuccessOptions>;
 
     interface InstallOptions {
         /**
          * 应用包名
          */
         package: string;
+    }
+
+    interface InstallCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: InstallSuccessOptions) => void;
+        success: (data: InstallSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface InstallSuccessOptions {
@@ -63,25 +70,29 @@ declare module "@system.package" {
     /**
      * 安装应用, 支持安装原生应用
      */
-    function install(obj: InstallOptions): void;
+    function install(obj: InstallOptions & RecordCombine<InstallCallbackOptions>): void;
+    function install(obj: InstallOptions): Promise<InstallSuccessOptions>;
 
     interface GetInfoOptions {
         /**
          * 应用包名
          */
         package: string;
+    }
+
+    interface GetInfoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetInfoSuccessOptions) => void;
+        success: (data: GetInfoSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetInfoSuccessOptions {
@@ -99,25 +110,29 @@ declare module "@system.package" {
      * 获取应用版本号、版本名称信息，包括原生应用和快应用
      * [1070+]
      */
-    function getInfo(obj: GetInfoOptions): void;
+    function getInfo(obj: GetInfoOptions & RecordCombine<GetInfoCallbackOptions>): void;
+    function getInfo(obj: GetInfoOptions): Promise<GetInfoSuccessOptions>;
 
     interface GetSignatureDigestsOptions {
         /**
          * 应用包名
          */
         package: string;
+    }
+
+    interface GetSignatureDigestsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetSignatureDigestsSuccessOptions) => void;
+        success: (data: GetSignatureDigestsSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetSignatureDigestsSuccessOptions {
@@ -131,9 +146,6 @@ declare module "@system.package" {
      * 获取应用签名摘要信息，包括原生应用和快应用
      * [1070+]
      */
-    function getSignatureDigests(obj: GetSignatureDigestsOptions): void;
-}
-
-declare module "quickapp:@system.package" {
-    export * from "@system.package";
+    function getSignatureDigests(obj: GetSignatureDigestsOptions & RecordCombine<GetSignatureDigestsCallbackOptions>): void;
+    function getSignatureDigests(obj: GetSignatureDigestsOptions): Promise<GetSignatureDigestsSuccessOptions>;
 }

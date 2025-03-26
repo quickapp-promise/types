@@ -26,10 +26,14 @@ declare module "@system.request" {
          * [1000+]
          */
         data?: UploadDatum[];
-        success?: (data: UploadSuccessData) => void;
-        fail?: (data: any, code: number) => void;
-        complete?: () => void;
     }
+
+    interface UploadCallbackOptions {
+        success: (data: UploadSuccessOptions) => void;
+        fail: (data: any, code: number) => void;
+        complete: () => void;
+    }
+
     interface UploadFile {
         /**
          * multipart 提交时，header 中的文件名
@@ -48,6 +52,7 @@ declare module "@system.request" {
          */
         type?: string;
     }
+
     interface UploadDatum {
         /**
          * form 元素的名称。
@@ -58,7 +63,8 @@ declare module "@system.request" {
          */
         value: string;
     }
-    interface UploadSuccessData {
+
+    interface UploadSuccessOptions {
         /**
          * 服务器状态 code
          */
@@ -72,11 +78,12 @@ declare module "@system.request" {
          */
         headers: Record<string, string | number>;
     }
+
     /**
      * 上传文件
-     * @param obj
      */
-    function upload(obj: UploadOptions): void;
+    function upload(obj: UploadOptions & RecordCombine<UploadCallbackOptions>): void;
+    function upload(obj: UploadOptions): Promise<UploadSuccessOptions>;
 
     interface DownloadOptions {
         /**
@@ -97,21 +104,24 @@ declare module "@system.request" {
          * [1010+]
          */
         filename?: string;
+    }
+
+    interface DownloadCallbackOptions {
         /**
          * 成功返回的回调函数
          */
-        success?: (data: DownloadSuccessData) => void;
+        success: (data: DownloadSuccessOptions) => void;
         /**
          * 	失败的回调函数
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 结束的回调函数（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
-    interface DownloadSuccessData {
+    interface DownloadSuccessOptions {
         /**
          * 下载的 token，根据此 token 获取下载状态
          */
@@ -120,25 +130,28 @@ declare module "@system.request" {
 
     /**
      * 下载文件
-     * @param obj
      */
-    function download(obj: DownloadOptions): void;
+    function download(obj: DownloadOptions & RecordCombine<DownloadCallbackOptions>): void;
+    function download(obj: DownloadOptions): Promise<DownloadSuccessOptions>;
 
     interface OnDownloadCompleteOptions {
         /**
          * download 接口返回的 token
          */
         token: string;
+    }
+
+    interface OnDownloadCompleteCallbackOptions {
         /**
          * 成功返回的回调函数
          */
-        success?: (data: OnDownloadCompleteSuccessOptions) => void;
+        success: (data: OnDownloadCompleteSuccessOptions) => void;
         /**
          * 失败的回调函数
          * 1000:下载失败
          * 1001:下载任务不存在
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface OnDownloadCompleteSuccessOptions {
@@ -152,9 +165,6 @@ declare module "@system.request" {
      * 监听下载任务
      * @param obj
      */
-    function onDownloadComplete(obj: OnDownloadCompleteOptions): void;
-}
-
-declare module "quickapp:@system.request" {
-    export * from "@system.request";
+    function onDownloadComplete(obj: OnDownloadCompleteOptions & RecordCombine<OnDownloadCompleteCallbackOptions>): void;
+    function onDownloadComplete(obj: OnDownloadCompleteOptions): Promise<OnDownloadCompleteSuccessOptions>;
 }

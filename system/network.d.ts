@@ -3,19 +3,19 @@
  * 接口声明: {"name": "system.network"}
  */
 declare module "@system.network" {
-    interface GetTypeOptions {
+    interface GetTypeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetTypeSuccessOptions) => void;
+        success: (data: GetTypeSuccessOptions) => void;
         /**
          * 失败回调，可能是因为缺乏权限
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetTypeSuccessOptions {
@@ -32,7 +32,8 @@ declare module "@system.network" {
     /**
      * 获取网络类型
      */
-    function getType(obj?: GetTypeOptions): void;
+    function getType(obj: RecordCombine<GetTypeCallbackOptions>): void;
+    function getType(): Promise<GetTypeSuccessOptions>;
 
     interface SubscribeOptions {
         /**
@@ -71,11 +72,11 @@ declare module "@system.network" {
      */
     function unsubscribe(): void;
 
-    interface GetSimOperatorsOptions {
+    interface GetSimOperatorsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetSimOperatorsSuccessOptions) => void;
+        success: (data: GetSimOperatorsSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -84,11 +85,11 @@ declare module "@system.network" {
          * |1001|未插入sim卡|
          * |1002|获取运营商信息失败|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetSimOperatorsSuccessOptions {
@@ -130,9 +131,6 @@ declare module "@system.network" {
      * 获取Sim卡的运营商信息，需要电话权限
      * [1070+]
      */
-    function getSimOperators(obj?: GetSimOperatorsOptions): void;
-}
-
-declare module "quickapp:@system.network" {
-    export * from "@system.network";
+    function getSimOperators(obj: RecordCombine<GetSimOperatorsCallbackOptions>): void;
+    function getSimOperators(): Promise<GetSimOperatorsSuccessOptions>;
 }

@@ -12,18 +12,21 @@ declare module "@system.storage" {
          * 如果 key 不存在，返回 default。如果 default 未指定，返回长度为 0 的空字符串
          */
         default?: string;
+    }
+
+    export interface GetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: string) => void;
+        success: (data: string) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface SetOptions {
@@ -35,33 +38,36 @@ declare module "@system.storage" {
          * 新值。如果新值是长度为0的空字符串，会删除以key为索引的数据项
          */
         value?: string;
-        /**
-         * 成功回调
-         */
-        success?: () => void;
-        /**
-         * 失败回调
-         */
-        fail?: (data: any, code: number) => void;
-        /**
-         * 执行结束后的回调
-         */
-        complete?: () => void;
     }
 
-    export interface ClearOptions {
+    export interface SetCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
+    }
+
+    export interface ClearCallbackOptions {
+        /**
+         * 成功回调
+         */
+        success: () => void;
+        /**
+         * 失败回调
+         */
+        fail: (data: any, code: number) => void;
+        /**
+         * 执行结束后的回调
+         */
+        complete: () => void;
     }
 
     export interface DeleteOptions {
@@ -69,18 +75,21 @@ declare module "@system.storage" {
          * 索引
          */
         key: string;
+    }
+
+    export interface DeleteCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface KeyOptions {
@@ -88,18 +97,21 @@ declare module "@system.storage" {
          * 要查询的键名对应的索引
          */
         index: number;
+    }
+
+    export interface KeyCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: string[]) => void;
+        success: (data: string) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export class Storage {
@@ -112,37 +124,36 @@ declare module "@system.storage" {
         /**
          * 读取存储内容
          */
-        get(obj: GetOptions): void;
+        get(obj: GetOptions & RecordCombine<GetCallbackOptions>): void;
+        get(obj: GetOptions): Promise<string>;
 
         /**
          * 修改存储内容
          */
-        set(obj: SetOptions): void;
+        set(obj: SetOptions & RecordCombine<SetCallbackOptions>): void;
+        set(obj: SetOptions): Promise<void>;
 
         /**
          * 清空存储内容
          */
-        clear(obj?: ClearOptions): void;
+        clear(obj: RecordCombine<ClearCallbackOptions>): void;
+        clear(): Promise<void>;
 
         /**
          * 删除存储内容
          */
-        delete(obj: DeleteOptions): void;
+        delete(obj: DeleteOptions & RecordCombine<DeleteCallbackOptions>): void;
+        delete(obj: DeleteOptions): Promise<void>;
 
         /**
          * 返回存储中某个index的键名
          * [1050+]
          */
-        key(obj: KeyOptions): void;
+        key(obj: KeyOptions & RecordCombine<KeyCallbackOptions>): void;
+        key(obj: KeyOptions): Promise<string>;
     }
 
     const storage: InstanceType<typeof Storage>;
 
-    export default storage;
-}
-
-declare module "quickapp:@system.storage" {
-    export * from "@system.storage";
-    import storage from "@system.storage";
     export default storage;
 }

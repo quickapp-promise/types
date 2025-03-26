@@ -16,7 +16,3 @@ declare module "@system.vibrator" {
      */
     function vibrate(obj?: VibrateOptions): void;
 }
-
-declare module "quickapp:@system.vibrator" {
-    export * from "@system.vibrator";
-}

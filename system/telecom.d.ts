@@ -3,10 +3,10 @@
  * 接口声明: { "name": "system.telecom" }
  */
 declare module "@system.telecom" {
-    interface GetTelecomInfoOptions {
-        success?: (data: GetTelecomInfoSuccessOptions) => void;
-        fail?: (data: any, code: number) => void;
-        complete?: () => void;
+    interface GetTelecomInfoCallbackOptions {
+        success: (data: GetTelecomInfoSuccessOptions) => void;
+        fail: (data: any, code: number) => void;
+        complete: () => void;
     }
 
     interface GetTelecomInfoSuccessOptions {
@@ -23,9 +23,6 @@ declare module "@system.telecom" {
     /**
      * 获取设备通信信息
      */
-    function getTelecomInfo(obj?: GetTelecomInfoOptions): void;
-}
-
-declare module "quickapp:@system.telecom" {
-    export * from "@system.telecom";
+    function getTelecomInfo(obj: RecordCombine<GetTelecomInfoCallbackOptions>): void;
+    function getTelecomInfo(): Promise<GetTelecomInfoSuccessOptions>;
 }

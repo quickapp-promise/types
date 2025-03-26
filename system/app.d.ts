@@ -79,23 +79,23 @@ declare module "@system.app" {
          * 页面路径，可携带参数，非必填
          */
         path?: string;
+    }
+    
+    interface CreateQRCodeCallbackOptions {
         /**
          * 成功回调，非必填
          */
-        success?: (data: CreateQRCodeSuccessResult) => void;
+        success: (data: CreateQRCodeSuccessResult) => void;
         /**
          * 失败回调，非必填
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     /**
      * 生成快应用分享二维码
      * [1070+]
      */
-    function createQuickAppQRCode(options: CreateQRCodeOptions): void;
-}
-
-declare module "quickapp:@system.app" {
-    export * from "@system.app";
+    function createQuickAppQRCode(options: CreateQRCodeOptions & RecordCombine<CreateQRCodeCallbackOptions>): void;
+    function createQuickAppQRCode(options?: CreateQRCodeOptions): Promise<CreateQRCodeSuccessResult>;
 }

@@ -3,25 +3,26 @@
  * 接口声明: {"name": "system.shortcut"}
  */
 declare module "@system.shortcut" {
-    interface HasInstalledOptions {
+    interface HasInstalledCallbackOptions {
         /**
          * 成功回调。参数：true 已创建，false 未创建
          */
-        success?: (data: boolean) => void;
+        success: (data: boolean) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 获取桌面图标是否创建
      */
-    function hasInstalled(obj?: HasInstalledOptions): void;
+    function hasInstalled(obj: RecordCombine<HasInstalledCallbackOptions>): void;
+    function hasInstalled(): Promise<boolean>;
 
     interface InstallOptions {
         /**
@@ -29,10 +30,13 @@ declare module "@system.shortcut" {
          * [1030+]
          */
         message?: string;
+    }
+
+    interface InstallCallbackOptions {
         /**
          * 创建成功
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 创建失败
          * @description
@@ -42,25 +46,22 @@ declare module "@system.shortcut" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1001|接口调用超过当日使用频次|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 创建桌面图标，需要用户允许
      */
-    function install(obj?: InstallOptions): void;
+    function install(obj: InstallOptions & RecordCombine<InstallCallbackOptions>): void;
+    function install(): Promise<void>;
 
     /**
      * 是否开启系统快捷方式创建弹窗，默认true。不会持久化，只对当前运行有效
      * [1020+]
      */
     let systemPromptEnabled: boolean;
-}
-
-declare module "quickapp:@system.shortcut" {
-    export * from "@system.shortcut";
 }

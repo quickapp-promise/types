@@ -3,19 +3,19 @@
  * 接口声明: {"name": "system.battery"}
  */
 declare module "@system.battery" {
-    interface GetStatusOptions {
+    interface GetStatusCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetStatusSuccessOptions) => void;
+        success: (data: GetStatusSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetStatusSuccessOptions {
@@ -32,9 +32,6 @@ declare module "@system.battery" {
     /**
      * 获取当前设备的电量信息
      */
-    function getStatus(obj?: GetStatusOptions): void;
-}
-
-declare module "quickapp:@system.battery" {
-    export * from "@system.battery";
+    function getStatus(obj: RecordCombine<GetStatusCallbackOptions>): void;
+    function getStatus(): Promise<GetStatusSuccessOptions>;
 }

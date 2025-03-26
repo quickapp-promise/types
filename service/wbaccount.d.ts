@@ -25,18 +25,21 @@ declare module "@service.wbaccount" {
          * [可参考：http://open.weibo.com/wiki/Scope ]
          */
         scope?: string;
+    }
+
+    interface AuthorizeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AuthorizeSuccessOptions) => void;
+        success: (data: AuthorizeSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     interface AuthorizeSuccessOptions {
@@ -65,9 +68,6 @@ declare module "@service.wbaccount" {
     /**
      * 发起微信登陆，调用之前应该先使用getType函数查询APP登陆方式是否被支持
      */
-    function authorize(obj: AuthorizeOptions): void;
-}
-
-declare module "quickapp:@service.wbaccount" {
-    export * from "@service.wbaccount";
+    function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
+    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
 }

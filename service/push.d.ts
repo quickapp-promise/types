@@ -10,19 +10,19 @@ declare module "@service.push" {
      */
     function getProvider(): string;
 
-    interface SubscribeOptions {
+    interface SubscribeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: SubscribeSuccessOptions) => void;
+        success: (data: SubscribeSuccessOptions) => void;
         /**
          * 失败回调，返回失败原因
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface SubscribeSuccessOptions {
@@ -35,27 +35,29 @@ declare module "@service.push" {
     /**
      * 订阅push，后续可以收到push消息（一般可在应用初始化的地方进行调用。比如在app的onCreate方法中调用。）
      */
-    function subscribe(obj?: SubscribeOptions): void;
+    function subscribe(obj: RecordCombine<SubscribeCallbackOptions>): void;
+    function subscribe(): Promise<SubscribeSuccessOptions>;
 
-    interface UnsubscribeOptions {
+    interface UnsubscribeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调，返回失败原因
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 取消订阅（一般不建议调用，调用后regId失效，需要重新订阅获取新的regId）
      */
-    function unsubscribe(obj?: UnsubscribeOptions): void;
+    function unsubscribe(obj: RecordCombine<UnsubscribeCallbackOptions>): void;
+    function unsubscribe(): Promise<void>;
 
     interface OnOptions {
         /**
@@ -86,8 +88,4 @@ declare module "@service.push" {
      * - 注意： OPPO 快应用平台在1113版本开始支持此特性
      */
     function off(): void;
-}
-
-declare module "quickapp:@service.push" {
-    export * from "@service.push";
 }

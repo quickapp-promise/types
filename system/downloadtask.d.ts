@@ -104,7 +104,3 @@ declare module "@system.downloadtask" {
 
     function downloadFile(obj: DownloadFileOptions): DownloadTask;
 }
-
-declare module "quickapp:@system.downloadtask" {
-    export * from "@system.downloadtask";
-}

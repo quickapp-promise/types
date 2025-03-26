@@ -24,10 +24,13 @@ declare module "@service.wxaccount" {
          * 用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止 csrf 攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加 session 进行校验
          */
         state?: string;
+    }
+
+    interface AUthorizeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AuthorizeSuccessOptions) => void;
+        success: (data: AuthorizeSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -38,11 +41,11 @@ declare module "@service.wxaccount" {
          * |1000|微信未安装|
          * |1001|接口声明中没有配置 appId|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     interface AuthorizeSuccessOptions {
@@ -68,9 +71,6 @@ declare module "@service.wxaccount" {
     /**
      * 发起微信登陆，调用之前应该先使用getType函数查询APP登陆方式是否被支持
      */
-    function authorize(obj: AUthorizeOptions): void;
-}
-
-declare module "quickapp:@service.wxaccount" {
-    export * from "@service.wxaccount";
+    function authorize(obj: AUthorizeOptions & RecordCombine<AUthorizeCallbackOptions>): void;
+    function authorize(obj: AUthorizeOptions): Promise<AuthorizeSuccessOptions>;
 }

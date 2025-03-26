@@ -63,22 +63,22 @@ declare module "@system.webview" {
          * cookie其它额外信息
          */
         extra?: string;
+    }
+
+    interface SetCookieCallbackOptions {
         /**
          * 调用成功的回调函数
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 调用失败的回调函数
          */
-        fail?: () => void;
+        fail: () => void;
     }
     /**
      * 设置WebView的Cookie信息。
      * [1100+]
      */
-    function setCookie(obj: SetCookieOptions): void;
-}
-
-declare module "quickapp:@system.webview" {
-    export * from "@system.webview";
+    function setCookie(obj: SetCookieOptions & RecordCombine<SetCookieCallbackOptions>): void;
+    function setCookie(obj: SetCookieOptions): Promise<void>;
 }

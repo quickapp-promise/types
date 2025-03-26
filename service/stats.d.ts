@@ -53,7 +53,3 @@ declare module "@service.stats" {
      */
     function recordCalculateEvent(obj: RecordCalculateEventOptions): void;
 }
-
-declare module "quickapp:@service.stats" {
-    export * from "@service.stats";
-}

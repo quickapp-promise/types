@@ -137,19 +137,19 @@ declare module "@system.audio" {
      */
     function stop(): void;
 
-    interface GetPlayStateOptions {
+    interface GetPlayStateCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetPlayStateSuccessOptions) => void;
+        success: (data: GetPlayStateSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetPlayStateSuccessOptions {
@@ -191,9 +191,6 @@ declare module "@system.audio" {
      * 获取当前播放状态数据
      * [1050+]
      */
-    function getPlayState(obj?: GetPlayStateOptions): void;
-}
-
-declare module "quickapp:@system.audio" {
-    export * from "@system.audio";
+    function getPlayState(obj: RecordCombine<GetPlayStateCallbackOptions>): void;
+    function getPlayState(): Promise<GetPlayStateSuccessOptions>;
 }

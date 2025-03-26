@@ -34,49 +34,49 @@ declare module "@system.nfc" {
             payload: ArrayBuffer;
         }
 
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 调用结束
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -91,18 +91,21 @@ declare module "@system.nfc" {
              * 超时时间，单位ms
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface WriteNdefMessageOptions {
@@ -118,88 +121,96 @@ declare module "@system.nfc" {
              * 二进制对象数组, 需要指明 id, type 以及 payload (均为 ArrayBuffer 类型)
              */
             records?: Message[];
+        }
+
+        interface WriteNdefMessageCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 调用结束
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface Ndef {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
-            setTimeout(obj: SetTimeoutOptions): void;
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
             /**
              * 发送数据
              */
-            writeNdefMessage(obj?: WriteNdefMessageOptions): void;
+            writeNdefMessage(obj: WriteNdefMessageOptions & RecordCombine<WriteNdefMessageCallbackOptions>): void;
+            writeNdefMessage(obj?: WriteNdefMessageOptions): Promise<void>;
         }
     }
 
     namespace NfcA {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -209,19 +220,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -236,37 +247,43 @@ declare module "@system.nfc" {
              * 超时时间（ms）
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveOptions {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -276,19 +293,19 @@ declare module "@system.nfc" {
             data: ArrayBuffer;
         }
 
-        interface GetAtqaOptions {
+        interface GetAtqaCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetAtqaSuccessOptions) => void;
+            success: (data: GetAtqaSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetAtqaSuccessOptions {
@@ -298,19 +315,19 @@ declare module "@system.nfc" {
             atqa: ArrayBuffer;
         }
 
-        interface GetSakOptions {
+        interface GetSakCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetSakSuccessOptions) => void;
+            success: (data: GetSakSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetSakSuccessOptions {
@@ -324,82 +341,90 @@ declare module "@system.nfc" {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取最大传输长度
              */
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
-            setTimeout(obj: SetTimeoutOptions): void;
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
             /**
              * 发送数据
              */
-            transceive(obj?: TransceiveOptions): void;
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
             /**
              * 获取ATQA信息
              */
-            getAtqa(obj?: GetAtqaOptions): void;
+            getAtqa(obj: RecordCombine<GetAtqaCallbackOptions>): void;
+            getAtqa(): Promise<GetAtqaSuccessOptions>;
             /**
              * 获取SAK信息
              */
-            getSak(obj?: GetSakOptions): void;
+            getSak(obj: RecordCombine<GetSakCallbackOptions>): void;
+            getSak(): Promise<GetSakSuccessOptions>;
         }
     }
 
     namespace NfcB {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -409,19 +434,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -435,19 +460,22 @@ declare module "@system.nfc" {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -461,70 +489,75 @@ declare module "@system.nfc" {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取最大传输长度
              */
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 发送数据
              */
-            transceive(obj?: TransceiveOptions): void;
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace NfcF {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -534,19 +567,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -561,37 +594,43 @@ declare module "@system.nfc" {
              * 超时时间（ms）
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveOptions {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -602,59 +641,70 @@ declare module "@system.nfc" {
         }
 
         interface NfcF {
-            close(obj?: CloseOptions): void;
-            connect(obj?: ConnectOptions): void;
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
-            isConnected(obj?: IsConnectedOptions): void;
-            setTimeout(obj: SetTimeoutOptions): void;
-            transceive(obj?: TransceiveOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
+
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
+
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
+
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace NfcV {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -664,19 +714,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -688,17 +738,24 @@ declare module "@system.nfc" {
 
         interface TransceiveOptions {
             /**
+             * 需要传递的二进制数据
+             */
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
+            /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -709,59 +766,69 @@ declare module "@system.nfc" {
         }
 
         interface NfcV {
-            close(obj?: CloseOptions): void;
-            connect(obj?: ConnectOptions): void;
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
-            isConnected(obj?: IsConnectedOptions): void;
-            transceive(obj?: TransceiveOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
+
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
+
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
+
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace IsoDep {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetHistoricalBytesOptions {
+        interface GetHistoricalBytesCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetHistoricalBytesSuccessOptions) => void;
+            success: (data: GetHistoricalBytesSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
+
         interface GetHistoricalBytesSuccessOptions {
             /**
              * 返回历史二进制数据
@@ -769,19 +836,19 @@ declare module "@system.nfc" {
             histBytes: ArrayBuffer;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -791,19 +858,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -818,37 +885,43 @@ declare module "@system.nfc" {
              * 超时时间（ms）
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveOptions {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -862,78 +935,85 @@ declare module "@system.nfc" {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取复位信息
              */
-            getHistoricalBytes(obj?: GetHistoricalBytesOptions): void;
+            getHistoricalBytes(obj: RecordCombine<GetHistoricalBytesCallbackOptions>): void;
+            getHistoricalBytes(): Promise<GetHistoricalBytesSuccessOptions>;
             /**
              * 获取最大传输长度
              */
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
-            setTimeout(obj: SetTimeoutOptions): void;
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
             /**
              * 发送数据
              */
-            transceive(obj?: TransceiveOptions): void;
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace MifareClassic {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -943,19 +1023,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -970,37 +1050,43 @@ declare module "@system.nfc" {
              * 超时时间（ms）
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveOptions {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -1014,23 +1100,28 @@ declare module "@system.nfc" {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取最大传输长度
              */
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
-            setTimeout(obj: SetTimeoutOptions): void;
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
             /**
              * 发送数据
              * @description
@@ -1044,54 +1135,55 @@ declare module "@system.nfc" {
              * - 0xC2：将块区中的数据复制到临时块中，指令[1位] + 块号[1位]
              * - 0xB0：将临时块中的数据复制到指定的块区中，指令[1位] + 块号[1位]
              */
-            transceive(obj?: TransceiveOptions): void;
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace MifareUltralight {
-        interface CloseOptions {
+        interface CloseCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface ConnectOptions {
+        interface ConnectCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface GetMaxTransceiveLengthOptions {
+        interface GetMaxTransceiveLengthCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: GetMaxTransceiveLengthSuccessOptions) => void;
+            success: (data: GetMaxTransceiveLengthSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface GetMaxTransceiveLengthSuccessOptions {
@@ -1101,19 +1193,19 @@ declare module "@system.nfc" {
             length: number;
         }
 
-        interface IsConnectedOptions {
+        interface IsConnectedCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: IsConnectedSuccessOptions) => void;
+            success: (data: IsConnectedSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface IsConnectedSuccessOptions {
@@ -1128,37 +1220,43 @@ declare module "@system.nfc" {
              * 超时时间（ms）
              */
             timeout: number;
+        }
+
+        interface SetTimeoutCallbackOptions {
             /**
              * 成功回调
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveOptions {
             /**
              * 需要传递的二进制数据
              */
-            data: ArrayBuffer;
+            data?: ArrayBuffer;
+        }
+
+        interface TransceiveCallbackOptions {
             /**
              * 成功回调
              */
-            success?: (data: TransceiveSuccessOptions) => void;
+            success: (data: TransceiveSuccessOptions) => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface TransceiveSuccessOptions {
@@ -1172,23 +1270,28 @@ declare module "@system.nfc" {
             /**
              * 断开连接
              */
-            close(obj?: CloseOptions): void;
+            close(obj: RecordCombine<CloseCallbackOptions>): void;
+            close(): Promise<void>;
             /**
              * 连接 NFC 标签
              */
-            connect(obj?: ConnectOptions): void;
+            connect(obj: RecordCombine<ConnectCallbackOptions>): void;
+            connect(): Promise<void>;
             /**
              * 获取最大传输长度
              */
-            getMaxTransceiveLength(obj?: GetMaxTransceiveLengthOptions): void;
+            getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
+            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
-            isConnected(obj?: IsConnectedOptions): void;
+            isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
+            isConnected(): Promise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
-            setTimeout(obj: SetTimeoutOptions): void;
+            setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
+            setTimeout(obj: SetTimeoutOptions): Promise<void>;
             /**
              * 发送数据
              * @description
@@ -1196,39 +1299,40 @@ declare module "@system.nfc" {
              * - 0x30：读取某页的数据，指令[1位] + 页号[1位]
              * - 0xA2：往某页写入数据，指令[1位] + 页号[1位] + 数据
              */
-            transceive(obj?: TransceiveOptions): void;
+            transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
+            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
         }
     }
 
     namespace NFCAdapter {
-        interface StartDiscoveryOptions {
+        interface StartDiscoveryCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
-        interface StopDiscoveryOptions {
+        interface StopDiscoveryCallbackOptions {
             /**
              * 成功返回的回调函数
              */
-            success?: () => void;
+            success: () => void;
             /**
              * 失败回调
              */
-            fail?: (data: any, code: number) => void;
+            fail: (data: any, code: number) => void;
             /**
              * 执行结束后的回调
              */
-            complete?: () => void;
+            complete: () => void;
         }
 
         interface OnDiscoveredOptions {
@@ -1264,12 +1368,14 @@ declare module "@system.nfc" {
             /**
              * 开始扫描NFC标签
              */
-            startDiscovery(obj?: StartDiscoveryOptions): void;
+            startDiscovery(obj: RecordCombine<StartDiscoveryCallbackOptions>): void;
+            startDiscovery(): Promise<void>;
 
             /**
              * 关闭NFC标签扫描
              */
-            stopDiscovery(obj?: StopDiscoveryOptions): void;
+            stopDiscovery(obj: RecordCombine<StopDiscoveryCallbackOptions>): void;
+            stopDiscovery(): Promise<void>;
 
             /**
              * 监听 NFC Tag
@@ -1327,8 +1433,4 @@ declare module "@system.nfc" {
      * 获取客户端NFC适配器
      */
     function getNFCAdapter(): NFCAdapter.NFCAdapter;
-}
-
-declare module "quickapp:@system.nfc" {
-    export * from "@system.nfc";
 }

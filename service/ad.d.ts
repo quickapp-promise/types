@@ -443,14 +443,17 @@ declare module "@service.ad" {
          * 预期返回的广告条数
          */
         adCount?: number;
+    }
+
+    interface PreloadAdCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (obj: PreloadAdSuccessOptions) => void;
+        success: (obj: PreloadAdSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface PreloadAdSuccessOptions {
@@ -527,9 +530,6 @@ declare module "@service.ad" {
      *
      * @link https://doc.quickapp.cn/features/service/ad/feedad.html
      */
-    function preloadAd(obj: PreloadAdOptions): void;
-}
-
-declare module "quickapp:@service.ad" {
-    export * from "@service.ad";
+    function preloadAd(obj: PreloadAdOptions & RecordCombine<PreloadAdCallbackOptions>): void;
+    function preloadAd(obj: PreloadAdOptions): Promise<PreloadAdSuccessOptions>;
 }

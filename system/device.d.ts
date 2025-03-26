@@ -3,19 +3,19 @@
  * 接口声明: {"name": "system.device"}
  */
 declare module "@system.device" {
-    interface GetInfoOptions {
+    interface GetInfoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetInfoSuccessOptions) => void;
+        success: (data: GetInfoSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetInfoSuccessOptions {
@@ -145,15 +145,24 @@ declare module "@system.device" {
         bottom: number;
     }
 
+    /**
+     * 获取设备信息
+     */
+    function getInfo(obj: RecordCombine<GetInfoCallbackOptions>): void;
+    function getInfo(): Promise<GetInfoSuccessOptions>;
+
     interface GetIdOptions {
         /**
          * 支持 device、mac、user、advertising 1000+四种类型，可提供一至多个
          */
         type: ("device" | "mac" | "user" | "advertising")[];
+    }
+
+    interface GetIdCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetIdSuccessOptions) => void;
+        success: (data: GetIdSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -162,11 +171,11 @@ declare module "@system.device" {
          * |201|用户拒绝授权|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetIdSuccessOptions {
@@ -190,23 +199,19 @@ declare module "@system.device" {
     }
 
     /**
-     * 获取设备信息
-     */
-    function getInfo(obj?: GetInfoOptions): void;
-
-    /**
      * 批量获取设备标识，需要用户授权
      * @description
      * 权限要求
      * - 获取手机状态
      */
-    function getId(Obj: GetIdOptions): void;
+    function getId(obj: GetIdOptions & RecordCombine<GetIdCallbackOptions>): void;
+    function getId(obj: GetIdOptions): Promise<GetIdSuccessOptions>;
 
-    interface GetDeviceIdOptions {
+    interface GetDeviceIdCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetDeviceIdSuccessOptions) => void;
+        success: (data: GetDeviceIdSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -215,11 +220,11 @@ declare module "@system.device" {
          * |201|用户拒绝授权|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetDeviceIdSuccessOptions {
@@ -236,21 +241,22 @@ declare module "@system.device" {
      * 权限要求
      * - 获取手机状态
      */
-    function getDeviceId(Obj?: GetDeviceIdOptions): void;
+    function getDeviceId(obj: RecordCombine<GetDeviceIdCallbackOptions>): void;
+    function getDeviceId(): Promise<GetDeviceIdSuccessOptions>;
 
-    interface GetUserIdOptions {
+    interface GetUserIdCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetUserIdSuccessOptions) => void;
+        success: (data: GetUserIdSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetUserIdSuccessOptions {
@@ -264,21 +270,22 @@ declare module "@system.device" {
      * 获取用户唯一标识
      * [1000+]
      */
-    function getUserId(Obj?: GetUserIdOptions): void;
+    function getUserId(obj: RecordCombine<GetUserIdCallbackOptions>): void;
+    function getUserId(): Promise<GetUserIdSuccessOptions>;
 
-    interface GetAdvertisingIdOptions {
+    interface GetAdvertisingIdCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetAdvertisingIdSuccessOptions) => void;
+        success: (data: GetAdvertisingIdSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetAdvertisingIdSuccessOptions {
@@ -292,21 +299,22 @@ declare module "@system.device" {
      * 获取广告唯一标识
      * [1000+]
      */
-    function getAdvertisingId(Obj?: GetAdvertisingIdOptions): void;
+    function getAdvertisingId(obj: RecordCombine<GetAdvertisingIdCallbackOptions>): void;
+    function getAdvertisingId(): Promise<GetAdvertisingIdSuccessOptions>;
 
-    interface GetSerialOptions {
+    interface GetSerialCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetSerialSuccessOptions) => void;
+        success: (data: GetSerialSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetSerialSuccessOptions {
@@ -322,21 +330,22 @@ declare module "@system.device" {
      * @deprecated
      * 根据Android平台要求，Android 10开始不允许向第三方应用提供SN，该接口将回调fail，建议使用其他系统标识符如OAID替代
      */
-    function getSerial(Obj?: GetSerialOptions): void;
+    function getSerial(obj: RecordCombine<GetSerialCallbackOptions>): void;
+    function getSerial(): Promise<GetSerialSuccessOptions>;
 
-    interface GetTotalStorageOptions {
+    interface GetTotalStorageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetTotalStorageSuccessOptions) => void;
+        success: (data: GetTotalStorageSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetTotalStorageSuccessOptions {
@@ -350,21 +359,22 @@ declare module "@system.device" {
      * 获取存储空间的总大小
      * [1000+]
      */
-    function getTotalStorage(Obj?: GetTotalStorageOptions): void;
+    function getTotalStorage(obj: RecordCombine<GetTotalStorageCallbackOptions>): void;
+    function getTotalStorage(): Promise<GetTotalStorageSuccessOptions>;
 
-    interface GetAvailableStorageOptions {
+    interface GetAvailableStorageCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetAvailableStorageSuccessOptions) => void;
+        success: (data: GetAvailableStorageSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetAvailableStorageSuccessOptions {
@@ -378,21 +388,22 @@ declare module "@system.device" {
      * 获取存储空间的可用大小
      * [1000+]
      */
-    function getAvailableStorage(Obj?: GetAvailableStorageOptions): void;
+    function getAvailableStorage(obj: RecordCombine<GetAvailableStorageCallbackOptions>): void;
+    function getAvailableStorage(): Promise<GetAvailableStorageSuccessOptions>;
 
-    interface GetCpuInfoOptions {
+    interface GetCpuInfoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetCpuInfoSuccessOptions) => void;
+        success: (data: GetCpuInfoSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetCpuInfoSuccessOptions {
@@ -406,21 +417,22 @@ declare module "@system.device" {
      * 返回 CPU 信息
      * [1000+]
      */
-    function getCpuInfo(Obj?: GetCpuInfoOptions): void;
+    function getCpuInfo(obj: RecordCombine<GetCpuInfoCallbackOptions>): void;
+    function getCpuInfo(): Promise<GetCpuInfoSuccessOptions>;
 
-    interface GetOAIDOptions {
+    interface GetOAIDCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetOAIDSuccessOptions) => void;
+        success: (data: GetOAIDSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetOAIDSuccessOptions {
@@ -434,7 +446,8 @@ declare module "@system.device" {
      * 返回厂商设备标识符中的 OAID（匿名设备标识符）
      * [1060+]
      */
-    function getOAID(Obj?: GetOAIDOptions): void;
+    function getOAID(obj: RecordCombine<GetOAIDCallbackOptions>): void;
+    function getOAID(): Promise<GetOAIDSuccessOptions>;
 
     /**
      * 同步方法获取平台版本信息
@@ -475,8 +488,4 @@ declare module "@system.device" {
          */
         versionCode: number;
     };
-}
-
-declare module "quickapp:@system.device" {
-    export * from "@system.device";
 }

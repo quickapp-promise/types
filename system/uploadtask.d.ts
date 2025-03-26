@@ -115,7 +115,3 @@ declare module "@system.uploadtask" {
      */
     function uploadFile(obj: UploadFileOptions): UploadTask;
 }
-
-declare module "quickapp:@system.uploadtask" {
-    export * from "@system.uploadtask";
-}

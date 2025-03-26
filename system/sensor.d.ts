@@ -199,7 +199,3 @@ declare module "@system.sensor" {
      */
     function unsubscribeStepCounter(): void;
 }
-
-declare module "quickapp:@system.sensor" {
-    export * from "@system.sensor";
-}

@@ -9,20 +9,20 @@ declare module "@service.account" {
      */
     function getProvider(): string;
 
-    interface IsLoginOptions {
+    interface IsLoginCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: IsLoginSuccessOptions) => void;
+        success: (data: IsLoginSuccessOptions) => void;
         /**
          * 失败回调
          * 200: 通用错误，判断出错时返回该错误码
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface IsLoginSuccessOptions {
@@ -36,7 +36,8 @@ declare module "@service.account" {
      * 判断账户登录状态。
      * 1060+
      */
-    function isLogin(obj?: IsLoginOptions): void;
+    function isLogin(obj: RecordCombine<IsLoginCallbackOptions>): void;
+    function isLogin(): Promise<IsLoginSuccessOptions>;
 
     interface AuthorizeOptions {
         /**
@@ -55,10 +56,13 @@ declare module "@service.account" {
          * 可以指定任意值，认证服务器会原封不动地返回这个值
          */
         state?: string;
+    }
+
+    interface AuthorizeCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AuthorizeSuccessOptions) => void;
+        success: (data: AuthorizeSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -68,11 +72,11 @@ declare module "@service.account" {
          * |202|超出权限范围，不支持获取此scope对应的权限 [1100+]|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface AuthorizeSuccessOptions {
@@ -105,25 +109,29 @@ declare module "@service.account" {
     /**
      * 进行OAuth授权
      */
-    function authorize(obj: AuthorizeOptions): void;
+    function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
+    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
 
     interface GetProfileOptions {
         /**
          * 访问令牌
          */
         token: string;
+    }
+
+    interface GetProfileCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetProfileSuccessOptions) => void;
+        success: (data: GetProfileSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetProfileSuccessOptions {
@@ -157,25 +165,29 @@ declare module "@service.account" {
     /**
      * 获得用户基本信息。根据授权时选择的scope，返回不同信息。
      */
-    function getProfile(obj: GetProfileOptions): void;
+    function getProfile(obj: GetProfileOptions & RecordCombine<GetProfileCallbackOptions>): void;
+    function getProfile(obj: GetProfileOptions): Promise<GetProfileSuccessOptions>;
 
     interface GetPhoneNumberOptions {
         /**
          * 获取手机号码是否加密，默认false，加解密方案需要跟具体的厂商对接。
          */
         encrypt?: boolean;
+    }
+
+    interface GetPhoneNumberCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetPhoneNumberSuccessOptions) => void;
+        success: (data: GetPhoneNumberSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetPhoneNumberSuccessOptions {
@@ -192,13 +204,14 @@ declare module "@service.account" {
      * 权限要求
      * - 每次请求时都需要用户确认
      */
-    function getPhoneNumber(obj?: GetPhoneNumberOptions): void;
+    function getPhoneNumber(obj: GetPhoneNumberOptions & RecordCombine<GetPhoneNumberCallbackOptions>): void;
+    function getPhoneNumber(obj?: GetPhoneNumberOptions): Promise<GetPhoneNumberSuccessOptions>;
 
-    interface GetEncryptedIDOptions {
+    interface GetEncryptedIDCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetEncryptedIDSuccessOptions) => void;
+        success: (data: GetEncryptedIDSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -207,7 +220,7 @@ declare module "@service.account" {
          * |200|通用错误|
          * |1001|未登录账号|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface GetEncryptedIDSuccessOptions {
@@ -221,9 +234,6 @@ declare module "@service.account" {
      * 获取厂商加密过的系统账号ID，无需用户授权。当需要和厂商对接服务时，可以使用此ID.
      * [1080+]
      */
-    function getEncryptedID(obj?: GetEncryptedIDOptions): void;
-}
-
-declare module "quickapp:@service.account" {
-    export * from "@service.account";
+    function getEncryptedID(obj: RecordCombine<GetEncryptedIDCallbackOptions>): void;
+    function getEncryptedID(): Promise<GetEncryptedIDSuccessOptions>;
 }

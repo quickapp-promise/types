@@ -29,7 +29,3 @@ declare module "@system.screenshot" {
      */
     function offUserCaptureScreen(): void;
 }
-
-declare module "quickapp:@system.screenshot" {
-    export * from "@system.screenshot";
-}

@@ -28,10 +28,13 @@ declare module "@service.wxpay" {
          * 当前支付方式下，需要填入的额外订单信息，具体见下文的 extra 参数说明
          */
         extra: AppPayExtraOptions | MwebPayExtraOptions;
+    }
+
+    interface PayCallbackOptions {
         /**
          * 成功后的回调函数，App 方式下，回调发生在用户支付完成之后，网页方式下，回调发生在订单提交给微信 app 之后
          */
-        success?: (data: PaySuccessOptions) => void;
+        success: (data: PaySuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -43,11 +46,11 @@ declare module "@service.wxpay" {
          * |1001|用于微信网页支付的 url 配置找不到|
          * |2001|订单已经提交给微信，但是微信返回错误, 可能的原因：签名错误、未注册 APPID、项目设置 APPID 不正确、注册的 APPID 与设置的不匹配、其他异常等。|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
     }
 
     interface AppPayExtraOptions {
@@ -104,9 +107,6 @@ declare module "@service.wxpay" {
     /**
      * 发起微信支付
      */
-    function pay(obj: PayOptions): void;
-}
-
-declare module "quickapp:@service.wxpay" {
-    export * from "@service.wxpay";
+    function pay(obj: PayOptions & RecordCombine<PayCallbackOptions>): void;
+    function pay(obj: PayOptions): Promise<PaySuccessOptions>;
 }

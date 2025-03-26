@@ -43,10 +43,13 @@ declare module "@system.record" {
          * [1010+]
          */
         format?: string;
+    }
+
+    interface StartCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: StartSuccessOptions) => void;
+        success: (data: StartSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -56,11 +59,11 @@ declare module "@system.record" {
          * |202|参数错误。如指定 bufferSize 参数 > 0 时，format 不为 pcm 格式则返回此错误 [1200+]|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface StartSuccessOptions {
@@ -71,9 +74,11 @@ declare module "@system.record" {
     }
 
     /**
-     * 检测应用是否存在。支持检测原生应用是否已安装 [权限要求:录音]
+     * 开始录音。
+     * [权限要求:录音]
      */
-    function start(obj?: StartOptions): void;
+    function start(obj: StartOptions & RecordCombine<StartCallbackOptions>): void;
+    function start(obj?: StartOptions): Promise<StartSuccessOptions>;
 
     interface OnfremerecordedOptions {
         /**
@@ -96,8 +101,4 @@ declare module "@system.record" {
      * 停止录音
      */
     function stop(): void;
-}
-
-declare module "quickapp:@system.record" {
-    export * from "@system.record";
 }

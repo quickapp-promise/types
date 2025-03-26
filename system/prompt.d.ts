@@ -36,18 +36,21 @@ declare module "@system.prompt" {
          * [1060+]
          */
         autocancel?: boolean;
+    }
+
+    interface ShowDialogCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ShowDialogSuccessOptions) => void;
+        success: (data: ShowDialogSuccessOptions) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ShowDialogButton {
@@ -65,7 +68,8 @@ declare module "@system.prompt" {
     /**
      * 显示对话框
      */
-    function showDialog(obj: ShowDialogOptions): void;
+    function showDialog(obj: ShowDialogOptions & RecordCombine<ShowDialogCallbackOptions>): void;
+    function showDialog(obj: ShowDialogOptions): Promise<ShowDialogSuccessOptions>;
 
     interface ShowContextMenuOptions {
         /**
@@ -76,18 +80,21 @@ declare module "@system.prompt" {
          * 按钮颜色
          */
         itemColor?: string;
+    }
+
+    interface ShowContextMenuCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ShowContextMenuSuccessOptions) => void;
+        success: (data: ShowContextMenuSuccessOptions) => void;
         /**
          * 取消回调
          */
-        cancel?: () => void;
+        cancel: () => void;
         /**
          * 执行结束后的回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
     }
 
     interface ShowContextMenuSuccessOptions {
@@ -100,9 +107,6 @@ declare module "@system.prompt" {
      * 显示上下文菜单
      * @param obj
      */
-    function showContextMenu(obj: ShowContextMenuOptions): void;
-}
-
-declare module "quickapp:@system.prompt" {
-    export * from "@system.prompt";
+    function showContextMenu(obj: ShowContextMenuOptions & RecordCombine<ShowContextMenuCallbackOptions>): void;
+    function showContextMenu(obj: ShowContextMenuOptions): Promise<ShowContextMenuSuccessOptions>;
 }

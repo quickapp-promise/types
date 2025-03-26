@@ -12,10 +12,13 @@ declare module "@system.file" {
          * 目标文件的 uri，不能是应用资源路径和 tmp 类型的 uri
          */
         dstUri: string;
+    }
+
+    export interface MoveCallbackOptions {
         /**
          * 成功回调，返回目标文件的 uri
          */
-        success?: (uri: string) => void;
+        success: (uri: string) => void;
         /**
          * 失败回调
          * @description
@@ -24,11 +27,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface CopyOptions {
@@ -40,10 +43,13 @@ declare module "@system.file" {
          * 目标文件的 uri，不能是应用资源路径和 tmp 类型的 uri
          */
         dstUri: string;
+    }
+
+    export interface CopyCallbackOptions {
         /**
          * 成功回调，返回目标文件的 uri
          */
-        success?: (uri: string) => void;
+        success: (uri: string) => void;
         /**
          * 失败回调
          * @description
@@ -52,11 +58,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface ListOptions {
@@ -64,18 +70,21 @@ declare module "@system.file" {
          * 目录 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
         uri: string;
+    }
+
+    export interface ListCallbackOptions {
         /**
          * 成功回调，返回目录下的文件列表
          */
-        success?: (data: ListSuccessOptions) => void;
+        success: (data: ListSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface ListSuccessOptions {
@@ -109,10 +118,13 @@ declare module "@system.file" {
          * 是否递归获取子目录文件列表。默认 false
          */
         recursive?: boolean;
+    }
+
+    export interface GetCallbackOptions {
         /**
          * 成功回调，返回{uri:'file1', length:123456, lastModifiedTime:1233456}
          */
-        success?: (data: FileMeta) => void;
+        success: (data: FileMeta) => void;
         /**
          * 失败回调
          * @description
@@ -121,11 +133,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface DeleteOptions {
@@ -133,10 +145,13 @@ declare module "@system.file" {
          * 需要删除的文件 uri，不能是应用资源路径和 tmp 类型的 uri
          */
         uri: string;
+    }
+
+    export interface DeleteCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -145,11 +160,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface WriteTextOptions {
@@ -170,10 +185,13 @@ declare module "@system.file" {
          * [1060+]
          */
         append?: boolean;
+    }
+
+    export interface WriteTextCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -182,11 +200,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface WriteArrayBufferOptions {
@@ -207,18 +225,21 @@ declare module "@system.file" {
          * [1060+]
          */
         append?: boolean;
+    }
+
+    export interface WriteArrayBufferCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface ReadTextOptions {
@@ -230,10 +251,13 @@ declare module "@system.file" {
          * 编码格式，默认 UTF-8
          */
         encoding?: string;
+    }
+
+    export interface ReadTextCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ReadTextSuccessOptions) => void;
+        success: (data: ReadTextSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -243,11 +267,11 @@ declare module "@system.file" {
          * |300|I/O 错误|
          * |301|文件不存在|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface ReadTextSuccessOptions {
@@ -267,18 +291,21 @@ declare module "@system.file" {
          * 读取的长度，不填写则读取到文件结尾
          */
         length?: number;
+    }
+
+    export interface ReadArrayBufferCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ReadArrayBufferSuccessOptions) => void;
+        success: (data: ReadArrayBufferSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface ReadArrayBufferSuccessOptions {
@@ -290,10 +317,13 @@ declare module "@system.file" {
          * 目录或文件 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
         uri: string;
+    }
+
+    export interface AccessCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -302,11 +332,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface MkdirOptions {
@@ -318,10 +348,13 @@ declare module "@system.file" {
          * 是否递归创建该目录的上级目录后再创建该目录。默认 false
          */
         recursive?: boolean;
+    }
+
+    export interface MkdirCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -330,11 +363,11 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface RmdirOptions {
@@ -342,10 +375,13 @@ declare module "@system.file" {
          * 目录或文件 uri，不能是应用资源路径和 tmp 类型的 uri。[1080+]支持应用资源路径
          */
         uri: string;
+    }
+
+    export interface RmdirCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -354,78 +390,84 @@ declare module "@system.file" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export class File {
         /**
          * 将源文件移动到指定位置，接口中使用的 URI 描述请参考文件组织
          */
-        move(obj: MoveOptions): void;
+        move(obj: MoveOptions & RecordCombine<MoveCallbackOptions>): void;
+        move(obj: MoveOptions): Promise<string>;
         /**
          * 将源文件复制一份并存储到指定位置，接口中使用的 URI 描述请参考文件组织
          */
-        copy(obj: CopyOptions): void;
+        copy(obj: CopyOptions & RecordCombine<CopyCallbackOptions>): void;
+        copy(obj: CopyOptions): Promise<string>;
         /**
          * 获取指定目录下的文件列表，接口中使用的 URI 描述请参考文件组织
          */
-        list(obj: ListOptions): void;
+        list(obj: ListOptions & RecordCombine<ListCallbackOptions>): void;
+        list(obj: ListOptions): Promise<ListSuccessOptions>;
         /**
          * 获取本地文件的文件信息，接口中使用的 URI 描述请参考文件组织
          */
-        get(obj: GetOptions): void;
+        get(obj: GetOptions & RecordCombine<GetCallbackOptions>): void;
+        get(obj: GetOptions): Promise<FileMeta>;
         /**
          * 删除本地存储的文件，接口中使用的 URI 描述请参考文件组织
          */
-        delete(obj: DeleteOptions): void;
+        delete(obj: DeleteOptions & RecordCombine<DeleteCallbackOptions>): void;
+        delete(obj: DeleteOptions): Promise<void>;
         /**
          * 写文本到文件
          * [1010+]
          */
-        writeText(obj: WriteTextOptions): void;
+        writeText(obj: WriteTextOptions & RecordCombine<WriteArrayBufferCallbackOptions>): void;
+        writeText(obj: WriteTextOptions): Promise<void>;
         /**
          * 写 Buffer 到文件
          * [1010+]
          */
-        writeArrayBuffer(obj: WriteArrayBufferOptions): void;
+        writeArrayBuffer(obj: WriteArrayBufferOptions & RecordCombine<WriteArrayBufferCallbackOptions>): void;
+        writeArrayBuffer(obj: WriteArrayBufferOptions): Promise<void>;
         /**
          * 从文件中读取文本
          * [1010+]
          */
-        readText(obj: ReadTextOptions): void;
+        readText(obj: ReadTextOptions & RecordCombine<ReadTextCallbackOptions>): void;
+        readText(obj: ReadTextOptions): Promise<ReadTextSuccessOptions>;
         /**
          * 从文件中读取 Buffer
          * [1010+]
          */
-        readArrayBuffer(obj: ReadArrayBufferOptions): void;
+        readArrayBuffer(obj: ReadArrayBufferOptions & RecordCombine<ReadArrayBufferCallbackOptions>): void;
+        readArrayBuffer(obj: ReadArrayBufferOptions): Promise<ReadArrayBufferSuccessOptions>;
         /**
          * 判断文件或目录是否存在
          * [1060+]
          */
-        access(obj: AccessOptions): void;
+        access(obj: AccessOptions & RecordCombine<AccessCallbackOptions>): void;
+        access(obj: AccessOptions): Promise<void>;
         /**
          * 创建目录
          * [1060+]
          */
-        mkdir(obj: MkdirOptions): void;
+        mkdir(obj: MkdirOptions & RecordCombine<MkdirCallbackOptions>): void;
+        mkdir(obj: MkdirOptions): Promise<void>;
         /**
          * 删除目录
          * [1060+]
          */
-        rmdir(obj: RmdirOptions): void;
+        rmdir(obj: RmdirOptions & RecordCombine<RmdirCallbackOptions>): void;
+        rmdir(obj: RmdirOptions): Promise<void>;
     }
 
     const file: InstanceType<typeof File>;
 
-    export default file;
-}
-
-declare module "quickapp:@system.file" {
-    export * from "@system.file";
-    import file from "@system.file";
     export default file;
 }

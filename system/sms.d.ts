@@ -12,10 +12,13 @@ declare module "@system.sms" {
          * 短信内容（不可超过70字符）
          */
         content: string;
+    }
+
+    interface SendCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -24,27 +27,31 @@ declare module "@system.sms" {
          * |201|用户拒绝，获取发短信权限失败|
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 发送短信，每次发送都需要用户授权
      */
-    function send(obj: SendOptions): void;
+    function send(obj: SendOptions & RecordCombine<SendCallbackOptions>): void;
+    function send(obj: SendOptions): Promise<void>;
 
     interface ReadSafelyOptions {
         /**
          * 超时时间，单位是 ms，默认值为 60000（一分钟）
          */
         timeout?: number;
+    }
+
+    interface ReadSafelyCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ReadSafelySuccessOptions) => void;
+        success: (data: ReadSafelySuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -52,11 +59,11 @@ declare module "@system.sms" {
          * |---|---|
          * |204|超时返回|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ReadSafelySuccessOptions {
@@ -72,9 +79,6 @@ declare module "@system.sms" {
      * - 安全性：短信中通过增加应用签名 hash 信息，接口获取短信时通过 hash 来验证区分该应用的短信内容。
      * - 短信格式：11 位签名 hash 字符放到短信末尾，可通过 Debugger 工具获取。
      */
-    function readSafely(obj?: ReadSafelyOptions): void;
-}
-
-declare module "quickapp:@system.sms" {
-    export * from "@system.sms";
+    function readSafely(obj: ReadSafelyOptions & RecordCombine<ReadSafelyCallbackOptions>): void;
+    function readSafely(obj?: ReadSafelyOptions): Promise<ReadSafelySuccessOptions>;
 }

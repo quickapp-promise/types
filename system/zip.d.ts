@@ -12,10 +12,13 @@ declare module "@system.zip" {
          * 目标目录的uri，不能是应用资源路径和tmp类型的uri
          */
         dstUri: string;
+    }
+
+    interface DecompressCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -24,19 +27,16 @@ declare module "@system.zip" {
          * |202|参数错误|
          * |300|I/O 错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 解压文件
      */
-    function decompress(obj: DecompressOptions): void;
-}
-
-declare module "quickapp:@system.zip" {
-    export * from "@system.zip";
+    function decompress(obj: DecompressOptions & RecordCombine<DecompressCallbackOptions>): void;
+    function decompress(obj: DecompressOptions): Promise<void>;
 }

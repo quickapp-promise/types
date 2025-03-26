@@ -23,62 +23,70 @@ declare module "@system.bluetooth" {
          * 是否打开系统蓝牙开关。设置为 true，在系统蓝牙开关关闭的情况下会弹框提示是否打开。默认值 false
          */
         operateAdapter?: boolean;
+    }
+
+    interface OpenAdapterCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 初始化蓝牙模块
      */
-    function openAdapter(obj?: OpenAdapterOptions): void;
+    function openAdapter(obj: OpenAdapterOptions & RecordCombine<OpenAdapterCallbackOptions>): void;
+    function openAdapter(obj?: OpenAdapterOptions): Promise<void>;
 
     interface CloseAdapterOptions {
         /**
          * 是否关闭系统蓝牙开关。设置为 true，调用时会关闭系统蓝牙开关。默认值 false
          */
         operateAdapter?: boolean;
+    }
+
+    interface CloseAdapterCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 bluetooth.openAdapter 成对调用。
      */
-    function closeAdapter(obj?: CloseAdapterOptions): void;
+    function closeAdapter(obj: CloseAdapterOptions & RecordCombine<CloseAdapterCallbackOptions>): void;
+    function closeAdapter(obj?: CloseAdapterOptions): Promise<void>;
 
-    interface GetAdapterStateOptions {
+    interface GetAdapterStateCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AdapterState) => void;
+        success: (data: AdapterState) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface AdapterState {
@@ -95,7 +103,8 @@ declare module "@system.bluetooth" {
     /**
      * 获取本机蓝牙适配器状态。
      */
-    function getAdapterState(obj?: GetAdapterStateOptions): void;
+    function getAdapterState(obj: RecordCombine<GetAdapterStateCallbackOptions>): void;
+    function getAdapterState(): Promise<AdapterState>;
 
     /*
      * 监听蓝牙适配器状态变化事件
@@ -115,58 +124,63 @@ declare module "@system.bluetooth" {
          * 单位毫秒，默认值为 0。上报设备的间隔。0 表示找到新设备立即上报，其他数值根据传入的间隔上报
          */
         interval?: number;
+    }
+
+    interface StartDevicesDiscoveryCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 开始搜寻附近的蓝牙外围设备。此操作比较耗费系统资源，请在搜索并连接到设备后调用 bluetooth.stopDevicesDiscovery 方法停止搜索。
      */
-    function startDevicesDiscovery(obj?: StartDevicesDiscoveryOptions): void;
+    function startDevicesDiscovery(obj: StartDevicesDiscoveryOptions & RecordCombine<StartDevicesDiscoveryCallbackOptions>): void;
+    function startDevicesDiscovery(obj?: StartDevicesDiscoveryOptions): Promise<void>;
 
-    interface StopDevicesDiscovery {
+    interface StopDevicesDiscoveryCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索。
      */
-    function stopDevicesDiscovery(obj?: StopDevicesDiscovery): void;
+    function stopDevicesDiscovery(obj: RecordCombine<StopDevicesDiscoveryCallbackOptions>): void;
+    function stopDevicesDiscovery(): Promise<void>;
 
-    interface GetDevicesOptions {
+    interface GetDevicesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetDevicesSuccessOptions) => void;
+        success: (data: GetDevicesSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetDevicesSuccessOptions {
@@ -210,7 +224,8 @@ declare module "@system.bluetooth" {
     /**
      * 获取在蓝牙模块生效期间所有已发现的蓝牙设备。包括已经和本机处于连接状态的设备。
      */
-    function getDevices(obj?: GetDevicesOptions): void;
+    function getDevices(obj: RecordCombine<GetDevicesCallbackOptions>): void;
+    function getDevices(): Promise<GetDevicesSuccessOptions>;
 
     interface OnDeviceFoundOptions {
         /**
@@ -224,7 +239,7 @@ declare module "@system.bluetooth" {
      */
     function ondevicefound(data: OnDeviceFoundOptions): void;
 
-    interface Device2 {
+    interface SimpleDevice {
         /**
          * 蓝牙设备名称，某些设备可能没有
          */
@@ -240,31 +255,35 @@ declare module "@system.bluetooth" {
          * 蓝牙设备主 service 的 uuid 列表
          */
         services: string[];
+    }
+
+    interface GetConnectedDevicesCallbackOptions {
         /**
          * 成功回调。
          */
-        success?: (data: GetConnectedDevicesSuccessOptions) => void;
+        success: (data: GetConnectedDevicesSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetConnectedDevicesSuccessOptions {
         /**
          * uuid 对应的的已连接设备列表
          */
-        devices: Device2[];
+        devices: SimpleDevice[];
     }
 
     /**
      * 根据 uuid 获取处于已连接状态的设备。
      */
-    function getConnectedDevices(obj: GetConnectedDevicesOptions): void;
+    function getConnectedDevices(obj: GetConnectedDevicesOptions & RecordCombine<GetConnectedDevicesCallbackOptions>): void;
+    function getConnectedDevices(obj: GetConnectedDevicesOptions): Promise<GetConnectedDevicesSuccessOptions>;
 
     interface CreateBLEConnectionOptions {
         /**
@@ -275,66 +294,77 @@ declare module "@system.bluetooth" {
          * 超时时间，单位 ms，不填表示不会超时
          */
         timeout?: number;
+    }
+
+    interface CreateBLEConnectionCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 连接低功耗蓝牙设备。若快应用有搜索过某个蓝牙设备，并成功建立连接，可直接传入之前搜索获取的 deviceId 直接尝试连接该设备，无需进行搜索操作。
      */
-    function createBLEConnection(obj: CreateBLEConnectionOptions): void;
+    function createBLEConnection(obj: CreateBLEConnectionOptions & RecordCombine<CreateBLEConnectionCallbackOptions>): void;
+    function createBLEConnection(obj: CreateBLEConnectionOptions): Promise<void>;
 
     interface CloseBLEConnectionOptions {
         /**
          * 用于区分设备的 id
          */
         deviceId: string;
+    }
+
+    interface CloseBLEConnectionCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 断开与低功耗蓝牙设备的连接。
      */
-    function closeBLEConnection(obj: CloseBLEConnectionOptions): void;
+    function closeBLEConnection(obj: CloseBLEConnectionOptions & RecordCombine<CloseBLEConnectionCallbackOptions>): void;
+    function closeBLEConnection(obj: CloseBLEConnectionOptions): Promise<void>;
 
     interface GetBLEDeviceServicesOptions {
         /**
          * 蓝牙设备 id
          */
         deviceId: string;
+    }
+
+    interface GetBLEDeviceServicesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetBLEDeviceServicesSuccessOptions) => void;
+        success: (data: GetBLEDeviceServicesSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetBLEDeviceServicesSuccessOptions {
@@ -358,7 +388,8 @@ declare module "@system.bluetooth" {
     /**
      * 获取设备服务信息
      */
-    function getBLEDeviceServices(obj: GetBLEDeviceServicesOptions): void;
+    function getBLEDeviceServices(obj: GetBLEDeviceServicesOptions & RecordCombine<GetBLEDeviceServicesCallbackOptions>): void;
+    function getBLEDeviceServices(obj: GetBLEDeviceServicesOptions): Promise<void>;
 
     interface GetBLEDeviceCharacteristicsOptions {
         /**
@@ -369,18 +400,21 @@ declare module "@system.bluetooth" {
          * 蓝牙服务 uuid，需要使用 getBLEDeviceServices 获取
          */
         serviceId: string;
+    }
+
+    interface GetBLEDeviceCharacteristicsCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetBLEDeviceCharacteristicsSuccessOptions) => void;
+        success: (data: GetBLEDeviceCharacteristicsSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetBLEDeviceCharacteristicsSuccessOptions {
@@ -423,7 +457,8 @@ declare module "@system.bluetooth" {
     /**
      * 获取蓝牙设备某个服务中所有特征值(characteristic)。
      */
-    function getBLEDeviceCharacteristics(obj: GetBLEDeviceCharacteristicsOptions): void;
+    function getBLEDeviceCharacteristics(obj: GetBLEDeviceCharacteristicsOptions & RecordCombine<GetBLEDeviceCharacteristicsCallbackOptions>): void;
+    function getBLEDeviceCharacteristics(obj: GetBLEDeviceCharacteristicsOptions): Promise<GetBLEDeviceCharacteristicsSuccessOptions>;
 
     interface ReadBLECharacteristicValueOptions {
         /**
@@ -438,24 +473,29 @@ declare module "@system.bluetooth" {
          * 蓝牙特征值的 uuid
          */
         characteristicId: string;
+    }
+
+    interface ReadBLECharacteristicValueCallbackOptions {
         /**
          * 成功回调
+         * 执行操作成功，读取的值会在onblecharacteristicvaluechange 接口中上报
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 读取低功耗蓝牙设备的特征值的二进制数据值。注意：必须设备的特征值支持 read 才可以成功调用
      */
-    function readBLECharacteristicValue(obj: ReadBLECharacteristicValueOptions): void;
+    function readBLECharacteristicValue(obj: ReadBLECharacteristicValueOptions & RecordCombine<ReadBLECharacteristicValueCallbackOptions>): void;
+    function readBLECharacteristicValue(obj: ReadBLECharacteristicValueOptions): Promise<void>;
 
     interface WriteBLECharacteristicValueOptions {
         /**
@@ -474,24 +514,28 @@ declare module "@system.bluetooth" {
          * 蓝牙设备特征值对应的二进制值
          */
         value: ArrayBuffer;
+    }
+
+    interface WriteBLECharacteristicValueCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 向低功耗蓝牙设备特征值中写入二进制数据。注意：必须设备的特征值支持 write 才可以成功调用。
      */
-    function writeBLECharacteristicValue(obj: WriteBLECharacteristicValueOptions): void;
+    function writeBLECharacteristicValue(obj: WriteBLECharacteristicValueOptions & RecordCombine<WriteBLECharacteristicValueCallbackOptions>): void;
+    function writeBLECharacteristicValue(obj: WriteBLECharacteristicValueOptions): Promise<void>;
 
     interface NotifyBLECharacteristicValueChangeOptions {
         /**
@@ -510,24 +554,28 @@ declare module "@system.bluetooth" {
          * 是否启用 notify
          */
         state: boolean;
+    }
+
+    interface NotifyBLECharacteristicValueChangeCallbackOptions {
         /**
          * 成功回调。
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调。
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调。
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
      * 启用低功耗蓝牙设备特征值变化时的 notify 功能，订阅特征值。注意：必须设备的特征值支持 notify 或者 indicate 才可以成功调用。另外，必须先启用 notifyBLECharacteristicValueChange 才能监听到设备 characteristicValueChange 事件
      */
-    function notifyBLECharacteristicValueChange(obj: NotifyBLECharacteristicValueChangeOptions): void;
+    function notifyBLECharacteristicValueChange(obj: NotifyBLECharacteristicValueChangeOptions & RecordCombine<NotifyBLECharacteristicValueChangeCallbackOptions>): void;
+    function notifyBLECharacteristicValueChange(obj: NotifyBLECharacteristicValueChangeOptions): Promise<void>;
 
     interface OnBLECharacteristicvalueChangeOptions {
         /**
@@ -568,8 +616,4 @@ declare module "@system.bluetooth" {
      * 监听低功耗蓝牙连接状态的改变事件。包括开发者主动连接或断开连接，设备丢失，连接异常断开等等
      */
     function onbleconnectionstatechange(data: OnBLEConnectionStateChange): void;
-}
-
-declare module "quickapp:@system.bluetooth" {
-    export * from "@system.bluetooth";
 }

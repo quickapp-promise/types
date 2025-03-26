@@ -34,7 +34,3 @@ declare module "@system.notification" {
      */
     function show(obj: ShowOptions): void;
 }
-
-declare module "quickapp:@system.notification" {
-    export * from "@system.notification";
-}

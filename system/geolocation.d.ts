@@ -13,6 +13,9 @@ declare module "@system.geolocation" {
          * [1050+]
          */
         coordType?: string;
+    }
+
+    interface GetLocationCallbackOptions {
         /**
          * 成功回调
          */
@@ -27,11 +30,11 @@ declare module "@system.geolocation" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1000|系统位置开关关闭 [1000+]|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetLocationSuccessOptions {
@@ -58,7 +61,8 @@ declare module "@system.geolocation" {
     /**
      * 获取地理位置
      */
-    function getLocation(obj: GetLocationOptions): void;
+    function getLocation(obj: GetLocationOptions & RecordCombine<GetLocationCallbackOptions>): void;
+    function getLocation(obj?: GetLocationOptions): Promise<GetLocationSuccessOptions>;
 
     interface OpenLocationOptions {
         /**
@@ -85,10 +89,13 @@ declare module "@system.geolocation" {
          * 地址的详细说明
          */
         address?: string;
+    }
+
+    interface OpenLocationCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -100,11 +107,11 @@ declare module "@system.geolocation" {
          * |1000|跳转导航出错|
          * |1001|未安装地图应用|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -113,7 +120,8 @@ declare module "@system.geolocation" {
      * 权限要求
      * - 精确设备定位
      */
-    function openLocation(obj: OpenLocationOptions): void;
+    function openLocation(obj: OpenLocationOptions & RecordCombine<OpenLocationCallbackOptions>): void;
+    function openLocation(obj: OpenLocationOptions): Promise<void>;
 
     interface ChooseLocationOptions {
         /**
@@ -128,6 +136,9 @@ declare module "@system.geolocation" {
          * 坐标系，支持 wgs84 和 gcj02，默认使用 wgs84。仅作用于指定中心点的经纬度坐标系，成功回调的返回值国内坐标固定使用 gcj02 坐标系，国外坐标固定使用 wgs84 坐标系
          */
         coordType?: string;
+    }
+
+    interface ChooseLocationCallbackOptions {
         /**
          * 成功回调
          */
@@ -141,11 +152,11 @@ declare module "@system.geolocation" {
          * |207|用户拒绝并勾选不再询问复选框 [1100+]|
          * |1000|所选位置无效|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ChooseLocationSuccessOptions {
@@ -178,9 +189,10 @@ declare module "@system.geolocation" {
      * 权限要求
      * 精确设备定位
      */
-    function chooseLocation(obj: ChooseLocationOptions): void;
+    function chooseLocation(obj: ChooseLocationOptions & RecordCombine<ChooseLocationCallbackOptions>): void;
+    function chooseLocation(obj?: ChooseLocationOptions): Promise<ChooseLocationSuccessOptions>;
 
-    interface GetLocationTypeOptions {
+    interface GetLocationTypeCallbackOptions {
         /**
          * 成功回调
          */
@@ -188,11 +200,11 @@ declare module "@system.geolocation" {
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GetLocationTypeSuccessOptions {
@@ -209,7 +221,8 @@ declare module "@system.geolocation" {
      * 权限要求
      * - 精确设备定位
      */
-    function getLocationType(obj: GetLocationTypeOptions): void;
+    function getLocationType(obj: RecordCombine<GetLocationTypeCallbackOptions>): void;
+    function getLocationType(): Promise<GetLocationTypeSuccessOptions>;
 
     interface SubscribeOptions {
         /**
@@ -290,6 +303,9 @@ declare module "@system.geolocation" {
          * 地址
          */
         address: string;
+    }
+
+    interface GeocodeQueryCallbackOptions {
         /**
          * 成功回调
          */
@@ -297,11 +313,11 @@ declare module "@system.geolocation" {
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface GeocodeQuerytSuccessOptions {
@@ -319,7 +335,8 @@ declare module "@system.geolocation" {
      * 地理编码，只支持国内地理位置
      * [1080+]
      */
-    function geocodeQuery(obj: GeocodeQueryOptions): void;
+    function geocodeQuery(obj: GeocodeQueryOptions & RecordCombine<GeocodeQueryCallbackOptions>): void;
+    function geocodeQuery(obj: GeocodeQueryOptions): Promise<GeocodeQuerytSuccessOptions>;
 
     interface ReverseGeocodeQueryOptions {
         /**
@@ -338,6 +355,9 @@ declare module "@system.geolocation" {
          * success 回调的返回值是否需要包含设置位置附近的 POI 信息。默认 false ，即 success 回调中不返回 poiInfoList 信息
          */
         includePoiInfo?: boolean;
+    }
+
+    interface ReverseGeocodeQueryCallbackOptions {
         /**
          * 成功回调
          */
@@ -345,11 +365,11 @@ declare module "@system.geolocation" {
         /**
          * 失败回调，原因可能是用户拒绝
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ReverseGeocodeQuerySuccessOptions {
@@ -414,9 +434,6 @@ declare module "@system.geolocation" {
      * 逆地理编码，只支持国内地理位置
      * [1080+]
      */
-    function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions): void;
-}
-
-declare module "quickapp:@system.geolocation" {
-    export * from "@system.geolocation";
+    function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions & RecordCombine<ReverseGeocodeQueryCallbackOptions>): void;
+    function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions): Promise<ReverseGeocodeQuerySuccessOptions>;
 }

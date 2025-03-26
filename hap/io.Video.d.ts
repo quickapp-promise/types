@@ -58,11 +58,11 @@ declare module "@hap.io.Video" {
         size: string;
     }
 
-    export interface CompressVideoOptions {
+    export interface CompressVideoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: CompressVideoSuccessOptions) => void;
+        success: (data: CompressVideoSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -75,18 +75,18 @@ declare module "@hap.io.Video" {
          * |300|IO 错误|
          * |1001|原视频无效，可能原因：传来的文件不是视频|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
-    export interface AbortOptions {
+    export interface AbortCallbackOptions {
         /**
          * 成功回调
          */
-        success?: () => void;
+        success: () => void;
         /**
          * 失败回调
          * @description
@@ -95,11 +95,11 @@ declare module "@hap.io.Video" {
          * |200|该任务已经执行完成或已被中断|
          * |203|找不到任务实例|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface GetVideoInfoSuccessOptions {
@@ -138,10 +138,13 @@ declare module "@hap.io.Video" {
          * 视频文件地址
          */
         uri: string;
+    }
+
+    export interface GetVideoInfoCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetVideoInfoSuccessOptions) => void;
+        success: (data: GetVideoInfoSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -150,11 +153,11 @@ declare module "@hap.io.Video" {
          * |200|接口功能异常|
          * |202|参数错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     export interface GetVideoThumbnailSuccessOptions {
@@ -169,10 +172,13 @@ declare module "@hap.io.Video" {
          * 视频文件地址
          */
         uri: string;
+    }
+
+    export interface GetVideoThumbnailCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: GetVideoThumbnailSuccessOptions) => void;
+        success: (data: GetVideoThumbnailSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -181,11 +187,11 @@ declare module "@hap.io.Video" {
          * |200|接口功能异常|
          * |202|参数错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     /**
@@ -202,27 +208,25 @@ declare module "@hap.io.Video" {
         /**
          * 执行压缩视频任务
          */
-        compressVideo(obj?: CompressVideoOptions): void;
+        compressVideo(obj: RecordCombine<CompressVideoCallbackOptions>): void;
+        compressVideo(): Promise<CompressVideoSuccessOptions>;
 
         /**
          * 放弃执行该压缩任务，若该压缩任务正在进行，则中断压缩进程
          */
-        abort(options?: AbortOptions): void;
+        abort(options: RecordCombine<AbortCallbackOptions>): void;
+        abort(): Promise<void>;
 
         /**
          * 获取视频信息
          */
-        static getVideoInfo(options: GetVideoInfoOptions): void;
+        static getVideoInfo(options: GetVideoInfoOptions & RecordCombine<GetVideoInfoCallbackOptions>): void;
+        static getVideoInfo(options: GetVideoInfoOptions): Promise<GetVideoInfoSuccessOptions>;
 
         /**
          * 获取视频缩略图
          */
-        static getVideoThumbnail(options: GetVideoThumbnailOptions): void;
+        static getVideoThumbnail(options: GetVideoThumbnailOptions & RecordCombine<GetVideoThumbnailCallbackOptions>): void;
+        static getVideoThumbnail(options: GetVideoThumbnailOptions): Promise<GetVideoThumbnailSuccessOptions>;
     }
-}
-
-declare module "quickapp:@hap.io.Video" {
-    export * from "@hap.io.Video";
-    import video from "@hap.io.Video";
-    export default video;
 }

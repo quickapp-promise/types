@@ -20,10 +20,13 @@ declare module "@system.cipher" {
          * RSA 算法的填充项，默认为"RSA/None/OAEPwithSHA-256andMGF1Padding"
          */
         transformation?: string;
+    }
+
+    interface RsaCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: RsaSuccessOptions) => void;
+        success: (data: RsaSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -31,11 +34,11 @@ declare module "@system.cipher" {
          *  |---|---|
          * |202|输入参数错误。|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface RsaSuccessOptions {
@@ -50,7 +53,8 @@ declare module "@system.cipher" {
     /**
      * RSA加解密。不支持分段加密，内容超长会出错
      */
-    function rsa(obj: RsaOptions): void;
+    function rsa(obj: RsaOptions & RecordCombine<RsaCallbackOptions>): void;
+    function rsa(obj: RsaOptions): Promise<RsaSuccessOptions>;
 
     interface AesOptions {
         /**
@@ -81,10 +85,13 @@ declare module "@system.cipher" {
          * AES加解密的初始向量字节长度，默认值为16
          */
         ivLen?: number;
+    }
+
+    interface AesCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: AesSuccessOptions) => void;
+        success: (data: AesSuccessOptions) => void;
         /**
          * 失败回调
          * @description
@@ -93,11 +100,11 @@ declare module "@system.cipher" {
          * |200|一般性错误，在加解密出错时会返回此错误|
          * |202|参数错误|
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface AesSuccessOptions {
@@ -111,9 +118,6 @@ declare module "@system.cipher" {
      * AES 加解密。支持分段加密
      * [1060+]
      */
-    function aes(obj: AesOptions): void;
-}
-
-declare module "quickapp:@system.cipher" {
-    export * from "@system.cipher";
+    function aes(obj: AesOptions & RecordCombine<AesCallbackOptions>): void;
+    function aes(obj: AesOptions): Promise<AesSuccessOptions>;
 }

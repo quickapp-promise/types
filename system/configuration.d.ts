@@ -74,7 +74,3 @@ declare module "@system.configuration" {
      */
     function setGrayMode(options: GrayModeOptions): void;
 }
-
-declare module "quickapp:@system.configuration" {
-    export * from "@system.configuration";
-}

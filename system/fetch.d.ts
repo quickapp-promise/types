@@ -35,18 +35,21 @@ declare module "@system.fetch" {
          * [1030+]
          */
         responseType?: string;
+    }
+
+    interface FetchCallbackOptions {
         /**
          * 成功返回的回调函数
          */
-        success?: (data: FetchSuccessOptions) => void;
+        success: (data: FetchSuccessOptions) => void;
         /**
          * 失败的回调函数，可能会因为权限失败
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 结束的回调函数（调用成功、失败都会执行）
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface FetchSuccessOptions {
@@ -74,11 +77,7 @@ declare module "@system.fetch" {
 
     /**
      * 获取网络数据
-     * @param options
      */
-    function fetch(options: FetchOptions): void;
-}
-
-declare module "quickapp:@system.fetch" {
-    export * from "@system.fetch";
+    function fetch(options: FetchOptions & RecordCombine<FetchCallbackOptions>): void;
+    function fetch(options: FetchOptions): Promise<FetchSuccessOptions>;
 }

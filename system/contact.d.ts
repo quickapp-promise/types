@@ -3,19 +3,19 @@
  * 接口声明: {"name": "system.contact"}
  */
 declare module "@system.contact" {
-    interface PickOptions {
+    interface PickCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ContactItem) => void;
+        success: (data: ContactItem) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ContactItem {
@@ -32,21 +32,22 @@ declare module "@system.contact" {
     /**
      * 选择联系人
      */
-    function pick(obj?: PickOptions): void;
+    function pick(obj: RecordCombine<PickCallbackOptions>): void;
+    function pick(): Promise<ContactItem>;
 
-    interface ListOptions {
+    interface ListCallbackOptions {
         /**
          * 成功回调
          */
-        success?: (data: ListSuccessOptions) => void;
+        success: (data: ListSuccessOptions) => void;
         /**
          * 失败回调
          */
-        fail?: (data: any, code: number) => void;
+        fail: (data: any, code: number) => void;
         /**
          * 执行结束后的回调
          */
-        complete?: () => void;
+        complete: () => void;
     }
 
     interface ListSuccessOptions {
@@ -60,9 +61,6 @@ declare module "@system.contact" {
      * 获取通讯录所有联系人列表，每次获取都需要用户授权
      * [1050+]
      */
-    function list(obj?: ListOptions): void;
-}
-
-declare module "quickapp:@system.contact" {
-    export * from "@system.contact";
+    function list(obj: RecordCombine<ListCallbackOptions>): void;
+    function list(): Promise<ListSuccessOptions>;
 }
