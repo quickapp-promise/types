@@ -64,7 +64,7 @@ declare module "@system.wifi" {
      * 连接Wi-Fi。若已知Wi-Fi信息，可以直接利用该接口连接
      */
     function connect(obj: ConnectOptions & RecordCombine<ConnectCallbackOptions>): void;
-    function connect(obj: ConnectOptions): Promise<void>;
+    function connect(obj: ConnectOptions): ReturnPromise<void>;
 
     interface ScanCallbackOptions {
         /**
@@ -91,7 +91,7 @@ declare module "@system.wifi" {
      * 请求获取Wi-Fi列表，在onscanned事件中返回Wi-Fi列表数据[权限要求:粗略设备定位]
      */
     function scan(obj: RecordCombine<ScanCallbackOptions>): void;
-    function scan(): Promise<void>;
+    function scan(): ReturnPromise<void>;
 
     interface GetConnectedWifiCallbackOptions {
         /**
@@ -118,7 +118,7 @@ declare module "@system.wifi" {
      * 获取已连接中的Wi-Fi信息[权限要求:粗略设备定位]
      */
     function getConnectedWifi(obj: RecordCombine<GetConnectedWifiCallbackOptions>): void;
-    function getConnectedWifi(): Promise<WifiInfo>;
+    function getConnectedWifi(): ReturnPromise<WifiInfo>;
 
     interface OnScannedOptions {
         /**

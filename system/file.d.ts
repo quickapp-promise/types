@@ -402,69 +402,69 @@ declare module "@system.file" {
          * 将源文件移动到指定位置，接口中使用的 URI 描述请参考文件组织
          */
         move(obj: MoveOptions & RecordCombine<MoveCallbackOptions>): void;
-        move(obj: MoveOptions): Promise<string>;
+        move(obj: MoveOptions): ReturnPromise<string>;
         /**
          * 将源文件复制一份并存储到指定位置，接口中使用的 URI 描述请参考文件组织
          */
         copy(obj: CopyOptions & RecordCombine<CopyCallbackOptions>): void;
-        copy(obj: CopyOptions): Promise<string>;
+        copy(obj: CopyOptions): ReturnPromise<string>;
         /**
          * 获取指定目录下的文件列表，接口中使用的 URI 描述请参考文件组织
          */
         list(obj: ListOptions & RecordCombine<ListCallbackOptions>): void;
-        list(obj: ListOptions): Promise<ListSuccessOptions>;
+        list(obj: ListOptions): ReturnPromise<ListSuccessOptions>;
         /**
          * 获取本地文件的文件信息，接口中使用的 URI 描述请参考文件组织
          */
         get(obj: GetOptions & RecordCombine<GetCallbackOptions>): void;
-        get(obj: GetOptions): Promise<FileMeta>;
+        get(obj: GetOptions): ReturnPromise<FileMeta>;
         /**
          * 删除本地存储的文件，接口中使用的 URI 描述请参考文件组织
          */
         delete(obj: DeleteOptions & RecordCombine<DeleteCallbackOptions>): void;
-        delete(obj: DeleteOptions): Promise<void>;
+        delete(obj: DeleteOptions): ReturnPromise<void>;
         /**
          * 写文本到文件
          * [1010+]
          */
         writeText(obj: WriteTextOptions & RecordCombine<WriteArrayBufferCallbackOptions>): void;
-        writeText(obj: WriteTextOptions): Promise<void>;
+        writeText(obj: WriteTextOptions): ReturnPromise<void>;
         /**
          * 写 Buffer 到文件
          * [1010+]
          */
         writeArrayBuffer(obj: WriteArrayBufferOptions & RecordCombine<WriteArrayBufferCallbackOptions>): void;
-        writeArrayBuffer(obj: WriteArrayBufferOptions): Promise<void>;
+        writeArrayBuffer(obj: WriteArrayBufferOptions): ReturnPromise<void>;
         /**
          * 从文件中读取文本
          * [1010+]
          */
         readText(obj: ReadTextOptions & RecordCombine<ReadTextCallbackOptions>): void;
-        readText(obj: ReadTextOptions): Promise<ReadTextSuccessOptions>;
+        readText(obj: ReadTextOptions): ReturnPromise<ReadTextSuccessOptions>;
         /**
          * 从文件中读取 Buffer
          * [1010+]
          */
         readArrayBuffer(obj: ReadArrayBufferOptions & RecordCombine<ReadArrayBufferCallbackOptions>): void;
-        readArrayBuffer(obj: ReadArrayBufferOptions): Promise<ReadArrayBufferSuccessOptions>;
+        readArrayBuffer(obj: ReadArrayBufferOptions): ReturnPromise<ReadArrayBufferSuccessOptions>;
         /**
          * 判断文件或目录是否存在
          * [1060+]
          */
         access(obj: AccessOptions & RecordCombine<AccessCallbackOptions>): void;
-        access(obj: AccessOptions): Promise<void>;
+        access(obj: AccessOptions): ReturnPromise<void>;
         /**
          * 创建目录
          * [1060+]
          */
         mkdir(obj: MkdirOptions & RecordCombine<MkdirCallbackOptions>): void;
-        mkdir(obj: MkdirOptions): Promise<void>;
+        mkdir(obj: MkdirOptions): ReturnPromise<void>;
         /**
          * 删除目录
          * [1060+]
          */
         rmdir(obj: RmdirOptions & RecordCombine<RmdirCallbackOptions>): void;
-        rmdir(obj: RmdirOptions): Promise<void>;
+        rmdir(obj: RmdirOptions): ReturnPromise<void>;
     }
 
     const file: InstanceType<typeof File>;

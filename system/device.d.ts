@@ -149,7 +149,7 @@ declare module "@system.device" {
      * 获取设备信息
      */
     function getInfo(obj: RecordCombine<GetInfoCallbackOptions>): void;
-    function getInfo(): Promise<GetInfoSuccessOptions>;
+    function getInfo(): ReturnPromise<GetInfoSuccessOptions>;
 
     interface GetIdOptions {
         /**
@@ -205,7 +205,7 @@ declare module "@system.device" {
      * - 获取手机状态
      */
     function getId(obj: GetIdOptions & RecordCombine<GetIdCallbackOptions>): void;
-    function getId(obj: GetIdOptions): Promise<GetIdSuccessOptions>;
+    function getId(obj: GetIdOptions): ReturnPromise<GetIdSuccessOptions>;
 
     interface GetDeviceIdCallbackOptions {
         /**
@@ -242,7 +242,7 @@ declare module "@system.device" {
      * - 获取手机状态
      */
     function getDeviceId(obj: RecordCombine<GetDeviceIdCallbackOptions>): void;
-    function getDeviceId(): Promise<GetDeviceIdSuccessOptions>;
+    function getDeviceId(): ReturnPromise<GetDeviceIdSuccessOptions>;
 
     interface GetUserIdCallbackOptions {
         /**
@@ -271,7 +271,7 @@ declare module "@system.device" {
      * [1000+]
      */
     function getUserId(obj: RecordCombine<GetUserIdCallbackOptions>): void;
-    function getUserId(): Promise<GetUserIdSuccessOptions>;
+    function getUserId(): ReturnPromise<GetUserIdSuccessOptions>;
 
     interface GetAdvertisingIdCallbackOptions {
         /**
@@ -300,7 +300,7 @@ declare module "@system.device" {
      * [1000+]
      */
     function getAdvertisingId(obj: RecordCombine<GetAdvertisingIdCallbackOptions>): void;
-    function getAdvertisingId(): Promise<GetAdvertisingIdSuccessOptions>;
+    function getAdvertisingId(): ReturnPromise<GetAdvertisingIdSuccessOptions>;
 
     interface GetSerialCallbackOptions {
         /**
@@ -331,7 +331,7 @@ declare module "@system.device" {
      * 根据Android平台要求，Android 10开始不允许向第三方应用提供SN，该接口将回调fail，建议使用其他系统标识符如OAID替代
      */
     function getSerial(obj: RecordCombine<GetSerialCallbackOptions>): void;
-    function getSerial(): Promise<GetSerialSuccessOptions>;
+    function getSerial(): ReturnPromise<GetSerialSuccessOptions>;
 
     interface GetTotalStorageCallbackOptions {
         /**
@@ -360,7 +360,7 @@ declare module "@system.device" {
      * [1000+]
      */
     function getTotalStorage(obj: RecordCombine<GetTotalStorageCallbackOptions>): void;
-    function getTotalStorage(): Promise<GetTotalStorageSuccessOptions>;
+    function getTotalStorage(): ReturnPromise<GetTotalStorageSuccessOptions>;
 
     interface GetAvailableStorageCallbackOptions {
         /**
@@ -389,7 +389,7 @@ declare module "@system.device" {
      * [1000+]
      */
     function getAvailableStorage(obj: RecordCombine<GetAvailableStorageCallbackOptions>): void;
-    function getAvailableStorage(): Promise<GetAvailableStorageSuccessOptions>;
+    function getAvailableStorage(): ReturnPromise<GetAvailableStorageSuccessOptions>;
 
     interface GetCpuInfoCallbackOptions {
         /**
@@ -418,7 +418,7 @@ declare module "@system.device" {
      * [1000+]
      */
     function getCpuInfo(obj: RecordCombine<GetCpuInfoCallbackOptions>): void;
-    function getCpuInfo(): Promise<GetCpuInfoSuccessOptions>;
+    function getCpuInfo(): ReturnPromise<GetCpuInfoSuccessOptions>;
 
     interface GetOAIDCallbackOptions {
         /**
@@ -447,7 +447,7 @@ declare module "@system.device" {
      * [1060+]
      */
     function getOAID(obj: RecordCombine<GetOAIDCallbackOptions>): void;
-    function getOAID(): Promise<GetOAIDSuccessOptions>;
+    function getOAID(): ReturnPromise<GetOAIDSuccessOptions>;
 
     /**
      * 同步方法获取平台版本信息

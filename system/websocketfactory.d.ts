@@ -20,12 +20,12 @@ declare module "@system.websocketfactory" {
 
     interface WebSocketSend {
         (obj: WebSocketSendOptions & RecordCombine<WebSocketSendCallbackOptions>): void;
-        (obj: WebSocketSendOptions): Promise<void>;
+        (obj: WebSocketSendOptions): ReturnPromise<void>;
     }
 
     interface WebSocketClose {
         (obj?: WebSocketCloseOptions & RecordCombine<WebSocketCloseCallbackOptions>): void;
-        (obj?: WebSocketCloseOptions): Promise<void>;
+        (obj?: WebSocketCloseOptions): ReturnPromise<void>;
     }
 
     interface WebSocket {

@@ -38,5 +38,5 @@ declare module "@system.zip" {
      * 解压文件
      */
     function decompress(obj: DecompressOptions & RecordCombine<DecompressCallbackOptions>): void;
-    function decompress(obj: DecompressOptions): Promise<void>;
+    function decompress(obj: DecompressOptions): ReturnPromise<void>;
 }

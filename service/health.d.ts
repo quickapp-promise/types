@@ -29,7 +29,7 @@ declare module "@service.health" {
      * 是否支持提供每日步数的功能
      */
     function hasStepsOfDay(obj: RecordCombine<HasStepsOfDayCallbackOptions>): void;
-    function hasStepsOfDay(): Promise<HasStepsOfDaySuccessOptions>;
+    function hasStepsOfDay(): ReturnPromise<HasStepsOfDaySuccessOptions>;
 
     interface GetTodayStepsCallbackOptions {
         /**
@@ -66,7 +66,7 @@ declare module "@service.health" {
      * - 需要用户授权才能获取数据
      */
     function getTodaySteps(obj: RecordCombine<GetTodayStepsCallbackOptions>): void;
-    function getTodaySteps(): Promise<GetTodayStepsSuccessOptions>;
+    function getTodaySteps(): ReturnPromise<GetTodayStepsSuccessOptions>;
 
     interface GetLastWeekStepsCallbackOptions {
         /**
@@ -114,5 +114,5 @@ declare module "@service.health" {
      * - 需要用户授权才能获取数据
      */
     function getLastWeekSteps(obj: RecordCombine<GetLastWeekStepsCallbackOptions>): void;
-    function getLastWeekSteps(): Promise<GetLastWeekStepsSuccessOptions>;
+    function getLastWeekSteps(): ReturnPromise<GetLastWeekStepsSuccessOptions>;
 }

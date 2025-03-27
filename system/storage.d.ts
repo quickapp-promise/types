@@ -125,32 +125,32 @@ declare module "@system.storage" {
          * 读取存储内容
          */
         get(obj: GetOptions & RecordCombine<GetCallbackOptions>): void;
-        get(obj: GetOptions): Promise<string>;
+        get(obj: GetOptions): ReturnPromise<string>;
 
         /**
          * 修改存储内容
          */
         set(obj: SetOptions & RecordCombine<SetCallbackOptions>): void;
-        set(obj: SetOptions): Promise<void>;
+        set(obj: SetOptions): ReturnPromise<void>;
 
         /**
          * 清空存储内容
          */
         clear(obj: RecordCombine<ClearCallbackOptions>): void;
-        clear(): Promise<void>;
+        clear(): ReturnPromise<void>;
 
         /**
          * 删除存储内容
          */
         delete(obj: DeleteOptions & RecordCombine<DeleteCallbackOptions>): void;
-        delete(obj: DeleteOptions): Promise<void>;
+        delete(obj: DeleteOptions): ReturnPromise<void>;
 
         /**
          * 返回存储中某个index的键名
          * [1050+]
          */
         key(obj: KeyOptions & RecordCombine<KeyCallbackOptions>): void;
-        key(obj: KeyOptions): Promise<string>;
+        key(obj: KeyOptions): ReturnPromise<string>;
     }
 
     const storage: InstanceType<typeof Storage>;

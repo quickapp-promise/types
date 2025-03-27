@@ -38,5 +38,5 @@ declare module "@system.barcode" {
      * 扫描二维码
      */
     function scan(obj: RecordCombine<ScanCallbackOptions>): void;
-    function scan(): Promise<ScanSuccessOptions>;
+    function scan(): ReturnPromise<ScanSuccessOptions>;
 }

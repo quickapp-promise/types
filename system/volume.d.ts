@@ -29,7 +29,7 @@ declare module "@system.volume" {
      * 获取当前多媒体音量
      */
     function getMediaValue(obj: RecordCombine<GetMediaValueCallbackOptions>): void;
-    function getMediaValue(): Promise<GetMediaValueSuccessOptions>;
+    function getMediaValue(): ReturnPromise<GetMediaValueSuccessOptions>;
 
     interface SetMediaValueOptions {
         /**
@@ -57,5 +57,5 @@ declare module "@system.volume" {
      * 获取当前多媒体音量
      */
     function setMediaValue(obj: SetMediaValueOptions & RecordCombine<SetMediaValueCallbackOptions>): void;
-    function setMediaValue(obj: SetMediaValueOptions): Promise<void>;
+    function setMediaValue(obj: SetMediaValueOptions): ReturnPromise<void>;
 }

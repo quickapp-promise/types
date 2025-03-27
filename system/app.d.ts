@@ -97,5 +97,5 @@ declare module "@system.app" {
      * [1070+]
      */
     function createQuickAppQRCode(options: CreateQRCodeOptions & RecordCombine<CreateQRCodeCallbackOptions>): void;
-    function createQuickAppQRCode(options?: CreateQRCodeOptions): Promise<CreateQRCodeSuccessResult>;
+    function createQuickAppQRCode(options?: CreateQRCodeOptions): ReturnPromise<CreateQRCodeSuccessResult>;
 }

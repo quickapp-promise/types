@@ -54,7 +54,7 @@ declare module "@system.image" {
      * 获取图片信息
      */
     function getImageInfo(obj: GetImageInfoOptions & RecordCombine<GetImageInfoCallbackOptions>): void;
-    function getImageInfo(obj: GetImageInfoOptions): Promise<GetImageInfoSuccessOptions>;
+    function getImageInfo(obj: GetImageInfoOptions): ReturnPromise<GetImageInfoSuccessOptions>;
 
     interface CompressImageOptions {
         /**
@@ -107,7 +107,7 @@ declare module "@system.image" {
      * 压缩图片
      */
     function compressImage(obj: CompressImageOptions & RecordCombine<CompressImageCallbackOptions>): void;
-    function compressImage(obj: CompressImageOptions): Promise<CompressImageSuccessOptions>;
+    function compressImage(obj: CompressImageOptions): ReturnPromise<CompressImageSuccessOptions>;
 
     interface ApplyOperationsOptions {
         /**
@@ -205,7 +205,7 @@ declare module "@system.image" {
      * 在顺序执行编辑操作列表中的操作时，上一步操作生成的结果会作为下一步操作的输入，坐标系也是以上一步操作生成的结果的左上角为坐标原点重新确定的。
      */
     function applyOperations(obj: ApplyOperationsOptions & RecordCombine<ApplyOperationsCallbackOptions>): void;
-    function applyOperations(obj: ApplyOperationsOptions): Promise<ApplyOperationsSuccessOptions>;
+    function applyOperations(obj: ApplyOperationsOptions): ReturnPromise<ApplyOperationsSuccessOptions>;
 
     interface EditImageOptions {
         /**
@@ -256,7 +256,7 @@ declare module "@system.image" {
      * 打开编辑器来编辑图片。目前支持选择图片范围并裁剪
      */
     function editImage(obj: EditImageOptions & RecordCombine<EditImageCallbackOptions>): void;
-    function editImage(obj: EditImageOptions): Promise<EditImageSuccessOptions>;
+    function editImage(obj: EditImageOptions): ReturnPromise<EditImageSuccessOptions>;
 
     interface GetExifAttributesOptions {
         /**
@@ -439,7 +439,7 @@ declare module "@system.image" {
      * 获取图片的exif信息。支持的格式：JPEG,DNG,CR2,NEF,NRW,ARW,RW2,ORF,PEF,SRW,RAF,HEIF
      */
     function getExifAttributes(obj: GetExifAttributesOptions & RecordCombine<GetExifAttributesCallbackOptions>): void;
-    function getExifAttributes(obj: GetExifAttributesOptions): Promise<GetExifAttributesSuccessOptions>;
+    function getExifAttributes(obj: GetExifAttributesOptions): ReturnPromise<GetExifAttributesSuccessOptions>;
 
     interface SetExifAttributesOptions {
         /**
@@ -485,5 +485,5 @@ declare module "@system.image" {
      * [1040+]
      */
     function setExifAttributes(obj: SetExifAttributesOptions & RecordCombine<SetExifAttributesCallbackOptions>): void;
-    function setExifAttributes(obj: SetExifAttributesOptions): Promise<SetExifAttributesSuccessOptions>;
+    function setExifAttributes(obj: SetExifAttributesOptions): ReturnPromise<SetExifAttributesSuccessOptions>;
 }

@@ -73,5 +73,5 @@ declare module "@system.calendar" {
      * 插入日历事件
      */
     function insert(obj: InsertOptions & RecordCombine<InsertCallbackOptions>): void;
-    function insert(obj: InsertOptions): Promise<InsertSuccessOptions>;
+    function insert(obj: InsertOptions): ReturnPromise<InsertSuccessOptions>;
 }

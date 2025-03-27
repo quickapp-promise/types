@@ -38,7 +38,7 @@ declare module "@system.sms" {
      * 发送短信，每次发送都需要用户授权
      */
     function send(obj: SendOptions & RecordCombine<SendCallbackOptions>): void;
-    function send(obj: SendOptions): Promise<void>;
+    function send(obj: SendOptions): ReturnPromise<void>;
 
     interface ReadSafelyOptions {
         /**
@@ -80,5 +80,5 @@ declare module "@system.sms" {
      * - 短信格式：11 位签名 hash 字符放到短信末尾，可通过 Debugger 工具获取。
      */
     function readSafely(obj: ReadSafelyOptions & RecordCombine<ReadSafelyCallbackOptions>): void;
-    function readSafely(obj?: ReadSafelyOptions): Promise<ReadSafelySuccessOptions>;
+    function readSafely(obj?: ReadSafelyOptions): ReturnPromise<ReadSafelySuccessOptions>;
 }

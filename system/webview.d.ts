@@ -80,5 +80,5 @@ declare module "@system.webview" {
      * [1100+]
      */
     function setCookie(obj: SetCookieOptions & RecordCombine<SetCookieCallbackOptions>): void;
-    function setCookie(obj: SetCookieOptions): Promise<void>;
+    function setCookie(obj: SetCookieOptions): ReturnPromise<void>;
 }

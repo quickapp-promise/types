@@ -69,7 +69,7 @@ declare module "@system.prompt" {
      * 显示对话框
      */
     function showDialog(obj: ShowDialogOptions & RecordCombine<ShowDialogCallbackOptions>): void;
-    function showDialog(obj: ShowDialogOptions): Promise<ShowDialogSuccessOptions>;
+    function showDialog(obj: ShowDialogOptions): ReturnPromise<ShowDialogSuccessOptions>;
 
     interface ShowContextMenuOptions {
         /**
@@ -108,5 +108,5 @@ declare module "@system.prompt" {
      * @param obj
      */
     function showContextMenu(obj: ShowContextMenuOptions & RecordCombine<ShowContextMenuCallbackOptions>): void;
-    function showContextMenu(obj: ShowContextMenuOptions): Promise<ShowContextMenuSuccessOptions>;
+    function showContextMenu(obj: ShowContextMenuOptions): ReturnPromise<ShowContextMenuSuccessOptions>;
 }

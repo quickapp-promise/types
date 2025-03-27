@@ -82,5 +82,5 @@ declare module "@service.qqaccount" {
      * 发起qq登陆，不同的登陆方式下，应该传入不同的参数，调用之前应该先使用getType函数查询当前的登陆方式．
      */
     function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
-    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
+    function authorize(obj: AuthorizeOptions): ReturnPromise<AuthorizeSuccessOptions>;
 }

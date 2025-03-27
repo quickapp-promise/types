@@ -37,7 +37,7 @@ declare module "@service.account" {
      * 1060+
      */
     function isLogin(obj: RecordCombine<IsLoginCallbackOptions>): void;
-    function isLogin(): Promise<IsLoginSuccessOptions>;
+    function isLogin(): ReturnPromise<IsLoginSuccessOptions>;
 
     interface AuthorizeOptions {
         /**
@@ -110,7 +110,7 @@ declare module "@service.account" {
      * 进行OAuth授权
      */
     function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
-    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
+    function authorize(obj: AuthorizeOptions): ReturnPromise<AuthorizeSuccessOptions>;
 
     interface GetProfileOptions {
         /**
@@ -166,7 +166,7 @@ declare module "@service.account" {
      * 获得用户基本信息。根据授权时选择的scope，返回不同信息。
      */
     function getProfile(obj: GetProfileOptions & RecordCombine<GetProfileCallbackOptions>): void;
-    function getProfile(obj: GetProfileOptions): Promise<GetProfileSuccessOptions>;
+    function getProfile(obj: GetProfileOptions): ReturnPromise<GetProfileSuccessOptions>;
 
     interface GetPhoneNumberOptions {
         /**
@@ -205,7 +205,7 @@ declare module "@service.account" {
      * - 每次请求时都需要用户确认
      */
     function getPhoneNumber(obj: GetPhoneNumberOptions & RecordCombine<GetPhoneNumberCallbackOptions>): void;
-    function getPhoneNumber(obj?: GetPhoneNumberOptions): Promise<GetPhoneNumberSuccessOptions>;
+    function getPhoneNumber(obj?: GetPhoneNumberOptions): ReturnPromise<GetPhoneNumberSuccessOptions>;
 
     interface GetEncryptedIDCallbackOptions {
         /**
@@ -235,5 +235,5 @@ declare module "@service.account" {
      * [1080+]
      */
     function getEncryptedID(obj: RecordCombine<GetEncryptedIDCallbackOptions>): void;
-    function getEncryptedID(): Promise<GetEncryptedIDSuccessOptions>;
+    function getEncryptedID(): ReturnPromise<GetEncryptedIDSuccessOptions>;
 }

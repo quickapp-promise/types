@@ -33,7 +33,7 @@ declare module "@system.network" {
      * 获取网络类型
      */
     function getType(obj: RecordCombine<GetTypeCallbackOptions>): void;
-    function getType(): Promise<GetTypeSuccessOptions>;
+    function getType(): ReturnPromise<GetTypeSuccessOptions>;
 
     interface SubscribeOptions {
         /**
@@ -132,5 +132,5 @@ declare module "@system.network" {
      * [1070+]
      */
     function getSimOperators(obj: RecordCombine<GetSimOperatorsCallbackOptions>): void;
-    function getSimOperators(): Promise<GetSimOperatorsSuccessOptions>;
+    function getSimOperators(): ReturnPromise<GetSimOperatorsSuccessOptions>;
 }

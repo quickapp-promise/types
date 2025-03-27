@@ -143,27 +143,27 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
             /**
              * 发送数据
              */
             writeNdefMessage(obj: WriteNdefMessageOptions & RecordCombine<WriteNdefMessageCallbackOptions>): void;
-            writeNdefMessage(obj?: WriteNdefMessageOptions): Promise<void>;
+            writeNdefMessage(obj?: WriteNdefMessageOptions): ReturnPromise<void>;
         }
     }
 
@@ -342,42 +342,42 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取最大传输长度
              */
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
             /**
              * 发送数据
              */
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
             /**
              * 获取ATQA信息
              */
             getAtqa(obj: RecordCombine<GetAtqaCallbackOptions>): void;
-            getAtqa(): Promise<GetAtqaSuccessOptions>;
+            getAtqa(): ReturnPromise<GetAtqaSuccessOptions>;
             /**
              * 获取SAK信息
              */
             getSak(obj: RecordCombine<GetSakCallbackOptions>): void;
-            getSak(): Promise<GetSakSuccessOptions>;
+            getSak(): ReturnPromise<GetSakSuccessOptions>;
         }
     }
 
@@ -490,27 +490,27 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取最大传输长度
              */
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 发送数据
              */
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -642,22 +642,22 @@ declare module "@system.nfc" {
 
         interface NfcF {
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
 
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
 
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
 
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
 
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
 
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -767,19 +767,19 @@ declare module "@system.nfc" {
 
         interface NfcV {
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
 
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
 
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
 
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
 
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -936,37 +936,37 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取复位信息
              */
             getHistoricalBytes(obj: RecordCombine<GetHistoricalBytesCallbackOptions>): void;
-            getHistoricalBytes(): Promise<GetHistoricalBytesSuccessOptions>;
+            getHistoricalBytes(): ReturnPromise<GetHistoricalBytesSuccessOptions>;
             /**
              * 获取最大传输长度
              */
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
             /**
              * 发送数据
              */
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -1101,27 +1101,27 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取最大传输长度
              */
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
             /**
              * 发送数据
              * @description
@@ -1136,7 +1136,7 @@ declare module "@system.nfc" {
              * - 0xB0：将临时块中的数据复制到指定的块区中，指令[1位] + 块号[1位]
              */
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -1271,27 +1271,27 @@ declare module "@system.nfc" {
              * 断开连接
              */
             close(obj: RecordCombine<CloseCallbackOptions>): void;
-            close(): Promise<void>;
+            close(): ReturnPromise<void>;
             /**
              * 连接 NFC 标签
              */
             connect(obj: RecordCombine<ConnectCallbackOptions>): void;
-            connect(): Promise<void>;
+            connect(): ReturnPromise<void>;
             /**
              * 获取最大传输长度
              */
             getMaxTransceiveLength(obj: RecordCombine<GetMaxTransceiveLengthCallbackOptions>): void;
-            getMaxTransceiveLength(): Promise<GetMaxTransceiveLengthSuccessOptions>;
+            getMaxTransceiveLength(): ReturnPromise<GetMaxTransceiveLengthSuccessOptions>;
             /**
              * 获取当前标签的连接状态
              */
             isConnected(obj: RecordCombine<IsConnectedCallbackOptions>): void;
-            isConnected(): Promise<IsConnectedSuccessOptions>;
+            isConnected(): ReturnPromise<IsConnectedSuccessOptions>;
             /**
              * 设置超时时间
              */
             setTimeout(obj: SetTimeoutOptions & RecordCombine<SetTimeoutCallbackOptions>): void;
-            setTimeout(obj: SetTimeoutOptions): Promise<void>;
+            setTimeout(obj: SetTimeoutOptions): ReturnPromise<void>;
             /**
              * 发送数据
              * @description
@@ -1300,7 +1300,7 @@ declare module "@system.nfc" {
              * - 0xA2：往某页写入数据，指令[1位] + 页号[1位] + 数据
              */
             transceive(obj: TransceiveOptions & RecordCombine<TransceiveCallbackOptions>): void;
-            transceive(obj?: TransceiveOptions): Promise<TransceiveSuccessOptions>;
+            transceive(obj?: TransceiveOptions): ReturnPromise<TransceiveSuccessOptions>;
         }
     }
 
@@ -1369,13 +1369,13 @@ declare module "@system.nfc" {
              * 开始扫描NFC标签
              */
             startDiscovery(obj: RecordCombine<StartDiscoveryCallbackOptions>): void;
-            startDiscovery(): Promise<void>;
+            startDiscovery(): ReturnPromise<void>;
 
             /**
              * 关闭NFC标签扫描
              */
             stopDiscovery(obj: RecordCombine<StopDiscoveryCallbackOptions>): void;
-            stopDiscovery(): Promise<void>;
+            stopDiscovery(): ReturnPromise<void>;
 
             /**
              * 监听 NFC Tag

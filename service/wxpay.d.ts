@@ -108,5 +108,5 @@ declare module "@service.wxpay" {
      * 发起微信支付
      */
     function pay(obj: PayOptions & RecordCombine<PayCallbackOptions>): void;
-    function pay(obj: PayOptions): Promise<PaySuccessOptions>;
+    function pay(obj: PayOptions): ReturnPromise<PaySuccessOptions>;
 }

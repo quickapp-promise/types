@@ -33,5 +33,5 @@ declare module "@system.battery" {
      * 获取当前设备的电量信息
      */
     function getStatus(obj: RecordCombine<GetStatusCallbackOptions>): void;
-    function getStatus(): Promise<GetStatusSuccessOptions>;
+    function getStatus(): ReturnPromise<GetStatusSuccessOptions>;
 }

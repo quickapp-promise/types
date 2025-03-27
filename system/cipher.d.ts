@@ -54,7 +54,7 @@ declare module "@system.cipher" {
      * RSA加解密。不支持分段加密，内容超长会出错
      */
     function rsa(obj: RsaOptions & RecordCombine<RsaCallbackOptions>): void;
-    function rsa(obj: RsaOptions): Promise<RsaSuccessOptions>;
+    function rsa(obj: RsaOptions): ReturnPromise<RsaSuccessOptions>;
 
     interface AesOptions {
         /**
@@ -119,5 +119,5 @@ declare module "@system.cipher" {
      * [1060+]
      */
     function aes(obj: AesOptions & RecordCombine<AesCallbackOptions>): void;
-    function aes(obj: AesOptions): Promise<AesSuccessOptions>;
+    function aes(obj: AesOptions): ReturnPromise<AesSuccessOptions>;
 }

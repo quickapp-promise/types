@@ -26,5 +26,5 @@ declare module "@system.keyguard" {
      * 获取快应用当前环境是否为锁屏状态
      */
     function getKeyguardLockedStatus(obj: RecordCombine<GetKeyguardLockedStatusCallbackOptions>): void;
-    function getKeyguardLockedStatus(): Promise<GetKeyguardLockedStatusSuccessOptions>;
+    function getKeyguardLockedStatus(): ReturnPromise<GetKeyguardLockedStatusSuccessOptions>;
 }

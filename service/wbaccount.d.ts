@@ -69,5 +69,5 @@ declare module "@service.wbaccount" {
      * 发起微信登陆，调用之前应该先使用getType函数查询APP登陆方式是否被支持
      */
     function authorize(obj: AuthorizeOptions & RecordCombine<AuthorizeCallbackOptions>): void;
-    function authorize(obj: AuthorizeOptions): Promise<AuthorizeSuccessOptions>;
+    function authorize(obj: AuthorizeOptions): ReturnPromise<AuthorizeSuccessOptions>;
 }

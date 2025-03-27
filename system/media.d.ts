@@ -51,7 +51,7 @@ declare module "@system.media" {
      * - 使用相机
      */
     function takePhoto(obj: RecordCombine<TakePhotoCallbackOptions>): void;
-    function takePhoto(): Promise<MediaFile>;
+    function takePhoto(): ReturnPromise<MediaFile>;
 
     interface TakeVideoOptions {
         /**
@@ -92,7 +92,7 @@ declare module "@system.media" {
      * - 使用相机
      */
     function takeVideo(obj: TakeVideoOptions & RecordCombine<TakeVideoCallbackOptions>): void;
-    function takeVideo(obj?: TakeVideoOptions): Promise<MediaFile>;
+    function takeVideo(obj?: TakeVideoOptions): ReturnPromise<MediaFile>;
 
     interface PickImageCallbackOptions {
         /**
@@ -120,7 +120,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function pickImage(obj: RecordCombine<PickImageCallbackOptions>): void;
-    function pickImage(): Promise<MediaFile>;
+    function pickImage(): ReturnPromise<MediaFile>;
 
     interface PickImagesCallbackOptions {
         /**
@@ -161,7 +161,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function pickImages(obj: RecordCombine<PickImagesCallbackOptions>): void;
-    function pickImages(): Promise<PickImagesSuccessOptions>;
+    function pickImages(): ReturnPromise<PickImagesSuccessOptions>;
 
     interface PickVideoCallbackOptions {
         /**
@@ -189,7 +189,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function pickVideo(obj: RecordCombine<PickVideoCallbackOptions>): void;
-    function pickVideo(): Promise<MediaFile>;
+    function pickVideo(): ReturnPromise<MediaFile>;
 
     interface PickVideosCallbackOptions {
         /**
@@ -230,7 +230,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function pickVideos(obj: RecordCombine<PickVideosCallbackOptions>): void;
-    function pickVideos(): Promise<PickVideosSuccessOptions>;
+    function pickVideos(): ReturnPromise<PickVideosSuccessOptions>;
 
     interface PickFileCallbackOptions {
         /**
@@ -259,7 +259,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function pickFile(obj: RecordCombine<PickFileCallbackOptions>): void;
-    function pickFile(): Promise<MediaFile>;
+    function pickFile(): ReturnPromise<MediaFile>;
 
     interface SaveToPhotosAlbumOptions {
         /**
@@ -317,7 +317,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions & RecordCombine<SaveToPhotosAlbumCallbackOptions>): void;
-    function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions): Promise<void>;
+    function saveToPhotosAlbum(obj: SaveToPhotosAlbumOptions): ReturnPromise<void>;
 
     interface PreviewImageOptions {
         /**
@@ -355,7 +355,7 @@ declare module "@system.media" {
      * - 写手机存储
      */
     function previewImage(obj: PreviewImageOptions & RecordCombine<PreviewImageCallbackOptions>): void;
-    function previewImage(obj: PreviewImageOptions): Promise<void>;
+    function previewImage(obj: PreviewImageOptions): ReturnPromise<void>;
 
     interface GetRingtoneOptions {
         /**
@@ -398,7 +398,7 @@ declare module "@system.media" {
      * - 读手机存储
      */
     function getRingtone(obj: GetRingtoneOptions & RecordCombine<GetRingtoneCallbackOptions>): void;
-    function getRingtone(obj: GetRingtoneOptions): Promise<GetRingtoneSuccessOptions>;
+    function getRingtone(obj: GetRingtoneOptions): ReturnPromise<GetRingtoneSuccessOptions>;
 
     interface SetRingtoneOptions {
         /**
@@ -446,5 +446,5 @@ declare module "@system.media" {
      * - 写手机存储。而且每次设置铃声时，都有弹框来让用户选择是否同意设置铃声
      */
     function setRingtone(obj: SetRingtoneOptions & RecordCombine<SetRingtoneCallbackOptions>): void;
-    function setRingtone(obj: SetRingtoneOptions): Promise<void>;
+    function setRingtone(obj: SetRingtoneOptions): ReturnPromise<void>;
 }

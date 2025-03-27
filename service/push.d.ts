@@ -36,7 +36,7 @@ declare module "@service.push" {
      * 订阅push，后续可以收到push消息（一般可在应用初始化的地方进行调用。比如在app的onCreate方法中调用。）
      */
     function subscribe(obj: RecordCombine<SubscribeCallbackOptions>): void;
-    function subscribe(): Promise<SubscribeSuccessOptions>;
+    function subscribe(): ReturnPromise<SubscribeSuccessOptions>;
 
     interface UnsubscribeCallbackOptions {
         /**
@@ -57,7 +57,7 @@ declare module "@service.push" {
      * 取消订阅（一般不建议调用，调用后regId失效，需要重新订阅获取新的regId）
      */
     function unsubscribe(obj: RecordCombine<UnsubscribeCallbackOptions>): void;
-    function unsubscribe(): Promise<void>;
+    function unsubscribe(): ReturnPromise<void>;
 
     interface OnOptions {
         /**

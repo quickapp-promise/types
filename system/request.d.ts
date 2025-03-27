@@ -83,7 +83,7 @@ declare module "@system.request" {
      * 上传文件
      */
     function upload(obj: UploadOptions & RecordCombine<UploadCallbackOptions>): void;
-    function upload(obj: UploadOptions): Promise<UploadSuccessOptions>;
+    function upload(obj: UploadOptions): ReturnPromise<UploadSuccessOptions>;
 
     interface DownloadOptions {
         /**
@@ -132,7 +132,7 @@ declare module "@system.request" {
      * 下载文件
      */
     function download(obj: DownloadOptions & RecordCombine<DownloadCallbackOptions>): void;
-    function download(obj: DownloadOptions): Promise<DownloadSuccessOptions>;
+    function download(obj: DownloadOptions): ReturnPromise<DownloadSuccessOptions>;
 
     interface OnDownloadCompleteOptions {
         /**
@@ -166,5 +166,5 @@ declare module "@system.request" {
      * @param obj
      */
     function onDownloadComplete(obj: OnDownloadCompleteOptions & RecordCombine<OnDownloadCompleteCallbackOptions>): void;
-    function onDownloadComplete(obj: OnDownloadCompleteOptions): Promise<OnDownloadCompleteSuccessOptions>;
+    function onDownloadComplete(obj: OnDownloadCompleteOptions): ReturnPromise<OnDownloadCompleteSuccessOptions>;
 }

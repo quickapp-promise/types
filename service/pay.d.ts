@@ -51,5 +51,5 @@ declare module "@service.pay" {
      * 使用支付完成付款
      */
     function pay(obj: PayOptions & RecordCombine<PayCallbackOptions>): void;
-    function pay(obj: PayOptions): Promise<PaySuccessOptions>;
+    function pay(obj: PayOptions): ReturnPromise<PaySuccessOptions>;
 }

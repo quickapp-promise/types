@@ -58,7 +58,7 @@ declare module "@service.texttoaudio" {
      * 语音播报，输入需要播报的文本内容，实时播报
      */
     function speak(obj: SpeakOptions & RecordCombine<SpeakCallbackOptions>): void;
-    function speak(obj: SpeakOptions): Promise<SpeakSuccessOptions>;
+    function speak(obj: SpeakOptions): ReturnPromise<SpeakSuccessOptions>;
 
     interface TextToAudioFileOptions {
         /**
@@ -118,7 +118,7 @@ declare module "@service.texttoaudio" {
      * 语音合成，输入需要合成的文本内容，生成本地音频文件
      */
     function textToAudioFile(obj: TextToAudioFileOptions & RecordCombine<TextToAudioFileCallbackOptions>): void;
-    function textToAudioFile(obj: TextToAudioFileOptions): Promise<TextToAudioFileSuccessOptions>;
+    function textToAudioFile(obj: TextToAudioFileOptions): ReturnPromise<TextToAudioFileSuccessOptions>;
 
     interface IsLanguageAvailableOptions {
         /**
@@ -153,7 +153,7 @@ declare module "@service.texttoaudio" {
      * 是否支持语言类型
      */
     function isLanguageAvailable(obj: IsLanguageAvailableOptions & RecordCombine<IsLanguageAvailableCallbackOptions>): void;
-    function isLanguageAvailable(obj: IsLanguageAvailableOptions): Promise<IsLanguageAvailableSuccessOptions>;
+    function isLanguageAvailable(obj: IsLanguageAvailableOptions): ReturnPromise<IsLanguageAvailableSuccessOptions>;
 
     interface OnTtsStateChangeOptions {
         /**

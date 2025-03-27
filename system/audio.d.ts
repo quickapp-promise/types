@@ -192,5 +192,5 @@ declare module "@system.audio" {
      * [1050+]
      */
     function getPlayState(obj: RecordCombine<GetPlayStateCallbackOptions>): void;
-    function getPlayState(): Promise<GetPlayStateSuccessOptions>;
+    function getPlayState(): ReturnPromise<GetPlayStateSuccessOptions>;
 }

@@ -79,5 +79,5 @@ declare module "@system.fetch" {
      * 获取网络数据
      */
     function fetch(options: FetchOptions & RecordCombine<FetchCallbackOptions>): void;
-    function fetch(options: FetchOptions): Promise<FetchSuccessOptions>;
+    function fetch(options: FetchOptions): ReturnPromise<FetchSuccessOptions>;
 }

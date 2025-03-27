@@ -78,7 +78,7 @@ declare module "@service.share" {
      * 分享内容
      */
     function share(obj: ShareOptions & RecordCombine<ShareCallbackOptions>): void;
-    function share(obj: ShareOptions): Promise<void>;
+    function share(obj: ShareOptions): ReturnPromise<void>;
 
     interface GetAvailablePlatformsCallbackOptions {
         /**
@@ -108,5 +108,5 @@ declare module "@service.share" {
      * [1010+]
      */
     function getAvailablePlatforms(obj: RecordCombine<GetAvailablePlatformsCallbackOptions>): void;
-    function getAvailablePlatforms(): Promise<GetAvailablePlatformsSuccessOptions>;
+    function getAvailablePlatforms(): ReturnPromise<GetAvailablePlatformsSuccessOptions>;
 }

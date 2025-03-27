@@ -62,7 +62,7 @@ declare module "@system.geolocation" {
      * 获取地理位置
      */
     function getLocation(obj: GetLocationOptions & RecordCombine<GetLocationCallbackOptions>): void;
-    function getLocation(obj?: GetLocationOptions): Promise<GetLocationSuccessOptions>;
+    function getLocation(obj?: GetLocationOptions): ReturnPromise<GetLocationSuccessOptions>;
 
     interface OpenLocationOptions {
         /**
@@ -121,7 +121,7 @@ declare module "@system.geolocation" {
      * - 精确设备定位
      */
     function openLocation(obj: OpenLocationOptions & RecordCombine<OpenLocationCallbackOptions>): void;
-    function openLocation(obj: OpenLocationOptions): Promise<void>;
+    function openLocation(obj: OpenLocationOptions): ReturnPromise<void>;
 
     interface ChooseLocationOptions {
         /**
@@ -190,7 +190,7 @@ declare module "@system.geolocation" {
      * 精确设备定位
      */
     function chooseLocation(obj: ChooseLocationOptions & RecordCombine<ChooseLocationCallbackOptions>): void;
-    function chooseLocation(obj?: ChooseLocationOptions): Promise<ChooseLocationSuccessOptions>;
+    function chooseLocation(obj?: ChooseLocationOptions): ReturnPromise<ChooseLocationSuccessOptions>;
 
     interface GetLocationTypeCallbackOptions {
         /**
@@ -222,7 +222,7 @@ declare module "@system.geolocation" {
      * - 精确设备定位
      */
     function getLocationType(obj: RecordCombine<GetLocationTypeCallbackOptions>): void;
-    function getLocationType(): Promise<GetLocationTypeSuccessOptions>;
+    function getLocationType(): ReturnPromise<GetLocationTypeSuccessOptions>;
 
     interface SubscribeOptions {
         /**
@@ -336,7 +336,7 @@ declare module "@system.geolocation" {
      * [1080+]
      */
     function geocodeQuery(obj: GeocodeQueryOptions & RecordCombine<GeocodeQueryCallbackOptions>): void;
-    function geocodeQuery(obj: GeocodeQueryOptions): Promise<GeocodeQuerytSuccessOptions>;
+    function geocodeQuery(obj: GeocodeQueryOptions): ReturnPromise<GeocodeQuerytSuccessOptions>;
 
     interface ReverseGeocodeQueryOptions {
         /**
@@ -435,5 +435,5 @@ declare module "@system.geolocation" {
      * [1080+]
      */
     function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions & RecordCombine<ReverseGeocodeQueryCallbackOptions>): void;
-    function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions): Promise<ReverseGeocodeQuerySuccessOptions>;
+    function reverseGeocodeQuery(obj: ReverseGeocodeQueryOptions): ReturnPromise<ReverseGeocodeQuerySuccessOptions>;
 }

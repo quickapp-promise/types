@@ -78,7 +78,7 @@ declare module "@system.record" {
      * [权限要求:录音]
      */
     function start(obj: StartOptions & RecordCombine<StartCallbackOptions>): void;
-    function start(obj?: StartOptions): Promise<StartSuccessOptions>;
+    function start(obj?: StartOptions): ReturnPromise<StartSuccessOptions>;
 
     interface OnfremerecordedOptions {
         /**

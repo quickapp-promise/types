@@ -68,3 +68,5 @@ type RecordCombine<T extends { [K in string]: any }> = keyof T extends infer K
       ? T | RecordCombine<Omit<T, K>>
       : never
     : never;
+
+type ReturnPromise<T> = Promise<{ data: T }>;

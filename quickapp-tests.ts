@@ -74,7 +74,7 @@ import Video from "@hap.io.Video";
         },
     });
 
-    const result = await app.createQuickAppQRCode();
+    const { data: result} = await app.createQuickAppQRCode();
     typeof result.uri === 'string'
 });
 
@@ -151,7 +151,7 @@ import Video from "@hap.io.Video";
             typeof data.index === 'number';
         },
     });
-    const r = await prompt.showDialog({
+    const { data: r} = await prompt.showDialog({
         title: "Hello World",
         message: "Hello World",
     });
@@ -163,7 +163,7 @@ import Video from "@hap.io.Video";
             typeof data.index === 'number';
         },
     });
-    const r1 = await prompt.showContextMenu({
+    const { data: r1} = await prompt.showContextMenu({
         itemList: ["Item 1", "Item 2"],
     });
     typeof r1.index === 'number';
@@ -204,7 +204,7 @@ notification.show({
             typeof data.code === 'number';
         },
     });
-    const r = await request.upload({
+    const { data: r} = await request.upload({
         url: "https://www.example.com",
         files: [{
             filename: "file.txt",
@@ -219,7 +219,7 @@ notification.show({
             typeof data.token === 'string';
         },
     });
-    const r1 = await request.download({
+    const { data: r1} = await request.download({
         url: "https://www.example.com",
     });
     typeof r1.token ==='string';
@@ -230,7 +230,7 @@ notification.show({
             typeof data.uri ==='string';
         },
     });
-    const r2 = await request.onDownloadComplete({
+    const { data: r2} = await request.onDownloadComplete({
         token: "test",
     });
     typeof r2.uri ==='string';
@@ -294,7 +294,7 @@ notification.show({
             typeof data.code === 'number';
         },
     });
-    const r = await fetch.fetch({
+    const { data: r} = await fetch.fetch({
         url: "https://www.example.com",
     });
     typeof r.code === 'number';
@@ -359,7 +359,7 @@ notification.show({
             typeof data ==='string';
         },
     });
-    const r = await storage.get({
+    const { data: r} = await storage.get({
         key: "key",
     });
     typeof r ==='string';
@@ -393,7 +393,7 @@ notification.show({
             typeof data ==='string';
         },
     });
-    const r1 = await storage.key({
+    const { data: r1} = await storage.key({
         index: 0,
     });
     typeof r1 ==='string';
@@ -409,7 +409,7 @@ notification.show({
             typeof data === 'string';
         },
     });
-    const r = await file.move({
+    const { data: r} = await file.move({
         srcUri: "file:///path/to/file.txt",
         dstUri: "file:///path/to/file.txt",
     });
@@ -422,7 +422,7 @@ notification.show({
             typeof data === 'string';
         }
     });
-    const r1 = await file.copy({
+    const { data: r1} = await file.copy({
         srcUri: "file:///path/to/file.txt",
         dstUri: "file:///path/to/file.txt",
     });
@@ -434,7 +434,7 @@ notification.show({
             data.fileList instanceof Array;
         },
     });
-    const r2 = await file.list({
+    const { data: r2} = await file.list({
         uri: "file:///path/to/file.txt",
     });
     r2.fileList instanceof Array;
@@ -445,7 +445,7 @@ notification.show({
             typeof data.uri === 'string';
         }
     });
-    const r3 = await file.get({
+    const { data: r3} = await file.get({
         uri: "file:///path/to/file.txt",
     });
     typeof r3.uri === 'string';
@@ -484,7 +484,7 @@ notification.show({
             typeof data.text === 'string';
         },
     });
-    const r4 = await file.readText({
+    const { data: r4} = await file.readText({
         uri: "file:///path/to/file.txt",
     });
     typeof r4.text === 'string';
@@ -495,7 +495,7 @@ notification.show({
             data.buffer instanceof Uint8Array;
         },
     });
-    const r5 = await file.readArrayBuffer({
+    const { data: r5} = await file.readArrayBuffer({
         uri: "file:///path/to/file.txt",
     });
     r5.buffer instanceof Uint8Array;
@@ -504,7 +504,7 @@ notification.show({
         uri: "file:///path/to/file.txt",
         success() { },
     });
-    const r6 = await file.access({
+    const { data: r6} = await file.access({
         uri: "file:///path/to/file.txt",
     });
 
@@ -532,7 +532,7 @@ notification.show({
             typeof data.value === "string";
         },
     });
-    const r = await exchange.get({
+    const { data: r} = await exchange.get({
         key: "key",
     });
     typeof r.value === "string";
@@ -584,7 +584,7 @@ notification.show({
 });
 
 (async () => {
-    const result = await barcode.scan();
+    const { data: result} = await barcode.scan();
     typeof result.result === 'string';
 });
 
@@ -647,7 +647,7 @@ notification.show({
             typeof data.text === 'string';
         },
     });
-    const r = await clipboard.get();
+    const { data: r} = await clipboard.get();
     typeof r.text === 'string';
 });
 
@@ -660,7 +660,7 @@ notification.show({
             typeof data.time === 'number';
         },
     });
-    const r = await geolocation.getLocation();
+    const { data: r} = await geolocation.getLocation();
     typeof r.accuracy === 'number';
     typeof r.latitude === 'number';
     typeof r.longitude === 'number';
@@ -685,7 +685,7 @@ notification.show({
             typeof data.name === 'string';
         },
     });
-    const r1 = await geolocation.chooseLocation();
+    const { data: r1} = await geolocation.chooseLocation();
     typeof r1.address === 'string';
     typeof r1.coordType === 'string';
     typeof r1.latitude === 'number';
@@ -697,7 +697,7 @@ notification.show({
             data.types instanceof Array;
         },
     });
-    const r2 = await geolocation.getLocationType();
+    const { data: r2} = await geolocation.getLocationType();
     r2.types instanceof Array;
 
     geolocation.subscribe({
@@ -721,7 +721,7 @@ notification.show({
             typeof data.longitude === 'number';
         },
     });
-    const r3 = await geolocation.geocodeQuery({
+    const { data: r3} = await geolocation.geocodeQuery({
         city: "Beijing",
         address: "Tiananmen Square",
     });
@@ -740,7 +740,7 @@ notification.show({
             typeof data.street === 'string';
         },
     });
-    const r4 = await geolocation.reverseGeocodeQuery({
+    const { data: r4} = await geolocation.reverseGeocodeQuery({
         latitude: 0,
         longitude: 0,
     });
@@ -758,7 +758,7 @@ notification.show({
             typeof data === 'boolean';
         },
     });
-    const r = await shortcut.hasInstalled();
+    const { data: r} = await shortcut.hasInstalled();
     typeof r === 'boolean';
 
     shortcut.install({
@@ -778,7 +778,7 @@ notification.show({
             typeof data.id === 'number';
         },
     });
-    const result = await calendar.insert({
+    const { data: result} = await calendar.insert({
         title: "Meeting",
         startDate: 10000,
         endDate: 20000,
@@ -793,7 +793,7 @@ notification.show({
             typeof data.metered === 'string';
         },
     });
-    const r = await network.getType();
+    const { data: r} = await network.getType();
     typeof r.type ==='string';
     typeof r.metered ==='string';
 
@@ -812,7 +812,7 @@ notification.show({
             typeof data.size === 'number';
         },
     });
-    const r1 = await network.getSimOperators();
+    const { data: r1} = await network.getSimOperators();
     r1.operators instanceof Array;
     typeof r1.size === 'number';
 });
@@ -823,7 +823,7 @@ notification.show({
             typeof data.brand === 'string';
         },
     });
-    const r = await device.getInfo();
+    const { data: r} = await device.getInfo();
     typeof r.brand === 'string';
 
     device.getId({
@@ -832,7 +832,7 @@ notification.show({
             typeof data.mac === 'string';
         },
     });
-    const r1 = await device.getId({
+    const { data: r1} = await device.getId({
         type: ["device"],
     });
     typeof r1.mac === 'string';
@@ -842,7 +842,7 @@ notification.show({
             typeof data.deviceId === 'number';
         },
     });
-    const r2 = await device.getDeviceId();
+    const { data: r2} = await device.getDeviceId();
     typeof r2.deviceId === 'number';
 
     device.getUserId({
@@ -850,7 +850,7 @@ notification.show({
             typeof data.userId === 'string';
         },
     });
-    const r3 = await device.getUserId();
+    const { data: r3} = await device.getUserId();
     typeof r3.userId === 'string';
 
     device.getAdvertisingId({
@@ -858,7 +858,7 @@ notification.show({
             typeof data.advertisingId === 'string';
         },
     });
-    const r4 = await device.getAdvertisingId();
+    const { data: r4} = await device.getAdvertisingId();
     typeof r4.advertisingId === 'string';
 
     device.getSerial({
@@ -866,7 +866,7 @@ notification.show({
             typeof data.serial === 'string';
         },
     });
-    const r5 = await device.getSerial();
+    const { data: r5} = await device.getSerial();
     typeof r5.serial ==='string';
 
     device.getTotalStorage({
@@ -874,7 +874,7 @@ notification.show({
             typeof data.totalStorage === 'number';
         },
     });
-    const r6 = await device.getTotalStorage();
+    const { data: r6} = await device.getTotalStorage();
     typeof r6.totalStorage === 'number';
 
     device.getAvailableStorage({
@@ -882,7 +882,7 @@ notification.show({
             typeof data.availableStorage === 'number';
         },
     });
-    const r7 = await device.getAvailableStorage();
+    const { data: r7} = await device.getAvailableStorage();
     typeof r7.availableStorage === 'number';
 
     device.getCpuInfo({
@@ -890,7 +890,7 @@ notification.show({
             typeof data.cpuInfo === 'string';
         },
     });
-    const r8 = await device.getCpuInfo();
+    const { data: r8} = await device.getCpuInfo();
     typeof r8.cpuInfo === 'string';
 
     device.getOAID({
@@ -898,7 +898,7 @@ notification.show({
             typeof data.oaid === 'string';
         },
     });
-    const r9 = await device.getOAID();
+    const { data: r9} = await device.getOAID();
     typeof r9.oaid === 'string';
 
     device.platform.versionCode === 0;
@@ -920,7 +920,7 @@ notification.show({
             typeof data.is5GDevice === 'boolean';
         },
     });
-    const r = await telecom.getTelecomInfo();
+    const { data: r} = await telecom.getTelecomInfo();
     typeof r.is5GDevice === 'boolean';
 });
 
@@ -930,7 +930,7 @@ notification.show({
             typeof data.value === 'string';
         },
     });
-    const r = await brightness.getValue();
+    const { data: r} = await brightness.getValue();
     typeof r.value === 'string';
 
     brightness.setValue({
@@ -946,7 +946,7 @@ notification.show({
             typeof data.mode === 'number';
         },
     });
-    const r1 = await brightness.getMode();
+    const { data: r1} = await brightness.getMode();
     typeof r1.mode === 'number';
 
     brightness.setMode({
@@ -978,7 +978,7 @@ volume.setMediaValue({
             typeof data.charging === 'boolean';
         },
     });
-    const result = await battery.getStatus();
+    const { data: result} = await battery.getStatus();
     typeof result.charging === 'boolean';
 });
 
@@ -989,7 +989,7 @@ volume.setMediaValue({
             typeof data.result === 'boolean';
         },
     });
-    const r = await pkg.hasInstalled({
+    const { data: r} = await pkg.hasInstalled({
         package: "com.example.app",
     });
     typeof r.result === 'boolean';
@@ -1000,7 +1000,7 @@ volume.setMediaValue({
             typeof data.result === 'boolean';
         },
     });
-    const r1 = await pkg.install({
+    const { data: r1} = await pkg.install({
         package: "com.example.app",
     });
     typeof r1.result === 'boolean';
@@ -1012,7 +1012,7 @@ volume.setMediaValue({
             typeof data.versionName === 'string';
         },
     });
-    const r2 = await pkg.getInfo({
+    const { data: r2} = await pkg.getInfo({
         package: "com.example.app",
     });
     typeof r2.versionCode === 'number';
@@ -1024,7 +1024,7 @@ volume.setMediaValue({
             data.signatureDigests instanceof Array;
         },
     });
-    const r3 = await pkg.getSignatureDigests({
+    const { data: r3} = await pkg.getSignatureDigests({
         package: "com.example.app",
     });
     r3.signatureDigests instanceof Array;
@@ -1036,7 +1036,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r = await record.start();
+    const { data: r} = await record.start();
     typeof r.uri ==='string';
 
     record.onframerecorded = function(data) {
@@ -1053,7 +1053,7 @@ volume.setMediaValue({
             typeof data.displayName === 'string';
         },
     });
-    const r = await contact.pick();
+    const { data: r} = await contact.pick();
     typeof r.displayName === 'string';
  
     contact.list({
@@ -1061,7 +1061,7 @@ volume.setMediaValue({
             data.contactList instanceof Array;
         },
     });
-    const r1 = await contact.list();
+    const { data: r1} = await contact.list();
     r1.contactList instanceof Array;
 });
 
@@ -1081,7 +1081,7 @@ volume.setMediaValue({
             typeof data.message ==='string';
         },
     });
-    const r = await sms.readSafely();
+    const { data: r} = await sms.readSafely();
     typeof r.message ==='string';
 });
 
@@ -1106,7 +1106,7 @@ volume.setMediaValue({
             typeof data.BSSID === 'string';
         },
     });
-    const r = await wifi.getConnectedWifi();
+    const { data: r} = await wifi.getConnectedWifi();
     typeof r.BSSID ==='string';
 
     wifi.onscanned = (data) => {
@@ -1134,7 +1134,7 @@ volume.setMediaValue({
             typeof data.available === 'boolean';
         },
     });
-    const adapterState = await bluetooth.getAdapterState();
+    const { data: adapterState} = await bluetooth.getAdapterState();
     typeof adapterState.available === 'boolean';
     
     bluetooth.onadapterstatechange = (data) => {
@@ -1157,7 +1157,7 @@ volume.setMediaValue({
             data.devices instanceof Array;
         },
     });
-    const r1 = await bluetooth.getDevices();
+    const { data: r1} = await bluetooth.getDevices();
     r1.devices instanceof Array;
 
     bluetooth.ondevicefound = (data) => {
@@ -1170,7 +1170,7 @@ volume.setMediaValue({
             data.devices instanceof Array;
         },
     });
-    const r2 = await bluetooth.getConnectedDevices({
+    const { data: r2} = await bluetooth.getConnectedDevices({
         services: ["service1", "service2"],
     });
     r2.devices instanceof Array;
@@ -1206,7 +1206,7 @@ volume.setMediaValue({
             data.characteristics instanceof Array;
         },
     });
-    const r3 = await bluetooth.getBLEDeviceCharacteristics({
+    const { data: r3} = await bluetooth.getBLEDeviceCharacteristics({
         deviceId: "device1",
         serviceId: "service1",
     });
@@ -1283,7 +1283,7 @@ volume.setMediaValue({
             data.isAvailable === true;
         }
     })
-    const result = await alarm.isAvailable();
+    const { data: result} = await alarm.isAvailable();
     result.isAvailable === true;
 });
 
@@ -1305,7 +1305,7 @@ volume.setMediaValue({
             typeof data.isKeyguardLocked === 'boolean';
         },
     });
-    const r = await keyguard.getKeyguardLockedStatus();
+    const { data: r} = await keyguard.getKeyguardLockedStatus();
     typeof r.isKeyguardLocked === 'boolean';
 });
 
@@ -1359,7 +1359,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r = await ndef.isConnected();
+    const { data: r} = await ndef.isConnected();
     typeof r.isConnected === 'boolean';
 
     ndef.setTimeout({
@@ -1392,7 +1392,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r1 = await nfcA.getMaxTransceiveLength();
+    const { data: r1} = await nfcA.getMaxTransceiveLength();
     typeof r1.length === 'number';
 
     nfcA.isConnected({
@@ -1400,7 +1400,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r2 = await nfcA.isConnected();
+    const { data: r2} = await nfcA.isConnected();
     typeof r2.isConnected === 'boolean';
 
     nfcA.setTimeout({
@@ -1416,7 +1416,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r3 = await nfcA.transceive();
+    const { data: r3} = await nfcA.transceive();
     r3.data instanceof ArrayBuffer;
 
     nfcA.getAtqa({
@@ -1424,7 +1424,7 @@ volume.setMediaValue({
             data.atqa instanceof ArrayBuffer;
         },
     });
-    const r4 = await nfcA.getAtqa();
+    const { data: r4} = await nfcA.getAtqa();
     r4.atqa instanceof ArrayBuffer;
 
     nfcA.getSak({
@@ -1432,7 +1432,7 @@ volume.setMediaValue({
             data.sak instanceof ArrayBuffer;
         },
     });
-    const r5 = await nfcA.getSak();
+    const { data: r5} = await nfcA.getSak();
     r5.sak instanceof ArrayBuffer;
 
     const nfcB = NFCAdp.getNfcB();
@@ -1452,7 +1452,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r6 = await nfcB.getMaxTransceiveLength();
+    const { data: r6} = await nfcB.getMaxTransceiveLength();
     typeof r6.length === 'number';
 
     nfcB.isConnected({
@@ -1460,7 +1460,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r7 = await nfcB.isConnected();
+    const { data: r7} = await nfcB.isConnected();
     typeof r7.isConnected === 'boolean';
 
     nfcB.transceive({
@@ -1468,7 +1468,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r8 = await nfcB.transceive();
+    const { data: r8} = await nfcB.transceive();
     r8.data instanceof ArrayBuffer;
 
     const nfcF = NFCAdp.getNfcF();
@@ -1488,7 +1488,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r9 = await nfcF.getMaxTransceiveLength();
+    const { data: r9} = await nfcF.getMaxTransceiveLength();
     typeof r9.length === 'number';
 
     nfcF.isConnected({
@@ -1496,7 +1496,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r10 = await nfcF.isConnected();
+    const { data: r10} = await nfcF.isConnected();
     typeof r10.isConnected === 'boolean';
 
     nfcF.setTimeout({
@@ -1512,7 +1512,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r11 = await nfcF.transceive();
+    const { data: r11} = await nfcF.transceive();
     r11.data instanceof ArrayBuffer;
     
     const nfcV = NFCAdp.getNfcV();
@@ -1532,7 +1532,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r12 = await nfcV.getMaxTransceiveLength();
+    const { data: r12} = await nfcV.getMaxTransceiveLength();
     typeof r12.length === 'number';
 
     nfcV.isConnected({
@@ -1540,7 +1540,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r13 = await nfcV.isConnected();
+    const { data: r13} = await nfcV.isConnected();
     typeof r13.isConnected === 'boolean';
 
     nfcV.transceive({
@@ -1548,7 +1548,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r14 = await nfcV.transceive();
+    const { data: r14} = await nfcV.transceive();
     r14.data instanceof ArrayBuffer;
     
     const isoDep = NFCAdp.getIsoDep();
@@ -1568,7 +1568,7 @@ volume.setMediaValue({
             data.histBytes instanceof ArrayBuffer;
         },
     });
-    const r15 = await isoDep.getHistoricalBytes();
+    const { data: r15} = await isoDep.getHistoricalBytes();
     r15.histBytes instanceof ArrayBuffer;
 
     isoDep.getMaxTransceiveLength({
@@ -1576,7 +1576,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const t16 = await isoDep.getMaxTransceiveLength();
+    const { data: t16} = await isoDep.getMaxTransceiveLength();
     typeof t16.length === 'number';
 
     isoDep.isConnected({
@@ -1599,7 +1599,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r17 = await isoDep.transceive();
+    const { data: r17} = await isoDep.transceive();
     r17.data instanceof ArrayBuffer;
 
     const mifareClassic = NFCAdp.getMifareClassic();
@@ -1619,7 +1619,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r18 = await mifareClassic.getMaxTransceiveLength();
+    const { data: r18} = await mifareClassic.getMaxTransceiveLength();
     typeof r18.length === 'number';
 
     mifareClassic.isConnected({
@@ -1627,7 +1627,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r19 = await mifareClassic.isConnected();
+    const { data: r19} = await mifareClassic.isConnected();
     typeof r19.isConnected === 'boolean';
 
     mifareClassic.setTimeout({
@@ -1643,7 +1643,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r20 = await mifareClassic.transceive();
+    const { data: r20} = await mifareClassic.transceive();
     r20.data instanceof ArrayBuffer;
 
     const mifareUltralight = NFCAdp.getMifareUltralight();
@@ -1663,7 +1663,7 @@ volume.setMediaValue({
             typeof data.length === 'number';
         },
     });
-    const r21 = await mifareUltralight.getMaxTransceiveLength();
+    const { data: r21} = await mifareUltralight.getMaxTransceiveLength();
     typeof r21.length === 'number';
 
     mifareUltralight.isConnected({
@@ -1671,7 +1671,7 @@ volume.setMediaValue({
             typeof data.isConnected === 'boolean';
         },
     });
-    const r22 = await mifareUltralight.isConnected();
+    const { data: r22} = await mifareUltralight.isConnected();
     typeof r22.isConnected === 'boolean';
 
     mifareUltralight.setTimeout({
@@ -1687,7 +1687,7 @@ volume.setMediaValue({
             data.data instanceof ArrayBuffer;
         },
     });
-    const r23 = await mifareUltralight.transceive();
+    const { data: r23} = await mifareUltralight.transceive();
     r23.data instanceof ArrayBuffer;
 });
 
@@ -1700,7 +1700,7 @@ volume.setMediaValue({
             typeof data.text === 'string';
         },
     });
-    const r = await cipher.rsa({
+    const { data: r} = await cipher.rsa({
         action: "encrypt",
         text: "text",
         key: "key",
@@ -1715,7 +1715,7 @@ volume.setMediaValue({
             typeof data.text ==='string';
         },
     });
-    const r1 = await cipher.aes({
+    const { data: r1} = await cipher.aes({
         action: "decrypt",
         text: "text",
         key: "key",
@@ -1729,7 +1729,7 @@ volume.setMediaValue({
             typeof data.name === 'string';
         },
     });
-    const r = await media.takePhoto();
+    const { data: r} = await media.takePhoto();
     typeof r.name ==='string';
 
     media.takeVideo({
@@ -1737,7 +1737,7 @@ volume.setMediaValue({
             typeof data.name ==='string';
         },
     });
-    const r1 = await media.takeVideo();
+    const { data: r1} = await media.takeVideo();
     typeof r1.name ==='string';
 
     media.pickImage({
@@ -1745,7 +1745,7 @@ volume.setMediaValue({
             typeof data.name ==='string';
         },
     });
-    const r2 = await media.pickImage();
+    const { data: r2} = await media.pickImage();
     typeof r2.name ==='string';
 
     media.pickImages({
@@ -1753,7 +1753,7 @@ volume.setMediaValue({
             data.uris instanceof Array;
         },
     });
-    const r3 = await media.pickImages();
+    const { data: r3} = await media.pickImages();
     r3.uris instanceof Array;
 
     media.pickVideo({
@@ -1761,7 +1761,7 @@ volume.setMediaValue({
             typeof data.name ==='string';
         },
     });
-    const r4 = await media.pickVideo();
+    const { data: r4} = await media.pickVideo();
     typeof r4.name ==='string';
 
     media.pickVideos({
@@ -1769,7 +1769,7 @@ volume.setMediaValue({
             data.uris instanceof Array;
         },
     });
-    const r5 = await media.pickVideos();
+    const { data: r5} = await media.pickVideos();
     r5.uris instanceof Array;
 
     media.pickFile({
@@ -1777,7 +1777,7 @@ volume.setMediaValue({
             typeof data.name ==='string';
         },
     });
-    const r6 = await media.pickFile();
+    const { data: r6} = await media.pickFile();
     typeof r6.name ==='string';
 
     media.saveToPhotosAlbum({
@@ -1802,7 +1802,7 @@ volume.setMediaValue({
             typeof data.title ==='string';
         },
     });
-    const r7 = await media.getRingtone({
+    const { data: r7} = await media.getRingtone({
         type: "ringtone",
     });
     typeof r7.title ==='string';
@@ -1825,7 +1825,7 @@ volume.setMediaValue({
             typeof data.width ==='number';
         },
     });
-    const r = await image.getImageInfo({
+    const { data: r} = await image.getImageInfo({
         uri: "file:///path/to/file",
     });
     typeof r.width ==='number';
@@ -1836,7 +1836,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r1 = await image.compressImage({
+    const { data: r1} = await image.compressImage({
         uri: "file:///path/to/file",
     });
     typeof r1.uri ==='string';
@@ -1854,7 +1854,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r2 = await image.applyOperations({
+    const { data: r2} = await image.applyOperations({
         uri: "file:///path/to/file",
         operations: [{
             action: "crop",
@@ -1872,7 +1872,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r3 = await image.editImage({
+    const { data: r3} = await image.editImage({
         uri: "file:///path/to/file",
     });
     typeof r3.uri ==='string';
@@ -1883,7 +1883,7 @@ volume.setMediaValue({
             typeof data.attributes ==='object';
         },
     });
-    const r4 = await image.getExifAttributes({
+    const { data: r4} = await image.getExifAttributes({
         uri: "file:///path/to/file",
     });
     typeof r4.attributes ==='object';
@@ -1898,7 +1898,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r5 = await image.setExifAttributes({
+    const { data: r5} = await image.setExifAttributes({
         uri: "file:///path/to/file",
         attributes: {
             "ApertureValue": 1,
@@ -1922,7 +1922,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r = await video.compressVideo();
+    const { data: r} = await video.compressVideo();
     typeof r.uri ==='string';
     
     video.abort({
@@ -1936,7 +1936,7 @@ volume.setMediaValue({
             typeof data.bitrate ==='number';
         },
     });
-    const r1 = await Video.getVideoInfo({
+    const { data: r1} = await Video.getVideoInfo({
         uri: "file:///path/to/file",
     });
     typeof r1.bitrate ==='number';
@@ -1947,7 +1947,7 @@ volume.setMediaValue({
             typeof data.uri ==='string';
         },
     });
-    const r2 = await Video.getVideoThumbnail({
+    const { data: r2} = await Video.getVideoThumbnail({
         uri: "file:///path/to/file",
     });
     typeof r2.uri ==='string';
@@ -1965,7 +1965,7 @@ volume.setMediaValue({
             typeof data.src === 'string';
         },
     });
-    const playState = await audio.getPlayState();
+    const { data: playState} = await audio.getPlayState();
     typeof playState.src === 'string';
     
     audio.src = "file:///path/to/file";
@@ -2017,7 +2017,7 @@ volume.setMediaValue({
             typeof data.utteranceId ==='string';
         },
     });
-    const r = await texttoaudio.speak({
+    const { data: r} = await texttoaudio.speak({
         lang: "en_US",
         content: "Hello world",
     });
@@ -2030,7 +2030,7 @@ volume.setMediaValue({
             typeof data.filePath ==='string';
         },
     });
-    const r1 = await texttoaudio.textToAudioFile({
+    const { data: r1} = await texttoaudio.textToAudioFile({
         lang: "en_US",
         content: "Hello world",
     });
@@ -2042,7 +2042,7 @@ volume.setMediaValue({
             typeof data.isAvailable ==='boolean';
         },
     });
-    const r2 = await texttoaudio.isLanguageAvailable({
+    const { data: r2} = await texttoaudio.isLanguageAvailable({
         lang: "en_US",
     });
     typeof r2.isAvailable ==='boolean';
@@ -2063,7 +2063,7 @@ volume.setMediaValue({
             typeof data.regId ==='string';
         },
     });
-    const r = await push.subscribe();
+    const { data: r} = await push.subscribe();
     typeof r.regId ==='string';
 
     push.unsubscribe({
@@ -2090,7 +2090,7 @@ volume.setMediaValue({
             typeof data.code === 'number';
         }
     });
-    const r = await pay.pay({
+    const { data: r} = await pay.pay({
         orderInfo: "123123",
     });
     typeof r.code === 'number';
@@ -2117,7 +2117,7 @@ volume.setMediaValue({
             typeof data.isLogin === 'boolean';
         },
     });
-    const r = await account.isLogin();
+    const { data: r} = await account.isLogin();
     typeof r.isLogin === 'boolean';
 
     account.authorize({
@@ -2126,7 +2126,7 @@ volume.setMediaValue({
             typeof data.accessToken  === 'string';
         },
     });
-    const r1 = await account.authorize({
+    const { data: r1} = await account.authorize({
         type: "code",
     });
     typeof r1.accessToken  ==='string';
@@ -2137,7 +2137,7 @@ volume.setMediaValue({
             typeof data.avatar === 'string';
         },
     });
-    const r2 = await account.getProfile({
+    const { data: r2} = await account.getProfile({
         token: "asdasd",
     });
     typeof r2.avatar ==='string';
@@ -2147,7 +2147,7 @@ volume.setMediaValue({
             typeof data.phoneNumber ==='string';
         },
     });
-    const r3 = await account.getPhoneNumber();
+    const { data: r3} = await account.getPhoneNumber();
     typeof r3.phoneNumber ==='string';
 
     account.getEncryptedID({
@@ -2155,7 +2155,7 @@ volume.setMediaValue({
             typeof data.encryptedid ==='string';
         },
     });
-    const r4 = await account.getEncryptedID();
+    const { data: r4} = await account.getEncryptedID();
     typeof r4.encryptedid ==='string';
 });
 
@@ -2165,7 +2165,7 @@ volume.setMediaValue({
             typeof data.support === 'boolean';
         },
     });
-    const r = await health.hasStepsOfDay();
+    const { data: r} = await health.hasStepsOfDay();
     typeof r.support === 'boolean';
 
     health.getTodaySteps({
@@ -2173,7 +2173,7 @@ volume.setMediaValue({
             typeof data.steps === 'number';
         },
     });
-    const r1 = await health.getTodaySteps();
+    const { data: r1} = await health.getTodaySteps();
     typeof r1.steps === 'number';
 
     health.getLastWeekSteps({
@@ -2181,7 +2181,7 @@ volume.setMediaValue({
             data.stepsList instanceof Array;
         },
     });
-    const r2 = await health.getLastWeekSteps();
+    const { data: r2} = await health.getLastWeekSteps();
     r2.stepsList instanceof Array;
 });
 
@@ -2247,7 +2247,7 @@ volume.setMediaValue({
             data.adList instanceof Array;
         },
     });
-    const r = await ad.preloadAd({
+    const { data: r} = await ad.preloadAd({
         adUnitId: "adUnitId",
         type: "native",
         adCount: 2,
@@ -2287,7 +2287,7 @@ volume.setMediaValue({
             typeof data.final_url === 'string';
         },
     });
-    const r = await wxpay.pay({
+    const { data: r} = await wxpay.pay({
         prepayid: "prepayid",
         extra: {
             app_id: "app_id",
@@ -2325,7 +2325,7 @@ volume.setMediaValue({
             data.platforms instanceof Array;
         }
     });
-    const r = await share2.getAvailablePlatforms();
+    const { data: r} = await share2.getAvailablePlatforms();
     r.platforms instanceof Array;
 });
 
@@ -2339,7 +2339,7 @@ volume.setMediaValue({
             typeof data.url ==='string';
         },
     });
-    const r = await qqaccount.authorize({
+    const { data: r} = await qqaccount.authorize({
         state: "state",
         redirectUri: "redirectUri",
     });
@@ -2355,7 +2355,7 @@ volume.setMediaValue({
             typeof data.code ==='string';
         },
     });
-    const r = await wxaccount.authorize({
+    const { data: r} = await wxaccount.authorize({
         scope: "scope",
     });
     typeof r.code ==='string';
@@ -2370,7 +2370,7 @@ volume.setMediaValue({
             typeof data.accessToken ==='string';
         },
     });
-    const r = await wbaccount.authorize({
+    const { data: r} = await wbaccount.authorize({
         redirectUri: "redirectUri",
     });
     typeof r.accessToken ==='string';

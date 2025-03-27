@@ -36,7 +36,7 @@ declare module "@system.package" {
      * 检测应用是否存在。支持检测原生应用是否已安装
      */
     function hasInstalled(obj: HasInstalledOptions & RecordCombine<HasInstalledCallbackOptions>): void;
-    function hasInstalled(obj: HasInstalledOptions): Promise<HasInstalledSuccessOptions>;
+    function hasInstalled(obj: HasInstalledOptions): ReturnPromise<HasInstalledSuccessOptions>;
 
     interface InstallOptions {
         /**
@@ -71,7 +71,7 @@ declare module "@system.package" {
      * 安装应用, 支持安装原生应用
      */
     function install(obj: InstallOptions & RecordCombine<InstallCallbackOptions>): void;
-    function install(obj: InstallOptions): Promise<InstallSuccessOptions>;
+    function install(obj: InstallOptions): ReturnPromise<InstallSuccessOptions>;
 
     interface GetInfoOptions {
         /**
@@ -111,7 +111,7 @@ declare module "@system.package" {
      * [1070+]
      */
     function getInfo(obj: GetInfoOptions & RecordCombine<GetInfoCallbackOptions>): void;
-    function getInfo(obj: GetInfoOptions): Promise<GetInfoSuccessOptions>;
+    function getInfo(obj: GetInfoOptions): ReturnPromise<GetInfoSuccessOptions>;
 
     interface GetSignatureDigestsOptions {
         /**
@@ -147,5 +147,5 @@ declare module "@system.package" {
      * [1070+]
      */
     function getSignatureDigests(obj: GetSignatureDigestsOptions & RecordCombine<GetSignatureDigestsCallbackOptions>): void;
-    function getSignatureDigests(obj: GetSignatureDigestsOptions): Promise<GetSignatureDigestsSuccessOptions>;
+    function getSignatureDigests(obj: GetSignatureDigestsOptions): ReturnPromise<GetSignatureDigestsSuccessOptions>;
 }

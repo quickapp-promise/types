@@ -33,7 +33,7 @@ declare module "@system.clipboard" {
      * 修改剪贴板内容
      */
     function set(obj: SetOptions & RecordCombine<SetCallbackOptions>): void;
-    function set(obj: SetOptions): Promise<void>;
+    function set(obj: SetOptions): ReturnPromise<void>;
 
     interface GetCallbackOptions {
         /**
@@ -65,5 +65,5 @@ declare module "@system.clipboard" {
      * 读取剪贴板内容
      */
     function get(obj: RecordCombine<GetCallbackOptions>): void;
-    function get(): Promise<GetSuccessOptions>;
+    function get(): ReturnPromise<GetSuccessOptions>;
 }

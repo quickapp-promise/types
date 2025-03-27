@@ -29,7 +29,7 @@ declare module "@system.brightness" {
      * 获得当前屏幕亮度值
      */
     function getValue(obj: RecordCombine<GetValueCallbackOptions>): void;
-    function getValue(): Promise<GetValueSuccessOptions>;
+    function getValue(): ReturnPromise<GetValueSuccessOptions>;
 
     interface SetValueOptions {
         /**
@@ -57,7 +57,7 @@ declare module "@system.brightness" {
      * 设置当前屏幕亮度值
      */
     function setValue(obj: SetValueOptions & RecordCombine<SetValueCallbackOptions>): void;
-    function setValue(obj: SetValueOptions): Promise<void>;
+    function setValue(obj: SetValueOptions): ReturnPromise<void>;
 
     interface GetModeCallbackOptions {
         /**
@@ -85,7 +85,7 @@ declare module "@system.brightness" {
      * 获得当前屏幕亮度模式
      */
     function getMode(obj: RecordCombine<GetModeCallbackOptions>): void;
-    function getMode(): Promise<GetModeSuccessOptions>;
+    function getMode(): ReturnPromise<GetModeSuccessOptions>;
 
     interface SetModeOptions {
         /**
@@ -113,7 +113,7 @@ declare module "@system.brightness" {
      * 设置当前屏幕亮度模式
      */
     function setMode(obj: SetModeOptions & RecordCombine<SetModeCallbackOptions>): void;
-    function setMode(obj: SetModeOptions): Promise<void>;
+    function setMode(obj: SetModeOptions): ReturnPromise<void>;
 
     interface SetKeepScreenOnOptions {
         /**
@@ -142,5 +142,5 @@ declare module "@system.brightness" {
      * [1060+]
      */
     function setKeepScreenOn(obj: SetKeepScreenOnOptions & RecordCombine<SetKeepScreenOnCallbackOptions>): void;
-    function setKeepScreenOn(obj: SetKeepScreenOnOptions): Promise<void>;
+    function setKeepScreenOn(obj: SetKeepScreenOnOptions): ReturnPromise<void>;
 }

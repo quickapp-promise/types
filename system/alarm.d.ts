@@ -61,7 +61,7 @@ declare module "@system.alarm" {
      * 设置闹钟，每次添加弹出提示框，同意后调用接口添加
      */
     function setAlarm(obj: SetAlarmOptions & RecordCombine<SetAlarmCallbackOptions>): void;
-    function setAlarm(obj: SetAlarmOptions): Promise<void>;
+    function setAlarm(obj: SetAlarmOptions): ReturnPromise<void>;
 
     /**
      * 获取服务提供商
@@ -96,5 +96,5 @@ declare module "@system.alarm" {
      * [1120+]
      */
     function isAvailable(obj: RecordCombine<IsAvailableCallbackOptions>): void;
-    function isAvailable(): Promise<IsAvailableSuccessOptions>;
+    function isAvailable(): ReturnPromise<IsAvailableSuccessOptions>;
 }

@@ -209,24 +209,24 @@ declare module "@hap.io.Video" {
          * 执行压缩视频任务
          */
         compressVideo(obj: RecordCombine<CompressVideoCallbackOptions>): void;
-        compressVideo(): Promise<CompressVideoSuccessOptions>;
+        compressVideo(): ReturnPromise<CompressVideoSuccessOptions>;
 
         /**
          * 放弃执行该压缩任务，若该压缩任务正在进行，则中断压缩进程
          */
         abort(options: RecordCombine<AbortCallbackOptions>): void;
-        abort(): Promise<void>;
+        abort(): ReturnPromise<void>;
 
         /**
          * 获取视频信息
          */
         static getVideoInfo(options: GetVideoInfoOptions & RecordCombine<GetVideoInfoCallbackOptions>): void;
-        static getVideoInfo(options: GetVideoInfoOptions): Promise<GetVideoInfoSuccessOptions>;
+        static getVideoInfo(options: GetVideoInfoOptions): ReturnPromise<GetVideoInfoSuccessOptions>;
 
         /**
          * 获取视频缩略图
          */
         static getVideoThumbnail(options: GetVideoThumbnailOptions & RecordCombine<GetVideoThumbnailCallbackOptions>): void;
-        static getVideoThumbnail(options: GetVideoThumbnailOptions): Promise<GetVideoThumbnailSuccessOptions>;
+        static getVideoThumbnail(options: GetVideoThumbnailOptions): ReturnPromise<GetVideoThumbnailSuccessOptions>;
     }
 }

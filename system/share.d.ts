@@ -36,5 +36,5 @@ declare module "@system.share" {
      * 分享数据到其他app
      */
     function share(obj: ShareOptions & RecordCombine<ShareCallbackOptions>): void;
-    function share(obj: ShareOptions): Promise<any>;
+    function share(obj: ShareOptions): ReturnPromise<any>;
 }

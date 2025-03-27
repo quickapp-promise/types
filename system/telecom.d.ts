@@ -24,5 +24,5 @@ declare module "@system.telecom" {
      * 获取设备通信信息
      */
     function getTelecomInfo(obj: RecordCombine<GetTelecomInfoCallbackOptions>): void;
-    function getTelecomInfo(): Promise<GetTelecomInfoSuccessOptions>;
+    function getTelecomInfo(): ReturnPromise<GetTelecomInfoSuccessOptions>;
 }

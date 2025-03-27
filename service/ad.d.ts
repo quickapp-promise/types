@@ -131,12 +131,12 @@ declare module "@service.ad" {
              * 加载展示banner广告，出错的时候回调 onError，分为加载和展示两个阶段，加载成功回调onLoad
              * 返回值：banner 广告显示操作的结果
              */
-            show(): Promise<void>;
+            show(): ReturnPromise<void>;
             /**
              * 隐藏 banner 广告
              * 返回值：banner 广告隐藏操作的结果
              */
-            hide(): Promise<void>;
+            hide(): ReturnPromise<void>;
             /**
              * 监听 banner 广告错误事件
              */
@@ -221,7 +221,7 @@ declare module "@service.ad" {
             /**
              * 插屏广告组件默认是隐藏的，调用 show 方法展示广告。
              */
-            show(): Promise<void>;
+            show(): ReturnPromise<void>;
             /**
              * 监听视频广告加载成功事件
              */
@@ -382,12 +382,12 @@ declare module "@service.ad" {
              * 加载激励视频广告。
              * 返回值：激励视频广告显示操作的结果。
              */
-            load(): Promise<void>;
+            load(): ReturnPromise<void>;
             /**
              * 显示激励视频广告。激励视频广告将从屏幕下方推入。
              * 返回值：激励视频广告显示操作的结果。
              */
-            show(): Promise<void>;
+            show(): ReturnPromise<void>;
             /**
              * 监听激励视频广告加载事件。
              */
@@ -531,5 +531,5 @@ declare module "@service.ad" {
      * @link https://doc.quickapp.cn/features/service/ad/feedad.html
      */
     function preloadAd(obj: PreloadAdOptions & RecordCombine<PreloadAdCallbackOptions>): void;
-    function preloadAd(obj: PreloadAdOptions): Promise<PreloadAdSuccessOptions>;
+    function preloadAd(obj: PreloadAdOptions): ReturnPromise<PreloadAdSuccessOptions>;
 }

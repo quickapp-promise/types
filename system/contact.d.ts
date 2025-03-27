@@ -33,7 +33,7 @@ declare module "@system.contact" {
      * 选择联系人
      */
     function pick(obj: RecordCombine<PickCallbackOptions>): void;
-    function pick(): Promise<ContactItem>;
+    function pick(): ReturnPromise<ContactItem>;
 
     interface ListCallbackOptions {
         /**
@@ -62,5 +62,5 @@ declare module "@system.contact" {
      * [1050+]
      */
     function list(obj: RecordCombine<ListCallbackOptions>): void;
-    function list(): Promise<ListSuccessOptions>;
+    function list(): ReturnPromise<ListSuccessOptions>;
 }
