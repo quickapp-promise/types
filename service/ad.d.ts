@@ -438,7 +438,7 @@ declare module "@service.ad" {
          * 广告单元所属广告位类型
          * - native：原生广告2.0
          */
-        type: "native";
+        type: string;
         /**
          * 预期返回的广告条数
          */
